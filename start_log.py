@@ -1,6 +1,7 @@
 import subprocess as sp
 
 #set start and end based on GPS values
+#need more testing
 start = True
 end = False
 extProc = 1
