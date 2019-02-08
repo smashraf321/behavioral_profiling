@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This is a script for logging can data
 
