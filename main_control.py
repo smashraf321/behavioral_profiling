@@ -43,6 +43,11 @@ STOP_LAT_SOUTH = 42.02994560
 STOP_LONG_EAST = -93.65335393
 STOP_LONG_WEST = -93.65335395
 
+DIST_START_MIN = 3.3
+DIST_START_MAX = 3.4
+DIST_STOP_MIN = 15.4
+DIST_STOP_MAX = 15.5
+
 # configure Gps
 gpsd_socket = gps3.GPSDSocket()
 data_stream = gps3.DataStream()
@@ -50,7 +55,6 @@ gpsd_socket.connect()
 gpsd_socket.watch()
 
 global outfile
-outfile = open('log.txt','w')
 
 # Bring up can0 interface at 500kbps
 os.system("sudo /sbin/ip link set can0 up type can bitrate 500000")
@@ -66,11 +70,15 @@ except OSError:
 def geo_fence_depot(lat,lon):
     return lat < DEPOT_LAT_NORTH and lat > DEPOT_LAT_SOUTH and lon < DEPOT_LONG_EAST and lon > DEPOT_LONG_WEST
 
-def geo_fence_start(lat,lon):
-    return lat < START_LAT_NORTH and lat > START_LAT_SOUTH and lon < START_LONG_EAST and lon > START_LONG_WEST
+def geo_fence_start(lat,lon,dist,spd):
+    geofence =  lat < START_LAT_NORTH and lat > START_LAT_SOUTH and lon < START_LONG_EAST and lon > START_LONG_WEST
+    dist_check = dist > DIST_START_MIN and dist < DIST_START_MAX and spd == 0
+    return geofence or dist_check
 
-def geo_fence_stop(lat,lon):
-    return lat < STOP_LAT_NORTH and lat > STOP_LAT_SOUTH and lon < STOP_LONG_EAST and lon > STOP_LONG_WEST
+def geo_fence_stop(lat,lon,dist,spd):
+    geofence = lat < STOP_LAT_NORTH and lat > STOP_LAT_SOUTH and lon < STOP_LONG_EAST and lon > STOP_LONG_WEST
+    dist_check = dist > DIST_STOP_MIN and dist < DIST_STOP_MAX and spd == 0
+    return geofence or dist_check
 
 def can_rx_task():
     while True:
@@ -150,7 +158,7 @@ try:
         logged_data +=  '{0:d},{1:d},{2:d},{3:d},'.format(temperature,rpm,speed,throttle)
 
         #calculate distance
-        distance = (vspeed2 + vspeed1)*(time2 - time1)/2
+        distance += (vspeed2 + vspeed1)*(time2 - time1)/2
         vspeed1 = vspeed2
         time1 = time2
 
@@ -173,27 +181,33 @@ try:
                 time.sleep(0.1)
             if RETURN_TO_DEPOT:
                 outfile.close()
+                file_open = False
                 os.system("sudo final_upload.sh")
                 time.sleep(0.1)
         else:
-            if geo_fence_start(curr_lat,curr_lon):
+            if geo_fence_start(curr_lat,curr_lon,distance,speed):
                 outfile.close()
                 file_name = 'log' + str(file_count) + '.csv'
                 outfile = open(file_name,'w')
+                file_open = True
                 file_count += 1
-            if geo_fence_stop(curr_lat,curr_lon):
+            if geo_fence_stop(curr_lat,curr_lon,distance,speed):
                 outfile.close()
                 file_name = 'log' + str(file_count) + '.csv'
                 outfile = open(file_name,'w')
+                file_open = True
                 file_count += 1
 
-        print(logged_data,file = outfile)
+        if file_open:
+            print(logged_data,file = outfile)
+
         count += 1
 
 except KeyboardInterrupt:
 	#Catch keyboard interrupt
 	GPIO.output(led,False)
-	#outfile.close()		# Close logger file
+    if file_open:
+        outfile.close()
+    # close CAN interface
 	os.system("sudo /sbin/ip link set can0 down")
 	print('\n\rKeyboard interrtupt')
-    
