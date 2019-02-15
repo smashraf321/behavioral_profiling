@@ -25,8 +25,10 @@ STOP_LAT_SOUTH = 42.02994560
 STOP_LONG_EAST = -93.65335393
 STOP_LONG_WEST = -93.65335395
 
-DIST_START_MIN = 3.3
-DIST_START_MAX = 3.4
+DIST_START_MIN1 = 3.3
+DIST_START_MAX1 = 3.4
+DIST_START_MIN2 = 10.2
+DIST_START_MAX2 = 10.3
 DIST_STOP_MIN = 15.4
 DIST_STOP_MAX = 15.5
 
@@ -34,9 +36,12 @@ DIST_STOP_MAX = 15.5
 def geo_fence_depot(lat,lon):
     return lat < DEPOT_LAT_NORTH and lat > DEPOT_LAT_SOUTH and lon < DEPOT_LONG_EAST and lon > DEPOT_LONG_WEST
 
-def geo_fence_start(lat,lon,dist,spd):
+def geo_fence_start(lat,lon,dist,spd,start_first_time):
     geofence =  lat < START_LAT_NORTH and lat > START_LAT_SOUTH and lon < START_LONG_EAST and lon > START_LONG_WEST
-    dist_check = dist > DIST_START_MIN and dist < DIST_START_MAX and spd == 0
+    if start_first_time:
+        dist_check = dist > DIST_START_MIN1 and dist < DIST_START_MAX1 and spd == 0
+    else:
+        dist_check = dist > DIST_START_MIN2 and dist < DIST_START_MAX2 and spd == 0
     return geofence or dist_check
 
 def geo_fence_stop(lat,lon,dist,spd):

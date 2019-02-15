@@ -80,6 +80,7 @@ vspeed2 = 0
 vspeed1 = 0
 curr_lat = 0
 curr_lon = 0
+first_time12 = True
 logged_data = ''
 
 count = 0
@@ -92,6 +93,7 @@ file_name = ''
 DEPOT_BEGIN = True
 STARTED_FROM_DEPOT = False
 RETURN_TO_DEPOT = False
+FIRST_TIME_START = True
 NEW_DATA_START_LOC = False
 NEW_DATA_STOP_LOC = False
 
@@ -116,9 +118,13 @@ try:
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.THROTTLE:
                 throttle = round((message.data[3]*100)/255)
 
-        logged_data +=  '{0:d},{1:d},{2:d},{3:d},'.format(temperature,rpm,speed,throttle)
+        logged_data += '{0:d},{1:d},{2:d},{3:d},'.format(temperature,rpm,speed,throttle)
 
         #calculate distance
+        if first_time12:
+            time1 = time2
+            vspeed1 = vspeed2
+            first_time12 = False
         distance += (vspeed2 + vspeed1)*(time2 - time1)/2
         vspeed1 = vspeed2
         time1 = time2
@@ -150,40 +156,49 @@ try:
         else:
             RETURN_TO_DEPOT = True
             DEPOT_BEGIN = False
-            if not STARTED_FROM_DEPOT:
-                outfile_name = open('current_file.txt','r')
-                filename = outfile_name.readline()
-                outfile_name.close()
-                outfile = open(filename,'w')
-                file_open = True
-            if hf.geo_fence_start(curr_lat,curr_lon,distance,speed):
+            if hf.geo_fence_start(curr_lat,curr_lon,distance,speed,FIRST_TIME_START):
                 if not NEW_DATA_START_LOC:
                     if file_open:
                         outfile.close()
                     count = 0;
+                    distance = 0
                     file_name = 'log_' + str(datetime.now()) + '.csv'
+                    # save file name
                     outfile_name = open('current_file.txt','w')
                     print(file_name,file = outfile_name)
                     outfile_name.close()
+                    # write to a new file
                     outfile = open(file_name,'w')
                     file_open = True
                     NEW_DATA_START_LOC = True
                     NEW_DATA_STOP_LOC = False
+                    FIRST_TIME_START = False
                     #file_count += 1
             if hf.geo_fence_stop(curr_lat,curr_lon,distance,speed):
                 if not NEW_DATA_STOP_LOC:
                     if file_open:
                         outfile.close()
                     count = 0;
+                    distance = 0
                     file_name = 'log' + str(datetime.now()) + '.csv'
+                    # save file name
                     outfile_name = open('current_file.txt','w')
                     print(file_name,file = outfile_name)
                     outfile_name.close()
+                    # write to a new file
                     outfile = open(file_name,'w')
                     file_open = True
                     NEW_DATA_START_LOC = False
                     NEW_DATA_STOP_LOC = True
                     #file_count += 1
+            if not STARTED_FROM_DEPOT:
+                # open the previous file
+                outfile_name = open('current_file.txt','r')
+                filename = outfile_name.readline()
+                outfile_name.close()
+                outfile = open(filename,'w')
+                file_open = True
+                STARTED_FROM_DEPOT = True
         if file_open:
             print(logged_data,file = outfile)
 
