@@ -48,17 +48,17 @@ def can_tx_task():
         bus.send(msg)
         time.sleep(0.05)
         # Send Engine RPM request
-		msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.ENGINE_RPM,0x00,0x00,0x00,0x00,0x00],extended_id=False)
-		bus.send(msg)
-		time.sleep(0.05)
+        msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.ENGINE_RPM,0x00,0x00,0x00,0x00,0x00],extended_id=False)
+        bus.send(msg)
+        time.sleep(0.05)
         # Send Vehicle speed  request
-		msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.VEHICLE_SPEED,0x00,0x00,0x00,0x00,0x00],extended_id=False)
-		bus.send(msg)
-		time.sleep(0.05)
+        msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.VEHICLE_SPEED,0x00,0x00,0x00,0x00,0x00],extended_id=False)
+        bus.send(msg)
+        time.sleep(0.05)
         # Send Throttle position request
-		msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.THROTTLE,0x00,0x00,0x00,0x00,0x00],extended_id=False)
-		bus.send(msg)
-		time.sleep(0.05)
+        msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.THROTTLE,0x00,0x00,0x00,0x00,0x00],extended_id=False)
+        bus.send(msg)
+        time.sleep(0.05)
         # End transmission
         GPIO.output(led,False)
         time.sleep(0.1)
@@ -216,10 +216,10 @@ try:
         print(logged_data)
 
 except KeyboardInterrupt:
-	#Catch keyboard interrupt
-	GPIO.output(led,False)
+    #Catch keyboard interrupt
+    GPIO.output(led,False)
     if file_open:
         outfile.close()
-    # close CAN interface
-	os.system("sudo /sbin/ip link set can0 down")
-	print('\n\rKeyboard interrtupt')
+        # close CAN interface
+    os.system("sudo /sbin/ip link set can0 down")
+    print('\n\rKeyboard interrtupt')
