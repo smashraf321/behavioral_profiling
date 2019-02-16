@@ -213,7 +213,7 @@ try:
             print(logged_data,file = outfile)
 
         count += 1
-        #print(logged_data)
+        print(logged_data)
 
 except KeyboardInterrupt:
 	#Catch keyboard interrupt
