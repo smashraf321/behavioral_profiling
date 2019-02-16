@@ -202,16 +202,15 @@ try:
                         NEW_DATA_START_LOC = False
                         NEW_DATA_STOP_LOC = True
                         #file_count += 1
-            if not STARTED_FROM_DEPOT and STARTED_FROM_ROUTE:
+            #if not STARTED_FROM_DEPOT and STARTED_FROM_ROUTE:
                 # open the previous file
-                outfile_name = open('current_file.txt','r')
-                filename = outfile_name.readline()
-                outfile_name.close()
-                distance = hf.previous_distance(filename.rstrip())
-                outfile = open(filename.rstrip(),'a')
-                file_open = True
-                STARTED_FROM_ROUTE = False
-
+                #outfile_name = open('current_file.txt','r')
+                #filename = outfile_name.readline()
+                #outfile_name.close()
+                #distance = hf.previous_distance(filename.rstrip())
+                #outfile = open(filename.rstrip(),'a')
+                #file_open = True
+                #STARTED_FROM_ROUTE = False
         logged_data += '{0:d},{1:f}'.format(count,distance)
         if file_open:
             print(logged_data,file = outfile)
