@@ -148,14 +148,14 @@ try:
 
         if hf.if_in_depot(float(curr_lat),float(curr_lon)):
             if DEPOT_BEGIN:
-                os.system("sudo final_upload.sh")
+                os.system("sudo ./final_upload.sh")
                 time.sleep(0.1)
                 STARTED_FROM_DEPOT = True
             if RETURN_TO_DEPOT:
                 if file_open:
                     outfile.close()
                 file_open = False
-                os.system("sudo final_upload.sh")
+                os.system("sudo ./final_upload.sh")
                 os.system("rm -f current_file.txt")
                 time.sleep(0.1)
                 STARTED_FROM_DEPOT = True
