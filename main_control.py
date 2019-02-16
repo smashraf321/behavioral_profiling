@@ -105,7 +105,7 @@ try:
         for i in range(4):
             while(q.empty() == True):
                 pass
-            message = g.get()
+            message = q.get()
 
             time2 = message.timestamp
             logged_data = '{0:f},'.format(time2)
@@ -142,7 +142,7 @@ try:
             else:
                 continue
 
-        if hf.if_in_depot(curr_lat,curr_lon):
+        if hf.if_in_depot(float(curr_lat),float(curr_lon)):
             if DEPOT_BEGIN:
                 os.system("sudo final_upload.sh")
                 time.sleep(0.1)
@@ -158,7 +158,7 @@ try:
         else:
             RETURN_TO_DEPOT = True
             DEPOT_BEGIN = False
-            if hf.geo_fence_start(curr_lat,curr_lon,distance,speed,FIRST_TIME_START,CIRCULATOR):
+            if hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR):
                 if not NEW_DATA_START_LOC:
                     if file_open:
                         outfile.close()
@@ -179,7 +179,7 @@ try:
                     FIRST_TIME_START = False
                     #file_count += 1
             if not CIRCULATOR:
-                if hf.geo_fence_stop(curr_lat,curr_lon,distance,speed):
+                if hf.geo_fence_stop(float(curr_lat),float(curr_lon),distance,speed):
                     if not NEW_DATA_STOP_LOC:
                         if file_open:
                             outfile.close()
