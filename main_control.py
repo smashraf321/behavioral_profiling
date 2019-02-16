@@ -92,7 +92,9 @@ file_name = ''
 
 DEPOT_BEGIN = True
 STARTED_FROM_DEPOT = False
+STARTED_FROM_ROUTE = True
 RETURN_TO_DEPOT = False
+CIRCULATOR = True
 FIRST_TIME_START = True
 NEW_DATA_START_LOC = False
 NEW_DATA_STOP_LOC = False
@@ -106,7 +108,7 @@ try:
             message = g.get()
 
             time2 = message.timestamp
-            logged_data = '{0:d},{1:f},'.format(count,time2)
+            logged_data = '{0:f},'.format(time2)
 
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.ENGINE_COOLANT_TEMP:
                 temperature = message.data[3] - 40
@@ -129,20 +131,18 @@ try:
         vspeed1 = vspeed2
         time1 = time2
 
-        logged_data += '{0:f},'.format(distance)
-
         # read GPS data
         for new_data in gpsd_socket:
             if new_data:
                 data_stream.unpack(new_data)
                 curr_lat = data_stream.TPV['lat']
                 curr_lon = data_stream.TPV['lon']
-                logged_data += str(curr_lat) + ',' + str(curr_lon) + ',' + str(data_stream.TPV['time'])
-                break;
+                logged_data += str(curr_lat) + ',' + str(curr_lon) + ',' + str(data_stream.TPV['time'] + ',')
+                break
             else:
                 continue
 
-        if hf.geo_fence_depot(curr_lat,curr_lon):
+        if hf.if_in_depot(curr_lat,curr_lon):
             if DEPOT_BEGIN:
                 os.system("sudo final_upload.sh")
                 time.sleep(0.1)
@@ -152,53 +152,63 @@ try:
                     outfile.close()
                 file_open = False
                 os.system("sudo final_upload.sh")
+                os.system("rm -f current_file.txt")
                 time.sleep(0.1)
+                STARTED_FROM_DEPOT = True
         else:
             RETURN_TO_DEPOT = True
             DEPOT_BEGIN = False
-            if hf.geo_fence_start(curr_lat,curr_lon,distance,speed,FIRST_TIME_START):
+            if hf.geo_fence_start(curr_lat,curr_lon,distance,speed,FIRST_TIME_START,CIRCULATOR):
                 if not NEW_DATA_START_LOC:
                     if file_open:
                         outfile.close()
+                    # recaliberate count n distance
                     count = 0;
                     distance = 0
-                    file_name = 'log_' + str(datetime.now()) + '.csv'
+                    file_name = 'Documents/logs/log_' + str(datetime.now()) + '.csv'
                     # save file name
-                    outfile_name = open('current_file.txt','w')
+                    outfile_name = open('current_file.txt','w+')
                     print(file_name,file = outfile_name)
                     outfile_name.close()
                     # write to a new file
-                    outfile = open(file_name,'w')
+                    outfile = open(file_name,'w+')
+                    # set flags
                     file_open = True
                     NEW_DATA_START_LOC = True
                     NEW_DATA_STOP_LOC = False
                     FIRST_TIME_START = False
                     #file_count += 1
-            if hf.geo_fence_stop(curr_lat,curr_lon,distance,speed):
-                if not NEW_DATA_STOP_LOC:
-                    if file_open:
-                        outfile.close()
-                    count = 0;
-                    distance = 0
-                    file_name = 'log' + str(datetime.now()) + '.csv'
-                    # save file name
-                    outfile_name = open('current_file.txt','w')
-                    print(file_name,file = outfile_name)
-                    outfile_name.close()
-                    # write to a new file
-                    outfile = open(file_name,'w')
-                    file_open = True
-                    NEW_DATA_START_LOC = False
-                    NEW_DATA_STOP_LOC = True
-                    #file_count += 1
-            if not STARTED_FROM_DEPOT:
+            if not CIRCULATOR:
+                if hf.geo_fence_stop(curr_lat,curr_lon,distance,speed):
+                    if not NEW_DATA_STOP_LOC:
+                        if file_open:
+                            outfile.close()
+                        # recaliberate count n distance
+                        count = 0;
+                        distance = 0
+                        file_name = 'Documents/logs/log_' + str(datetime.now()) + '.csv'
+                        # save file name
+                        outfile_name = open('current_file.txt','w+')
+                        print(file_name,file = outfile_name)
+                        outfile_name.close()
+                        # write to a new file
+                        outfile = open(file_name,'w+')
+                        # set flags
+                        file_open = True
+                        NEW_DATA_START_LOC = False
+                        NEW_DATA_STOP_LOC = True
+                        #file_count += 1
+            if not STARTED_FROM_DEPOT and STARTED_FROM_ROUTE:
                 # open the previous file
                 outfile_name = open('current_file.txt','r')
                 filename = outfile_name.readline()
                 outfile_name.close()
-                outfile = open(filename,'w')
+                distance = hf.previous_distance(filename.rstrip())
+                outfile = open(filename.rstrip(),'a')
                 file_open = True
-                STARTED_FROM_DEPOT = True
+                STARTED_FROM_ROUTE = False
+
+        logged_data += '{0:d},{1:f}'.format(count,distance)
         if file_open:
             print(logged_data,file = outfile)
 
