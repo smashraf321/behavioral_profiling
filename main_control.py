@@ -136,7 +136,11 @@ try:
             if new_data:
                 data_stream.unpack(new_data)
                 curr_lat = data_stream.TPV['lat']
+                if curr_lat == 'n/a':
+                    curr_lat = 0;
                 curr_lon = data_stream.TPV['lon']
+                if curr_lon == 'n/a':
+                    curr_lon = 0;
                 logged_data += str(curr_lat) + ',' + str(curr_lon) + ',' + str(data_stream.TPV['time'] + ',')
                 break
             else:
