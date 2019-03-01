@@ -79,7 +79,9 @@ time1 = 0
 vspeed2 = 0
 vspeed1 = 0
 curr_lat = 0
+prev_lat = 0
 curr_lon = 0
+prev_lon = 0
 first_time12 = True
 logged_data = ''
 
@@ -101,6 +103,8 @@ NEW_DATA_STOP_LOC = False
 
 # Main control starts
 try:
+    if hf.if_bus_on_track() == 0:
+        STARTED_FROM_ROUTE = False
     while True:
         for i in range(4):
             while(q.empty() == True):
@@ -122,11 +126,14 @@ try:
 
         logged_data += '{0:d},{1:d},{2:d},{3:d},'.format(temperature,rpm,speed,throttle)
 
-        #calculate distance
+        # calculate distance
         if first_time12:
             time1 = time2
             vspeed1 = vspeed2
             first_time12 = False
+        # convert speed from km/h to m/s
+        vspeed1 = vspeed1 * 5 / 18
+        vspeed2 = vspeed2 * 5 / 18
         distance += (vspeed2 + vspeed1)*(time2 - time1)/2
         vspeed1 = vspeed2
         time1 = time2
@@ -141,21 +148,29 @@ try:
                 curr_lon = data_stream.TPV['lon']
                 if curr_lon == 'n/a':
                     curr_lon = 0;
-                logged_data += str(curr_lat) + ',' + str(curr_lon) + ',' + str(data_stream.TPV['time'] + ',')
+                curr_lat_temp = curr_lat
+                curr_lon_temp = curr_lon
+                if prev_lat == curr_lat and prev_lon == curr_lon:
+                    curr_lat_temp = 0
+                    curr_lon_temp = 0
+                else:
+                    prev_lat = curr_lat
+                    prev_lon = curr_lon
+                logged_data += str(curr_lat_temp) + ',' + str(curr_lon_temp) + ',' + str(data_stream.TPV['time'] + ',')
                 break
             else:
                 continue
 
         if hf.if_in_depot(float(curr_lat),float(curr_lon)):
             if DEPOT_BEGIN:
-                os.system("sudo ./final_upload.sh")
+                os.system("sudo final_upload.sh")
                 time.sleep(0.1)
                 STARTED_FROM_DEPOT = True
             if RETURN_TO_DEPOT:
                 if file_open:
                     outfile.close()
                 file_open = False
-                os.system("sudo ./final_upload.sh")
+                os.system("sudo final_upload.sh")
                 os.system("rm -f current_file.txt")
                 time.sleep(0.1)
                 STARTED_FROM_DEPOT = True
@@ -176,6 +191,7 @@ try:
                     outfile_name.close()
                     # write to a new file
                     outfile = open(file_name,'w+')
+                    print('logging to file')
                     # set flags
                     file_open = True
                     NEW_DATA_START_LOC = True
@@ -197,20 +213,23 @@ try:
                         outfile_name.close()
                         # write to a new file
                         outfile = open(file_name,'w+')
+                        print('logging to file')
                         # set flags
                         file_open = True
                         NEW_DATA_START_LOC = False
                         NEW_DATA_STOP_LOC = True
                         #file_count += 1
-            #if not STARTED_FROM_DEPOT and STARTED_FROM_ROUTE:
+            if not STARTED_FROM_DEPOT and STARTED_FROM_ROUTE:
                 # open the previous file
-                #outfile_name = open('current_file.txt','r')
-                #filename = outfile_name.readline()
-                #outfile_name.close()
-                #distance = hf.previous_distance(filename.rstrip())
-                #outfile = open(filename.rstrip(),'a')
-                #file_open = True
-                #STARTED_FROM_ROUTE = False
+                outfile_name = open('current_file.txt','r')
+                filename = outfile_name.readline()
+                outfile_name.close()
+                # get previous_distance
+                distance = hf.previous_distance(filename.rstrip())
+                outfile = open(filename.rstrip(),'a')
+                file_open = True
+                STARTED_FROM_ROUTE = False
+
         logged_data += '{0:d},{1:f}'.format(count,distance)
         if file_open:
             print(logged_data,file = outfile)

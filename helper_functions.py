@@ -42,7 +42,7 @@ DIST_STOP_MIN = 15.4
 DIST_STOP_MAX = 15.5
 
 # csv file properties
-NUM_COLS = 7
+NUM_COLS = 10
 
 def geo_fence_depot(lat,lon):
     return lat < DEPOT_LAT_NORTH and lat > DEPOT_LAT_SOUTH and lon < DEPOT_LONG_EAST and lon > DEPOT_LONG_WEST
@@ -71,7 +71,14 @@ def wifi_present():
     return int(result.strip())
 
 def if_in_depot(lat,lon):
-    return geo_fence_depot(lat,lon) or wifi_present()
+    return geo_fence_depot(lat,lon) or wifi_present() == 0
+
+def if_bus_on_track():
+    result = subprocess.check_output(
+    'ls | grep current_file.txt | wc -l',
+    stderr = subprocess.STDOUT,
+    shell = True)
+    return int(result.strip())
 
 def previous_distance(filename):
     # read from end of file
