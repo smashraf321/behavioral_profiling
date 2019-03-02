@@ -12,15 +12,15 @@ PID_REQUEST = 0x7DF
 PID_REPLY = 0x7E8
 
 # coordinates collection
-DEPOT_LAT_N = [42.019205,41.99]
-DEPOT_LAT_S = [42.018049,41.99]
-DEPOT_LON_E = [-93.624976,-93.77]
-DEPOT_LON_W = [-93.626312,-93.88]
+DEPOT_LAT_N = [42.019205,41.997915]
+DEPOT_LAT_S = [42.018049,41.997229]
+DEPOT_LON_E = [-93.624976,-93.631859]
+DEPOT_LON_W = [-93.626312,-93.633308]
 
-START_LAT_N = [42.018726,41.99]
-START_LAT_S = [42.017320,41.99]
-START_LON_E = [-93.637696,-93.99]
-START_LON_W = [-93.639789,-99.09]
+START_LAT_N = [42.018726,42.001011]
+START_LAT_S = [42.017320,42.000320]
+START_LON_E = [-93.637696,-93.633085]
+START_LON_W = [-93.639789,-93.634071]
 
 HOMEE = 0
 ISU_ALUMNI_CENTER = 0
@@ -28,21 +28,23 @@ RESEARCH_PARK = 1
 RP_STOP_SIGN = 1
 
 # set GEOFencing bounds
-DEPOT_LAT_NORTH = DEPOT_LAT_N[ HOMEE ]
-DEPOT_LAT_SOUTH = DEPOT_LAT_S[ HOMEE ]
-DEPOT_LONG_EAST = DEPOT_LON_E[ HOMEE ]
-DEPOT_LONG_WEST = DEPOT_LON_W[ HOMEE ]
+DEPOT_LAT_NORTH = DEPOT_LAT_N[ RESEARCH_PARK ]
+DEPOT_LAT_SOUTH = DEPOT_LAT_S[ RESEARCH_PARK ]
+DEPOT_LONG_EAST = DEPOT_LON_E[ RESEARCH_PARK ]
+DEPOT_LONG_WEST = DEPOT_LON_W[ RESEARCH_PARK ]
 
-START_LAT_NORTH = START_LAT_N[ ISU_ALUMNI_CENTER ]
-START_LAT_SOUTH = START_LAT_S[ ISU_ALUMNI_CENTER ]
-START_LONG_EAST = START_LON_E[ ISU_ALUMNI_CENTER ]
-START_LONG_WEST = START_LON_W[ ISU_ALUMNI_CENTER ]
+START_LAT_NORTH = START_LAT_N[ RP_STOP_SIGN ]
+START_LAT_SOUTH = START_LAT_S[ RP_STOP_SIGN ]
+START_LONG_EAST = START_LON_E[ RP_STOP_SIGN ]
+START_LONG_WEST = START_LON_W[ RP_STOP_SIGN ]
 
+# not useful now since we're working with laps
 STOP_LAT_NORTH = 42.02994562
 STOP_LAT_SOUTH = 42.02994560
 STOP_LONG_EAST = -93.65335393
 STOP_LONG_WEST = -93.65335395
 
+# not useful ATM
 DIST_DEPOT = 2
 DIST_DEPOT_MAX = 3200
 DIST_DEPOT_MIN = 3500
@@ -66,18 +68,18 @@ def geo_fence_depot(lat,lon):
 def geo_fence_start(lat,lon,dist,spd,start_first_time,circulator):
     geofence =  lat < START_LAT_NORTH and lat > START_LAT_SOUTH and lon < START_LONG_EAST and lon > START_LONG_WEST
     if start_first_time:
-        dist_check = dist > DIST_START_MIN1 and dist < DIST_START_MAX1 and spd == 0
+        dist_check = dist > DIST_START_MIN1 and dist < DIST_START_MAX1
     else:
         if circulator:
-            dist_check = dist > DIST_START_MIN2CIRC and dist < DIST_START_MAX2CIRC and spd == 0
+            dist_check = dist > DIST_START_MIN2CIRC and dist < DIST_START_MAX2CIRC
         else:
-            dist_check = dist > DIST_START_MIN2REGL and dist < DIST_START_MAX2REGL and spd == 0
-    return geofence or dist_check
+            dist_check = dist > DIST_START_MIN2REGL and dist < DIST_START_MAX2REGL
+    return (geofence or dist_check) and spd == 0
 
 def geo_fence_stop(lat,lon,dist,spd):
     geofence = lat < STOP_LAT_NORTH and lat > STOP_LAT_SOUTH and lon < STOP_LONG_EAST and lon > STOP_LONG_WEST
-    dist_check = dist > DIST_STOP_MIN and dist < DIST_STOP_MAX and spd == 0
-    return geofence or dist_check
+    dist_check = dist > DIST_STOP_MIN and dist < DIST_STOP_MAX
+    return (geofence or dist_check) and spd == 0
 
 def wifi_present():
     result = subprocess.check_output(

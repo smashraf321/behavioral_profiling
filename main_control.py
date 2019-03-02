@@ -165,7 +165,7 @@ try:
         if hf.if_in_depot(float(curr_lat),float(curr_lon)) or sp_count < 5:
             if DEPOT_BEGIN:
                 #os.system("sudo final_upload.sh")
-                print('In depot, gonna begin')
+                print('In depot, gonna exit soon')
                 time.sleep(0.1)
                 STARTED_FROM_DEPOT = True
             if RETURN_TO_DEPOT:
@@ -174,10 +174,17 @@ try:
                 file_open = False
                 #os.system("sudo final_upload.sh")
                 print('Returned to depot')
+                # remove last logged file as not on route
+                outfile_name = open('current_file.txt','r')
+                filename = outfile_name.readline()
+                outfile_name.close()
+                to_be_removed = "rm -f " + filename.rstrip()
+                os.system(to_be_removed)
                 os.system("rm -f current_file.txt")
                 time.sleep(0.1)
                 STARTED_FROM_DEPOT = True
         else:
+            print('On Road...')
             RETURN_TO_DEPOT = True
             DEPOT_BEGIN = False
             print(hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR))
@@ -200,7 +207,6 @@ try:
                     # set flags
                     file_open = True
                     NEW_DATA_START_LOC = True
-                    NEW_DATA_STOP_LOC = False
                     FIRST_TIME_START = False
                     #file_count += 1
             else:
@@ -224,9 +230,10 @@ try:
                         print('Logging to file')
                         # set flags
                         file_open = True
-                        NEW_DATA_START_LOC = False
                         NEW_DATA_STOP_LOC = True
                         #file_count += 1
+                else:
+                    NEW_DATA_STOP_LOC = False
             if not STARTED_FROM_DEPOT and STARTED_FROM_ROUTE:
                 # open the previous file
                 outfile_name = open('current_file.txt','r')
