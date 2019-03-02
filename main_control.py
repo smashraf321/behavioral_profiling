@@ -86,6 +86,7 @@ first_time12 = True
 logged_data = ''
 
 count = 0
+sp_count = 0
 #file_count = 0
 outfile = 0
 outfile_name = 0
@@ -161,7 +162,7 @@ try:
             else:
                 continue
 
-        if hf.if_in_depot(float(curr_lat),float(curr_lon)) or count < 5:
+        if hf.if_in_depot(float(curr_lat),float(curr_lon)) or sp_count < 5:
             if DEPOT_BEGIN:
                 #os.system("sudo final_upload.sh")
                 print('In depot, gonna begin')
@@ -179,6 +180,7 @@ try:
         else:
             RETURN_TO_DEPOT = True
             DEPOT_BEGIN = False
+            print(hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR))
             if hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR):
                 if not NEW_DATA_START_LOC:
                     if file_open:
@@ -201,6 +203,8 @@ try:
                     NEW_DATA_STOP_LOC = False
                     FIRST_TIME_START = False
                     #file_count += 1
+            else:
+                NEW_DATA_START_LOC = False
             if not CIRCULATOR:
                 if hf.geo_fence_stop(float(curr_lat),float(curr_lon),distance,speed):
                     if not NEW_DATA_STOP_LOC:
@@ -239,6 +243,8 @@ try:
             print(logged_data,file = outfile)
 
         count += 1
+        if sp_count < 5:
+            sp_count += 1
         print(logged_data)
 
 except KeyboardInterrupt:
