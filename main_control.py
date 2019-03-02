@@ -164,15 +164,15 @@ try:
 
         if hf.if_in_depot(float(curr_lat),float(curr_lon)) or sp_count < 5:
             if DEPOT_BEGIN:
-                #os.system("sudo final_upload.sh")
-                print('In depot, gonna exit soon')
+                os.system("sudo final_upload.sh")
+                print('In depot (hopefully), gonna exit soon')
                 time.sleep(0.1)
                 STARTED_FROM_DEPOT = True
             if RETURN_TO_DEPOT:
                 if file_open:
                     outfile.close()
                 file_open = False
-                #os.system("sudo final_upload.sh")
+                os.system("sudo final_upload.sh")
                 print('Returned to depot')
                 # remove last logged file as not on route
                 outfile_name = open('current_file.txt','r')
@@ -234,7 +234,7 @@ try:
                         #file_count += 1
                 else:
                     NEW_DATA_STOP_LOC = False
-            if not STARTED_FROM_DEPOT and STARTED_FROM_ROUTE:
+            if STARTED_FROM_ROUTE:
                 # open the previous file
                 outfile_name = open('current_file.txt','r')
                 filename = outfile_name.readline()
