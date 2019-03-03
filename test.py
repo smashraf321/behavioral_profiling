@@ -2,11 +2,11 @@
 
 print('test file')
 
-#file_name = 'tester.csv'
+file_name = 'tester.csv'
 
-#outfile_name = open('current_file.txt','w+')
-#print(file_name,file = outfile_name)
-#outfile_name.close()
+outfile_name = open('current_file.txt','w+')
+print(file_name,file = outfile_name)
+outfile_name.close()
 
 #outfile_name = open('current_file.txt','r')
 #filename = outfile_name.readline()
