@@ -34,7 +34,7 @@ def quickstart_new_instance():
 
 def quickstart_add_data_one():
     db = firestore.Client()
-    doc_ref = db.collection(u'users').document(u'alovelace')
+    doc_ref = db.collection(u'first_log').document(u'alovelace')
     doc_ref.set({
         u'first': u'Ada',
         u'last': u'Lovelace',
@@ -818,4 +818,4 @@ def delete_full_collection():
 
 
 
-quickstart_add_data_two()
+quickstart_add_data_one()
