@@ -11,7 +11,7 @@ for curr_file in os.listdir(files_path):
     try:
         if curr_file.endswith('.csv'):
             print('csv file found')
-            with open(curr_file,'r') as csv_file:
+            with open(files_path + curr_file,'r') as csv_file:
                 csv_reader = csv.reader(csv_file, delimiter = ',')
                 for rows in csv_reader:
                     doc_name = 'row_' + str(rows[8])
