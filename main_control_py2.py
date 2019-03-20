@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+from __future__ import print_function
 import helper_functions as hf
 import RPi.GPIO as GPIO
 import can
@@ -9,7 +9,6 @@ import queue
 from threading import Thread
 from datetime import datetime
 from gps3 import gps3
-from __future__ import print_function
 
 # initial Raspi setup for CAN Shield interfacing
 led = 22
