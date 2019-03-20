@@ -15,7 +15,7 @@ for curr_file in os.listdir(files_path):
             with open(files_path + curr_file,'r') as csv_file:
                 csv_reader = csv.reader(csv_file, delimiter = ',')
                 currentDT = datetime.datetime.now()
-                collection_name = currentDT.strftime("%Y-%m-%d_%H:%M:%S")
+                #collection_name = currentDT.strftime("%Y-%m-%d_%H:%M:%S")
                 for rows in csv_reader:
                     if len(rows[8]) == 1:
                         doc_name = '00000' + str(rows[8])
@@ -29,7 +29,7 @@ for curr_file in os.listdir(files_path):
                         doc_name = '0' + str(rows[8])
                     else:
                         doc_name = str(rows[8])
-                    doc_ref = db.collection(collection_name).document(doc_name)
+                    doc_ref = db.collection('first_upload_second_attempt').document(doc_name)
                     doc_ref.set({
                         u'Time_stamp': float(rows[0]),
                         u'Engine_Temperature': float(rows[1]),

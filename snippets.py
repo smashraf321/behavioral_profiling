@@ -34,11 +34,11 @@ def quickstart_new_instance():
 
 def quickstart_add_data_one():
     db = firestore.Client()
-    doc_ref = db.collection(u'first_log').document(u'alovelace')
+    doc_ref = db.collection(u'first_upload_second_attempt').document(u'alovelace')
     doc_ref.set({
-        u'first': u'Ada',
-        u'last': u'Lovelace',
-        u'born': 1815
+        u'f1': u'TEST1',
+        u'f2': u'TEST2',
+        u'f3': 321
     })
     # [END quickstart_add_data_one]
 
