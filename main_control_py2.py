@@ -1,11 +1,11 @@
 #!/usr/bin/python
-#from __future__ import print_function
+from __future__ import print_function
 import helper_functions as hf
 import RPi.GPIO as GPIO
 import can
 import time
 import os
-import queue
+import Queue as queue
 from threading import Thread
 from datetime import datetime
 from gps3 import gps3
@@ -200,8 +200,8 @@ try:
                     file_name = 'Documents/logs/log_' + str(datetime.now()) + '.csv'
                     # save file name
                     outfile_name = open('current_file.txt','w+')
-                    print>>outfile_name, file_name
-                    #print(file_name,file = outfile_name)
+                    #print>>outfile_name, file_name
+                    print(file_name,file = outfile_name)
                     outfile_name.close()
                     # write to a new file
                     outfile = open(file_name,'w+')
@@ -225,8 +225,8 @@ try:
                         file_name = 'Documents/logs/log_' + str(datetime.now()) + '.csv'
                         # save file name
                         outfile_name = open('current_file.txt','w+')
-                        print>>outfile_name, file_name
-                        #print(file_name,file = outfile_name)
+                        #print>>outfile_name, file_name
+                        print(file_name,file = outfile_name)
                         outfile_name.close()
                         # write to a new file
                         outfile = open(file_name,'w+')
@@ -250,8 +250,8 @@ try:
 
         logged_data += '{0:d},{1:f}'.format(count,distance)
         if file_open:
-            print>>outfile, logged_data
-            #print(logged_data,file = outfile)
+            #print>>outfile, logged_data
+            print(logged_data,file = outfile)
 
         count += 1
         if sp_count < 5:
