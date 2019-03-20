@@ -1,6 +1,7 @@
 
 import os
 import csv
+import datetime
 from google.cloud import firestore
 
 files_path = '/home/pi/behavioral_profiling/Documents/logs/'
@@ -13,6 +14,8 @@ for curr_file in os.listdir(files_path):
             print('csv file found')
             with open(files_path + curr_file,'r') as csv_file:
                 csv_reader = csv.reader(csv_file, delimiter = ',')
+                currentDT = datetime.datetime.now()
+                collection_name = currentDT.strftime("%Y-%m-%d_%H:%M:%S")
                 for rows in csv_reader:
                     if len(rows[8]) == 1:
                         doc_name = '00000' + str(rows[8])
@@ -26,7 +29,7 @@ for curr_file in os.listdir(files_path):
                         doc_name = '0' + str(rows[8])
                     else:
                         doc_name = str(rows[8])
-                    doc_ref = db.collection(u'first_log_second_attempt').document(doc_name)
+                    doc_ref = db.collection(collection_name).document(doc_name)
                     doc_ref.set({
                         u'Time_stamp': float(rows[0]),
                         u'Engine_Temperature': float(rows[1]),
@@ -37,7 +40,7 @@ for curr_file in os.listdir(files_path):
                         u'Distance': float(rows[9])
                     })
                     if rows[5] != '0':
-                        doc_ref.update({u'Lat': rows[5], u'Lon': rows[6]})
+                        doc_ref.update({u'Lat': float(rows[5]), u'Lon': float(rows[6])})
     except Exception as excptn:
         raise excptn
         print('No CSV files found')

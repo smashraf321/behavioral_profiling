@@ -1,21 +1,8 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
-import helper_functions as hf
-import RPi.GPIO as GPIO
-import can
 import time
-import os
-import queue
-from threading import Thread
 from datetime import datetime
 from gps3 import gps3
-
-# initial Raspi setup for CAN Shield interfacing
-led = 22
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(led,GPIO.OUT)
-GPIO.output(led,True)
 
 # configure Gps
 gpsd_socket = gps3.GPSDSocket()
@@ -59,5 +46,4 @@ try:
 
 except KeyboardInterrupt:
     #Catch keyboard interrupt
-    GPIO.output(led,False)
     print('\n\rKeyboard interrtupt')
