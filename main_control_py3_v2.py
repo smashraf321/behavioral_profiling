@@ -74,6 +74,7 @@ rpm = 0
 speed = 0
 throttle = 0
 distance = 0
+distance_total = 0
 time2 = 0
 time1 = 0
 vspeed2 = 0
@@ -136,6 +137,7 @@ try:
         vspeed1 = vspeed1 * 5 / 18
         vspeed2 = vspeed2 * 5 / 18
         distance += (vspeed2 + vspeed1)*(time2 - time1)/2
+        distance_total += (vspeed2 + vspeed1)*(time2 - time1)/2
         vspeed1 = vspeed2
         time1 = time2
 
@@ -162,7 +164,7 @@ try:
             else:
                 continue
 
-        if hf.if_in_depot(float(curr_lat),float(curr_lon),distance) or sp_count < 5:
+        if hf.if_in_depot(float(curr_lat),float(curr_lon),distance_total) or sp_count < 5:
             if DEPOT_BEGIN:
                 os.system("./final_upload.sh")
                 print('In depot (hopefully), gonna exit soon')
