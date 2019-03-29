@@ -45,9 +45,9 @@ STOP_LONG_EAST = -93.65335393
 STOP_LONG_WEST = -93.65335395
 
 # not useful ATM
-DIST_DEPOT = 2
-DIST_DEPOT_MAX = 3200
-DIST_DEPOT_MIN = 3500
+DIST_DEPOT_EXIT_MAX = 200
+DIST_DEPOT_EXIT_MIN = 250
+DIST_DEPOT_RETURN = 150000
 
 DIST_START_MIN1 = 3200
 DIST_START_MAX1 = 3500
@@ -62,8 +62,10 @@ DIST_STOP_MAX = 15.5
 # csv file properties
 NUM_COLS = 10
 
-def geo_fence_depot(lat,lon):
-    return lat < DEPOT_LAT_NORTH and lat > DEPOT_LAT_SOUTH and lon < DEPOT_LONG_EAST and lon > DEPOT_LONG_WEST
+def geo_fence_depot(lat,lon,dist):
+    geofence = lat < DEPOT_LAT_NORTH and lat > DEPOT_LAT_SOUTH and lon < DEPOT_LONG_EAST and lon > DEPOT_LONG_WEST
+    dist_check = (dist > DIST_DEPOT_EXIT_MIN and dist < DIST_DEPOT_EXIT_MAX) or dist > DIST_DEPOT_RETURN
+    return geofence or dist_check
 
 def geo_fence_start(lat,lon,dist,spd,start_first_time,circulator):
     geofence =  lat < START_LAT_NORTH and lat > START_LAT_SOUTH and lon < START_LONG_EAST and lon > START_LONG_WEST
@@ -88,8 +90,8 @@ def wifi_present():
     shell = True)
     return int(result.strip())
 
-def if_in_depot(lat,lon):
-    return geo_fence_depot(lat,lon) #or wifi_present() == 0
+def if_in_depot(lat,lon,dist):
+    return geo_fence_depot(lat,lon,dist) #or wifi_present() == 0
 
 def if_bus_on_track():
     result = subprocess.check_output(
