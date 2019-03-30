@@ -166,16 +166,16 @@ try:
 
         if hf.if_in_depot(float(curr_lat),float(curr_lon),distance_total) or sp_count < 5:
             if DEPOT_BEGIN:
-                os.system("./final_upload.sh")
-                print('In depot (hopefully), gonna exit soon')
+                #os.system("./final_upload.sh")
+                print('D')
                 time.sleep(0.1)
                 STARTED_FROM_DEPOT = True
             if RETURN_TO_DEPOT:
                 if file_open:
                     outfile.close()
                 file_open = False
-                os.system("./final_upload.sh")
-                print('Returned to depot')
+                #os.system("./final_upload.sh")
+                print('B2D')
                 # remove last logged file as not on route
                 if file_open:
                     outfile_name = open('current_file.txt','r')
@@ -187,7 +187,7 @@ try:
                 time.sleep(0.1)
                 STARTED_FROM_DEPOT = True
         else:
-            print('On Road...')
+            #print('R')
             RETURN_TO_DEPOT = True
             DEPOT_BEGIN = False
             #print(hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR))
