@@ -45,9 +45,8 @@ STOP_LONG_EAST = -93.65335393
 STOP_LONG_WEST = -93.65335395
 
 # not useful ATM
-DIST_DEPOT_EXIT_MAX = 200
-DIST_DEPOT_EXIT_MIN = 250
-DIST_DEPOT_RETURN = 150000
+DIST_DEPOT_EXIT = 20
+DIST_DEPOT_RETURN = 4000
 
 DIST_START_MIN1 = 3200
 DIST_START_MAX1 = 3500
@@ -60,11 +59,11 @@ DIST_STOP_MIN = 15.4
 DIST_STOP_MAX = 15.5
 
 # csv file properties
-NUM_COLS = 10
+NUM_COLS = 11
 
 def geo_fence_depot(lat,lon,dist):
     geofence = lat < DEPOT_LAT_NORTH and lat > DEPOT_LAT_SOUTH and lon < DEPOT_LONG_EAST and lon > DEPOT_LONG_WEST
-    dist_check = (dist > DIST_DEPOT_EXIT_MIN and dist < DIST_DEPOT_EXIT_MAX) or dist > DIST_DEPOT_RETURN
+    dist_check = dist < DIST_DEPOT_EXIT or dist > DIST_DEPOT_RETURN
     return geofence or dist_check
 
 def geo_fence_start(lat,lon,dist,spd,start_first_time,circulator):

@@ -190,7 +190,7 @@ try:
             print('On Road...')
             RETURN_TO_DEPOT = True
             DEPOT_BEGIN = False
-            print(hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR))
+            #print(hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR))
             if hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR):
                 if not NEW_DATA_START_LOC:
                     if file_open:
@@ -248,14 +248,14 @@ try:
                 file_open = True
                 STARTED_FROM_ROUTE = False
 
-        logged_data += '{0:d},{1:f}'.format(count,distance)
+        logged_data += '{0:d},{1:f},{2:f}'.format(count,distance_total,distance)
         if file_open:
             print(logged_data,file = outfile)
 
         count += 1
         if sp_count < 5:
             sp_count += 1
-        print(logged_data)
+        #print(logged_data)
 
 except KeyboardInterrupt:
     #Catch keyboard interrupt

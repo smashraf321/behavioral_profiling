@@ -112,7 +112,7 @@ try:
 				throttle = round((message.data[3]*100)/255)					# Conver data to %
 
 		c += '{0:d},{1:d},{2:d},{3:d}'.format(temperature,rpm,speed,throttle)
-		print('\r {} '.format(c))
+		#print('\r {} '.format(c))
 		print(str(datetime.now()) + ':' + str(temperature) +','+ str(rpm) +',' + str(speed) +','+ str(throttle))
 		#print(c,file = outfile) # Save data to file
 		count += 1
