@@ -8,7 +8,7 @@ NUPLDF=$(ls /home/pi/behavioral_profiling/Documents/logs/ | wc -l)
 
 if [ $COUNT == "0" ] && [ $WIFI_STAT == "3" ] && [ $NUPLDF > "1" ]; then
 
-		./Dropbox-Uploader/dropbox_uploader.sh upload /home/pi/behavioral_profiling/Documents/logs/*.csv /
+		~/Dropbox-Uploader/dropbox_uploader.sh upload /home/pi/behavioral_profiling/Documents/logs/*.csv /
 		source /home/pi/firestore/bin/activate
 		python3 firestore_parse_n_upload.py
 		deactivate
