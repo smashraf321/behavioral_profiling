@@ -187,10 +187,10 @@ try:
                 time.sleep(0.1)
                 STARTED_FROM_DEPOT = True
         else:
-            #print('R')
+            print('R')
             RETURN_TO_DEPOT = True
             DEPOT_BEGIN = False
-            #print(hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR))
+            print(hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR))
             if hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR):
                 if not NEW_DATA_START_LOC:
                     if file_open:
