@@ -38,7 +38,7 @@ def can_rx_task():
     while True:
         message = bus.recv()
         if message.arbitration_id == hf.PID_REPLY:
-            q.put(message)
+            q_CAN.put(message)
 
 def can_tx_task():
     while True:
@@ -63,7 +63,7 @@ def can_tx_task():
         GPIO.output(led,False)
         time.sleep(0.1)
 
-q = queue.Queue()
+q_CAN = queue.Queue()
 rx = Thread(target = can_rx_task)
 rx.start()
 tx = Thread(target = can_tx_task)
@@ -109,9 +109,9 @@ try:
         STARTED_FROM_ROUTE = False
     while True:
         for i in range(4):
-            while(q.empty() == True):
+            while(q_CAN.empty() == True):
                 pass
-            message = q.get()
+            message = q_CAN.get()
 
             time2 = message.timestamp
             logged_data = '{0:f},'.format(time2)
