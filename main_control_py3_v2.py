@@ -88,6 +88,8 @@ logged_data = ''
 
 count = 0
 sp_count = 0
+time_spent_at_stop = 0.0
+time_start_at_stop = 0.0
 #file_count = 0
 outfile = 0
 outfile_name = 0
@@ -169,6 +171,16 @@ try:
                 #os.system("./final_upload.sh")
                 print('D')
                 time.sleep(0.1)
+                if not file_open:
+                    file_name = 'Documents/logs/log_DOJ_' + str(datetime.now()) + '.csv'
+                    # save file name
+                    outfile_name = open('current_file.txt','w+')
+                    print(file_name,file = outfile_name)
+                    outfile_name.close()
+                    # write to a new file
+                    outfile = open(file_name,'w+')
+                    print('Logging to first file')
+                    file_open = True
                 STARTED_FROM_DEPOT = True
             if RETURN_TO_DEPOT:
                 if file_open:
@@ -181,8 +193,8 @@ try:
                     outfile_name = open('current_file.txt','r')
                     filename = outfile_name.readline()
                     outfile_name.close()
-                    to_be_removed = "rm -f " + filename.rstrip()
-                    os.system(to_be_removed)
+                    to_be_renamed = "mv " + filename.rstrip() + " " + filename.rstrip() + ".b2d.csv"
+                    os.system(to_be_renamed)
                 os.system("rm -f current_file.txt")
                 time.sleep(0.1)
                 STARTED_FROM_DEPOT = True
@@ -199,7 +211,7 @@ try:
                     # recaliberate count n distance
                     count = 0;
                     distance = 0
-                    file_name = 'Documents/logs/log_' + str(datetime.now()) + '.csv'
+                    file_name = 'Documents/logs/log_laps_' + str(datetime.now()) + '.csv'
                     # save file name
                     outfile_name = open('current_file.txt','w+')
                     print(file_name,file = outfile_name)
@@ -212,6 +224,7 @@ try:
                     NEW_DATA_START_LOC = True
                     FIRST_TIME_START = False
                     #file_count += 1
+                time.sleep(0.1)
             else:
                 NEW_DATA_START_LOC = False
             if not CIRCULATOR:
@@ -223,7 +236,7 @@ try:
                         # recaliberate count n distance
                         count = 0;
                         distance = 0
-                        file_name = 'Documents/logs/log_' + str(datetime.now()) + '.csv'
+                        file_name = 'Documents/logs/log_laps_' + str(datetime.now()) + '.csv'
                         # save file name
                         outfile_name = open('current_file.txt','w+')
                         print(file_name,file = outfile_name)
@@ -235,6 +248,7 @@ try:
                         file_open = True
                         NEW_DATA_STOP_LOC = True
                         #file_count += 1
+                    time.sleep(0.1)
                 else:
                     NEW_DATA_STOP_LOC = False
             if STARTED_FROM_ROUTE:
@@ -247,6 +261,7 @@ try:
                 outfile = open(filename.rstrip(),'a')
                 file_open = True
                 STARTED_FROM_ROUTE = False
+                time.sleep(0.1)
 
         logged_data += '{0:d},{1:f},{2:f}'.format(count,distance_total,distance)
         if file_open:
