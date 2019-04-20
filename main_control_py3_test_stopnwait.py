@@ -145,9 +145,9 @@ try:
 
         # read GPS data
         for new_data in gpsd_socket:
-            #print('received GPS')
+            print('received GPS')
             if new_data:
-                #print('recieved valed GPS data')
+                print('recieved valid GPS data')
                 data_stream.unpack(new_data)
                 curr_lat = data_stream.TPV['lat']
                 if curr_lat == 'n/a':
