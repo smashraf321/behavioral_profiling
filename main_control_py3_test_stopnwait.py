@@ -103,26 +103,26 @@ try:
 
         msg_rx_counter = 0
         while msg_rx_counter < 3:
-            #print('waiting for CAN reply')
+            print('waiting for CAN reply')
             message = bus.recv()
             if message:
                 if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.ENGINE_RPM:
                     rpm_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                     rpm = round(((message.data[3]*256) + message.data[4])/4)
                     msg_rx_counter += 1
-                    #print('rpm recieved')
+                    print('rpm recieved')
                 if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.VEHICLE_SPEED:
                     speed_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                     speed = message.data[3]
                     vspeed2 = speed
                     time2 = message.timestamp
                     msg_rx_counter += 1
-                    #print('speed recieved')
+                    print('speed recieved')
                 if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.THROTTLE:
                     throttle_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                     throttle = round((message.data[3]*100)/255)
                     msg_rx_counter += 1
-                    #print('throttle recieved')
+                    print('throttle recieved')
 
         logged_data += ', {0:d}, '.format(rpm) + rpm_timeStamp + ', ' + '{0:d}, '.format(speed) + speed_timeStamp  + ', ' + '{0:d},'.format(throttle) + throttle_timeStamp + ', '
 
