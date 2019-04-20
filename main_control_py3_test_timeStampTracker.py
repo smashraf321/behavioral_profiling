@@ -192,6 +192,9 @@ try:
                     prev_lat = curr_lat
                     prev_lon = curr_lon
                 logged_data += str(curr_lat_temp) + ', ' + str(curr_lon_temp) + ', ' + str(data_stream.TPV['time'] + ', ') + datetime.now().strftime('%H:%M:%S.%f')
+                break
+            else:
+                continue
 
         logged_data += ', {0:d}, {1:f}, {2:f}'.format(count,distance_total,distance)
 

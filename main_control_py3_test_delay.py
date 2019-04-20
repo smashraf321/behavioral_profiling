@@ -156,6 +156,9 @@ try:
                     prev_lat = curr_lat
                     prev_lon = curr_lon
                 logged_data += str(curr_lat_temp) + ',' + str(curr_lon_temp) + ',' + str(data_stream.TPV['time'] + ',')
+                break
+            else:
+                continue
 
         if hf.if_in_depot(float(curr_lat),float(curr_lon),distance_total) or sp_count < 5:
             if DEPOT_BEGIN:
