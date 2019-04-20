@@ -82,16 +82,19 @@ try:
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.ENGINE_RPM,0x00,0x00,0x00,0x00,0x00],extended_id=False)
         bus.send(msg)
         rpm_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
+        print('sent RPM mesg')
         time.sleep(0.05)
         # Send Vehicle speed  request
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.VEHICLE_SPEED,0x00,0x00,0x00,0x00,0x00],extended_id=False)
         bus.send(msg)
         speed_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
+        print('sent Speed mesg')
         time.sleep(0.05)
         # Send Throttle position request
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.THROTTLE,0x00,0x00,0x00,0x00,0x00],extended_id=False)
         bus.send(msg)
         throttle_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
+        print('sent throttle mesg')
         time.sleep(0.05)
         # End transmission
         GPIO.output(led,False)
@@ -102,22 +105,26 @@ try:
 
         msg_rx_counter = 0
         while msg_rx_counter < 3:
+            print('waiting for CAN reply')
             message = bus.recv()
             if message:
                 if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.ENGINE_RPM:
                     rpm_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                     rpm = round(((message.data[3]*256) + message.data[4])/4)
                     msg_rx_counter += 1
+                    print('rpm recieved')
                 if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.VEHICLE_SPEED:
                     speed_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                     speed = message.data[3]
                     vspeed2 = speed
                     time2 = message.timestamp
                     msg_rx_counter += 1
+                    print('speed recieved')
                 if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.THROTTLE:
                     throttle_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                     throttle = round((message.data[3]*100)/255)
                     msg_rx_counter += 1
+                    print('throttle recieved')
 
         logged_data += ', {0:d}, '.format(rpm) + rpm_timeStamp + ', ' + '{0:d}, '.format(speed) + speed_timeStamp  + ', ' + '{0:d},'.format(throttle) + throttle_timeStamp + ', '
 
@@ -134,9 +141,13 @@ try:
         vspeed1 = vspeed2
         time1 = time2
 
+        print('exited CAN Rx LOOP')
+
         # read GPS data
         for new_data in gpsd_socket:
+            print('received GPS')
             if new_data:
+                print('recieved valed GPS data')
                 data_stream.unpack(new_data)
                 curr_lat = data_stream.TPV['lat']
                 if curr_lat == 'n/a':
@@ -273,8 +284,8 @@ try:
 except KeyboardInterrupt:
     #Catch keyboard interrupt
     GPIO.output(led,False)
-    if file_open:
-        outfile.close()
+    #if file_open:
+        #outfile.close()
         # close CAN interface
     os.system("sudo /sbin/ip link set can0 down")
     print('\n\rKeyboard interrtupt')
