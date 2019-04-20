@@ -74,27 +74,25 @@ NEW_DATA_STOP_LOC = False
 
 # Main control starts
 try:
-    if hf.if_bus_on_track() == 0:
-        STARTED_FROM_ROUTE = False
     while True:
         GPIO.output(led,True)
         # Send Engine RPM request
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.ENGINE_RPM,0x00,0x00,0x00,0x00,0x00],extended_id=False)
         bus.send(msg)
         rpm_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
-        #print('sent RPM mesg')
+        print('sent RPM mesg')
         time.sleep(0.05)
         # Send Vehicle speed  request
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.VEHICLE_SPEED,0x00,0x00,0x00,0x00,0x00],extended_id=False)
         bus.send(msg)
         speed_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
-        #print('sent Speed mesg')
+        print('sent Speed mesg')
         time.sleep(0.05)
         # Send Throttle position request
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.THROTTLE,0x00,0x00,0x00,0x00,0x00],extended_id=False)
         bus.send(msg)
         throttle_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
-        #print('sent throttle mesg')
+        print('sent throttle mesg')
         time.sleep(0.05)
         # End transmission
         GPIO.output(led,False)
@@ -167,104 +165,6 @@ try:
                 break
             else:
                 continue
-
-        if hf.if_in_depot(float(curr_lat),float(curr_lon),distance_total) or sp_count < 5:
-            if DEPOT_BEGIN:
-                #os.system("./final_upload.sh")
-                #print('D')
-                #if not file_open:
-                    #file_name = 'Documents/logs/log_DOJ_' + str(datetime.now()) + '.csv'
-                    # save file name
-                    #outfile_name = open('current_file.txt','w+')
-                    #print(file_name,file = outfile_name)
-                    #outfile_name.close()
-                    # write to a new file
-                    #outfile = open(file_name,'w+')
-                    #print('Logging to first file')
-                    #file_open = True
-                STARTED_FROM_DEPOT = True
-            if RETURN_TO_DEPOT:
-                #if file_open:
-                    #logged_data += '{0:d},{1:f},{2:f}'.format(count,distance_total,distance)
-                    #print(logged_data,file = outfile)
-                    #outfile.close()
-                file_open = False
-                #os.system("./final_upload.sh")
-                #print('B2D')
-                # remove last logged file as not on route
-                if file_open:
-                    outfile_name = open('current_file.txt','r')
-                    filename = outfile_name.readline()
-                    outfile_name.close()
-                    to_be_renamed = "mv " + filename.rstrip() + " " + filename.rstrip() + ".b2d.csv"
-                    os.system(to_be_renamed)
-                #os.system("rm -f current_file.txt")
-                STARTED_FROM_DEPOT = True
-        else:
-            #print('R')
-            RETURN_TO_DEPOT = True
-            DEPOT_BEGIN = False
-            #print(hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR))
-            if hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR):
-                if not NEW_DATA_START_LOC:
-                    #if file_open:
-                        #logged_data += '{0:d},{1:f},{2:f}'.format(count,distance_total,distance)
-                        #print(logged_data,file = outfile)
-                        #outfile.close()
-                        #print('Closed previous file')
-                    # recaliberate count n distance
-                    count = 0;
-                    distance = 0
-                    #file_name = 'Documents/logs/log_laps_' + str(datetime.now()) + '.csv'
-                    # save file name
-                    #outfile_name = open('current_file.txt','w+')
-                    #print(file_name,file = outfile_name)
-                    #outfile_name.close()
-                    # write to a new file
-                    #outfile = open(file_name,'w+')
-                    #print('Logging to file')
-                    # set flags
-                    #file_open = True
-                    NEW_DATA_START_LOC = True
-                    FIRST_TIME_START = False
-                    #file_count += 1
-            else:
-                NEW_DATA_START_LOC = False
-            if not CIRCULATOR:
-                if hf.geo_fence_stop(float(curr_lat),float(curr_lon),distance,speed):
-                    if not NEW_DATA_STOP_LOC:
-                        if file_open:
-                            logged_data += '{0:d},{1:f},{2:f}'.format(count,distance_total,distance)
-                            print(logged_data,file = outfile)
-                            outfile.close()
-                            print('Closed previous file')
-                        # recaliberate count n distance
-                        count = 0;
-                        distance = 0
-                        file_name = 'Documents/logs/log_laps_' + str(datetime.now()) + '.csv'
-                        # save file name
-                        outfile_name = open('current_file.txt','w+')
-                        print(file_name,file = outfile_name)
-                        outfile_name.close()
-                        # write to a new file
-                        outfile = open(file_name,'w+')
-                        print('Logging to file')
-                        # set flags
-                        file_open = True
-                        NEW_DATA_STOP_LOC = True
-                        #file_count += 1
-                else:
-                    NEW_DATA_STOP_LOC = False
-            if STARTED_FROM_ROUTE:
-                # open the previous file
-                outfile_name = open('current_file.txt','r')
-                filename = outfile_name.readline()
-                outfile_name.close()
-                # get previous_distance
-                distance = hf.previous_distance(filename.rstrip())
-                outfile = open(filename.rstrip(),'a')
-                file_open = True
-                STARTED_FROM_ROUTE = False
 
         logged_data += ', {0:d}, {1:f}, {2:f}'.format(count,distance_total,distance)
 
