@@ -47,9 +47,8 @@ def can_rx_task():
         if message.arbitration_id == hf.PID_REPLY:
             q_CAN.put(message)
             rx_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
-
-        rx_logs += ', ' + rx_timeStamp
-        counterr += 1
+            rx_logs += ', ' + rx_timeStamp
+            counterr += 1
 
         if not rx_file_open:
             rx_file_name = 'Documents/logs/log_rx_' + str(datetime.now()) + '.csv'
@@ -124,7 +123,6 @@ time_start_at_stop = 0.0
 #file_count = 0
 outfile = 0
 outfile_name = 0
-file_open = False
 file_name = ''
 
 DEPOT_BEGIN = True
@@ -138,6 +136,7 @@ NEW_DATA_STOP_LOC = False
 
 # Main control starts
 try:
+    file_open = False
     while True:
         for i in range(3):
             while(q_CAN.empty() == True):
