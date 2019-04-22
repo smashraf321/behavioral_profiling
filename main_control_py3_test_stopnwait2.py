@@ -81,7 +81,7 @@ try:
         bus.send(msg)
         rpm_timeStamptx = datetime.now().strftime('%H:%M:%S.%f')
         print('sent RPM mesg')
-        time.sleep(0.015)
+        #time.sleep(0.01)
         # waiting for RPM
         print('waiting for rpm')
         rpm_not_rx = True
@@ -90,7 +90,6 @@ try:
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.ENGINE_RPM:
                 rpm_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                 rpm = round(((message.data[3]*256) + message.data[4])/4)
-                msg_rx_counter += 1
                 rpm_not_rx = False
                 print('rpm recieved')
 
@@ -99,7 +98,7 @@ try:
         bus.send(msg)
         speed_timeStamptx = datetime.now().strftime('%H:%M:%S.%f')
         print('sent Speed mesg')
-        time.sleep(0.015)
+        #time.sleep(0.01)
         # waiting for Speed
         print('waiting for speed')
         speed_not_rx = True
@@ -110,7 +109,6 @@ try:
                 speed = message.data[3]
                 vspeed2 = speed
                 time2 = message.timestamp
-                msg_rx_counter += 1
                 speed_not_rx = False
                 print('speed recieved')
 
@@ -119,7 +117,7 @@ try:
         bus.send(msg)
         throttle_timeStamptx = datetime.now().strftime('%H:%M:%S.%f')
         print('sent throttle mesg')
-        time.sleep(0.015)
+        #time.sleep(0.01)
         # waiting for throttle
         print('waiting for throttle')
         throttle_not_rx = True
@@ -128,7 +126,6 @@ try:
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.THROTTLE:
                 throttle_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                 throttle = round((message.data[3]*100)/255)
-                msg_rx_counter += 1
                 throttle_not_rx = False
                 print('throttle recieved')
 
