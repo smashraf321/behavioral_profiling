@@ -40,6 +40,7 @@ speed = 0
 throttle = 0
 distance = 0
 distance_total = 0
+rpi_speed_epoch_time = 0
 time2 = 0
 time1 = 0
 vspeed2 = 0
@@ -59,7 +60,7 @@ time_start_at_stop = 0.0
 outfile = 0
 outfile_name = 0
 ############################################################
-file_open = True
+file_open = False
 ############################################################
 file_name = ''
 
@@ -80,10 +81,10 @@ try:
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.ENGINE_RPM,0x00,0x00,0x00,0x00,0x00],extended_id=False)
         bus.send(msg)
         rpm_timeStamptx = datetime.now().strftime('%H:%M:%S.%f')
-        print('sent RPM mesg')
+        #print('sent RPM mesg')
         #time.sleep(0.01)
         # waiting for RPM
-        print('waiting for rpm')
+        #print('waiting for rpm')
         rpm_not_rx = True
         while rpm_not_rx:
             message = bus.recv()
@@ -91,35 +92,36 @@ try:
                 rpm_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                 rpm = round(((message.data[3]*256) + message.data[4])/4)
                 rpm_not_rx = False
-                print('rpm recieved')
+                #print('rpm recieved')
 
         # Send Vehicle speed  request
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.VEHICLE_SPEED,0x00,0x00,0x00,0x00,0x00],extended_id=False)
         bus.send(msg)
         speed_timeStamptx = datetime.now().strftime('%H:%M:%S.%f')
-        print('sent Speed mesg')
+        #print('sent Speed mesg')
         #time.sleep(0.01)
         # waiting for Speed
-        print('waiting for speed')
+        #print('waiting for speed')
         speed_not_rx = True
         while speed_not_rx:
             message = bus.recv()
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.VEHICLE_SPEED:
+                rpi_time = time.time()
                 speed_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                 speed = message.data[3]
                 vspeed2 = speed
                 time2 = message.timestamp
                 speed_not_rx = False
-                print('speed recieved')
+                #print('speed recieved')
 
         # Send Throttle position request
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.THROTTLE,0x00,0x00,0x00,0x00,0x00],extended_id=False)
         bus.send(msg)
         throttle_timeStamptx = datetime.now().strftime('%H:%M:%S.%f')
-        print('sent throttle mesg')
+        #print('sent throttle mesg')
         #time.sleep(0.01)
         # waiting for throttle
-        print('waiting for throttle')
+        #print('waiting for throttle')
         throttle_not_rx = True
         while throttle_not_rx:
             message = bus.recv()
@@ -127,16 +129,14 @@ try:
                 throttle_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                 throttle = round((message.data[3]*100)/255)
                 throttle_not_rx = False
-                print('throttle recieved')
+                #print('throttle recieved')
 
         # End transmission
         GPIO.output(led,False)
 
-        logged_data = rpm_timeStamptx + ', ' + speed_timeStamptx  + ', ' + throttle_timeStamptx
-
         #time.sleep(0.2)
 
-        logged_data += ', {0:d}, '.format(rpm) + rpm_timeStamp + ', ' + '{0:d}, '.format(speed) + speed_timeStamp  + ', ' + '{0:d},'.format(throttle) + throttle_timeStamp + ', '
+        logged_data = rpm_timeStamptx + ', ' + rpm_timeStamp + ', {0:d}, '.format(rpm) + speed_timeStamptx  + ', ' + speed_timeStamp + '{0:f}, '.format(time2) + '{0:f}, '.format(rpi_time)  + ', {0:d}, '.format(speed) + throttle_timeStamptx + ', ' + throttle_timeStamp + ', {0:d}, '.format(throttle)
 
         # calculate distance
         if first_time12:
@@ -151,7 +151,7 @@ try:
         vspeed1 = vspeed2
         time1 = time2
 
-        print('exited CAN Rx LOOP')
+        #print('exited CAN Rx LOOP')
 
         # read GPS data
         for new_data in gpsd_socket:
@@ -181,17 +181,15 @@ try:
         logged_data += ', {0:d}, {1:f}, {2:f}'.format(count,distance_total,distance)
 
         if not file_open:
-            file_name = 'Documents/logs/log_DOJ_' + str(datetime.now()) + '.csv'
+            file_name = 'Documents/logs/log_DOJ_stopnwait2_' + str(datetime.now()) + '.csv'
             outfile = open(file_name,'w+')
             print('Logging data timestamps...')
             file_open = True
-        #if file_open:
-            #print(logged_data,file = outfile)
+        if file_open:
+            print(logged_data,file = outfile)
 
         count += 1
-        if sp_count < 5:
-            sp_count += 1
-        print(logged_data)
+        #print(logged_data)
 
 except KeyboardInterrupt:
     #Catch keyboard interrupt

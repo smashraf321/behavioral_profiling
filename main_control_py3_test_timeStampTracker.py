@@ -199,13 +199,13 @@ try:
         logged_data += ', {0:d}, {1:f}, {2:f}'.format(count,distance_total,distance)
 
         if not file_open:
-            file_name = 'Documents/logs/log_DOJ_' + str(datetime.now()) + '.csv'
+            file_name = 'Documents/logs/log_DOJ_timestamptracker_' + str(datetime.now()) + '.csv'
             outfile = open(file_name,'w+')
             print('Logging data timestamps...')
 
         print(logged_data,file = outfile)
         file_open = True
-        print('...')
+        #print('...')
 
 except KeyboardInterrupt:
     #Catch keyboard interrupt
