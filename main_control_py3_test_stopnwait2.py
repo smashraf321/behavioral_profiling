@@ -84,12 +84,15 @@ try:
         time.sleep(0.015)
         # waiting for RPM
         print('waiting for rpm')
-        message = bus.recv()
-        if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.ENGINE_RPM:
-            rpm_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
-            rpm = round(((message.data[3]*256) + message.data[4])/4)
-            msg_rx_counter += 1
-            print('rpm recieved')
+        rpm_not_rx = True
+        while rpm_not_rx:
+            message = bus.recv()
+            if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.ENGINE_RPM:
+                rpm_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
+                rpm = round(((message.data[3]*256) + message.data[4])/4)
+                msg_rx_counter += 1
+                rpm_not_rx = False
+                print('rpm recieved')
 
         # Send Vehicle speed  request
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.VEHICLE_SPEED,0x00,0x00,0x00,0x00,0x00],extended_id=False)
@@ -99,14 +102,17 @@ try:
         time.sleep(0.015)
         # waiting for Speed
         print('waiting for speed')
-        message = bus.recv()
-        if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.VEHICLE_SPEED:
-            speed_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
-            speed = message.data[3]
-            vspeed2 = speed
-            time2 = message.timestamp
-            msg_rx_counter += 1
-            print('speed recieved')
+        speed_not_rx = True
+        while speed_not_rx:
+            message = bus.recv()
+            if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.VEHICLE_SPEED:
+                speed_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
+                speed = message.data[3]
+                vspeed2 = speed
+                time2 = message.timestamp
+                msg_rx_counter += 1
+                speed_not_rx = False
+                print('speed recieved')
 
         # Send Throttle position request
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.THROTTLE,0x00,0x00,0x00,0x00,0x00],extended_id=False)
@@ -116,12 +122,16 @@ try:
         time.sleep(0.015)
         # waiting for throttle
         print('waiting for throttle')
-        message = bus.recv()
-        if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.THROTTLE:
-            throttle_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
-            throttle = round((message.data[3]*100)/255)
-            msg_rx_counter += 1
-            print('throttle recieved')
+        throttle_not_rx = True
+        while throttle_not_rx:
+            message = bus.recv()
+            if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.THROTTLE:
+                throttle_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
+                throttle = round((message.data[3]*100)/255)
+                msg_rx_counter += 1
+                throttle_not_rx = False
+                print('throttle recieved')
+
         # End transmission
         GPIO.output(led,False)
 

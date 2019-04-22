@@ -111,13 +111,13 @@ try:
                 pass
             message = q_CAN.get()
 
-            time2 = message.timestamp
-            logged_data = '{0:f},'.format(time2)
-
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.ENGINE_RPM:
                 rpm = round(((message.data[3]*256) + message.data[4])/4)
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.VEHICLE_SPEED:
                 speed = message.data[3]
+                time2 = message.timestamp
+                rpi_time = time.time()
+                logged_data = '{0:f},{1:f},'.format(time2,rpi_time)
                 vspeed2 = speed
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.THROTTLE:
                 throttle = round((message.data[3]*100)/255)
@@ -160,7 +160,7 @@ try:
             else:
                 continue
 
-        if hf.if_in_depot(float(curr_lat),float(curr_lon),distance_total) or sp_count < 5:
+        if hf.if_in_depot(float(curr_lat),float(curr_lon),distance_total,RETURN_TO_DEPOT) or sp_count < 5:
             if DEPOT_BEGIN:
                 #os.system("./final_upload.sh")
                 print('D')

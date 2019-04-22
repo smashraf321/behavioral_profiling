@@ -11,6 +11,7 @@ from datetime import datetime
 from gps3 import gps3
 
 # initial Raspi setup for CAN Shield interfacing
+
 led = 22
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)

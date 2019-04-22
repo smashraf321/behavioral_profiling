@@ -62,10 +62,13 @@ DIST_STOP_MAX = 15.5
 # csv file properties
 NUM_COLS = 10
 
-def geo_fence_depot(lat,lon,dist):
+def geo_fence_depot(lat,lon,dist,ret_depot):
     geofence = lat < DEPOT_LAT_NORTH and lat > DEPOT_LAT_SOUTH and lon < DEPOT_LONG_EAST and lon > DEPOT_LONG_WEST
     dist_check = dist < DIST_DEPOT_EXIT or dist > DIST_DEPOT_RETURN
-    return geofence or dist_check
+    if ret_depot:
+        return (geofence or dist_check) and spd == 0
+    else:
+        return geofence or dist_check
 
 def geo_fence_start(lat,lon,dist,spd,start_first_time,circulator):
     geofence =  lat < START_LAT_NORTH and lat > START_LAT_SOUTH and lon < START_LONG_EAST and lon > START_LONG_WEST
