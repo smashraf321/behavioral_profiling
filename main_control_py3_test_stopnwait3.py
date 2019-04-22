@@ -157,7 +157,7 @@ try:
 
                 #time.sleep(0.2)
 
-                logged_data = rpm_timeStamptx + ', ' + rpm_timeStamp + ', {0:d}, '.format(rpm) + speed_timeStamptx  + ', ' + speed_timeStamp + '{0:f}, '.format(time2) + '{0:f}, '.format(rpi_time)  + ', {0:d}, '.format(speed) + throttle_timeStamptx + ', ' + throttle_timeStamp + ', {0:d}, '.format(throttle)
+                logged_data = rpm_timeStamptx + ', ' + rpm_timeStamp + ', {0:d}, '.format(rpm) + speed_timeStamptx  + ', ' + speed_timeStamp + ', {0:f}, '.format(time2) + '{0:f}, '.format(rpi_time)  + '{0:d}, '.format(speed) + throttle_timeStamptx + ', ' + throttle_timeStamp + ', {0:d}, '.format(throttle)
 
                 # calculate distance
                 if first_time12:
