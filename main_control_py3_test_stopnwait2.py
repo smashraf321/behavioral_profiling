@@ -90,7 +90,7 @@ try:
         while rpm_not_rx:
             #print('waiting for rpm')
             message = bus.recv()
-            logged_data_can_msg = str(message) + ', '
+            logged_data_can_msg = str(message) + '\n'
             #print(str(message))
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.ENGINE_RPM:
                 rpm_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
@@ -111,7 +111,7 @@ try:
         while speed_not_rx:
             #print('waiting for speed')
             message = bus.recv()
-            logged_data_can_msg += str(message) + ', '
+            logged_data_can_msg += str(message) + '\n'
             #print(str(message))
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.VEHICLE_SPEED:
                 rpi_time = time.time()
