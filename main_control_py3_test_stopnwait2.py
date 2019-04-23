@@ -88,15 +88,15 @@ try:
         #print('waiting for rpm')
         rpm_not_rx = True
         while rpm_not_rx:
-            print('waiting for rpm')
+            #print('waiting for rpm')
             message = bus.recv()
             logged_data_can_msg = str(message) + ', '
-            print(str(message))
+            #print(str(message))
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.ENGINE_RPM:
                 rpm_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                 rpm = round(((message.data[3]*256) + message.data[4])/4)
                 rpm_not_rx = False
-                print('rpm recieved')
+                #print('rpm recieved')
 
         # Send Vehicle speed  request
         #time.sleep(0.01)
@@ -109,10 +109,10 @@ try:
         #print('waiting for speed')
         speed_not_rx = True
         while speed_not_rx:
-            print('waiting for speed')
+            #print('waiting for speed')
             message = bus.recv()
             logged_data_can_msg += str(message) + ', '
-            print(str(message))
+            #print(str(message))
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.VEHICLE_SPEED:
                 rpi_time = time.time()
                 speed_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
@@ -120,7 +120,7 @@ try:
                 vspeed2 = speed
                 time2 = message.timestamp
                 speed_not_rx = False
-                print('speed recieved')
+                #print('speed recieved')
 
         # Send Throttle position request
         #time.sleep(0.01)
@@ -133,16 +133,16 @@ try:
         #print('waiting for throttle')
         throttle_not_rx = True
         while throttle_not_rx:
-            print('waiting for throttle')
+            #print('waiting for throttle')
             message = bus.recv()
             logged_data_can_msg += str(message) + ', '
-            print(str(message))
+            #print(str(message))
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.THROTTLE:
                 throttle_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                 throttle = round((message.data[3]*100)/255)
                 throttle_not_rx = False
                 time.sleep(0.01)
-                print('throttle recieved')
+                #print('throttle recieved')
 
         # End transmission
         GPIO.output(led,False)
