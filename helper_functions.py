@@ -93,8 +93,8 @@ def wifi_present():
     shell = True)
     return int(result.strip())
 
-def if_in_depot(lat,lon,dist):
-    return geo_fence_depot(lat,lon,dist) #or wifi_present() == 0
+def if_in_depot(lat,lon,dist,ret_depot):
+    return geo_fence_depot(lat,lon,dist,ret_depot) #or wifi_present() == 0
 
 def if_bus_on_track():
     result = subprocess.check_output(
