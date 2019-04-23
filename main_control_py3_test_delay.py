@@ -160,7 +160,7 @@ try:
             else:
                 continue
 
-        if hf.if_in_depot(float(curr_lat),float(curr_lon),distance_total,RETURN_TO_DEPOT) or sp_count < 5:
+        if hf.if_in_depot(float(curr_lat),float(curr_lon),distance_total,RETURN_TO_DEPOT,speed) or sp_count < 5:
             if DEPOT_BEGIN:
                 #os.system("./final_upload.sh")
                 print('D')

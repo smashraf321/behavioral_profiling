@@ -62,7 +62,7 @@ DIST_STOP_MAX = 15.5
 # csv file properties
 NUM_COLS = 10
 
-def geo_fence_depot(lat,lon,dist,ret_depot):
+def geo_fence_depot(lat,lon,dist,ret_depot,spd):
     geofence = lat < DEPOT_LAT_NORTH and lat > DEPOT_LAT_SOUTH and lon < DEPOT_LONG_EAST and lon > DEPOT_LONG_WEST
     dist_check = dist < DIST_DEPOT_EXIT or dist > DIST_DEPOT_RETURN
     if ret_depot:
@@ -93,8 +93,8 @@ def wifi_present():
     shell = True)
     return int(result.strip())
 
-def if_in_depot(lat,lon,dist,ret_depot):
-    return geo_fence_depot(lat,lon,dist,ret_depot) #or wifi_present() == 0
+def if_in_depot(lat,lon,dist,ret_depot,spd):
+    return geo_fence_depot(lat,lon,dist,ret_depot,spd) #or wifi_present() == 0
 
 def if_bus_on_track():
     result = subprocess.check_output(
