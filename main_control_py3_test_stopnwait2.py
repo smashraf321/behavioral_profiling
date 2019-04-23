@@ -99,7 +99,7 @@ try:
                 print('rpm recieved')
 
         # Send Vehicle speed  request
-        time.sleep(0.01)
+        #time.sleep(0.01)
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.VEHICLE_SPEED,0x00,0x00,0x00,0x00,0x00],extended_id=False)
         bus.send(msg)
         speed_timeStamptx = datetime.now().strftime('%H:%M:%S.%f')
@@ -123,7 +123,7 @@ try:
                 print('speed recieved')
 
         # Send Throttle position request
-        time.sleep(0.01)
+        #time.sleep(0.01)
         msg = can.Message(arbitration_id=hf.PID_REQUEST,data=[0x02,0x01,hf.THROTTLE,0x00,0x00,0x00,0x00,0x00],extended_id=False)
         bus.send(msg)
         throttle_timeStamptx = datetime.now().strftime('%H:%M:%S.%f')
