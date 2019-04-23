@@ -135,7 +135,7 @@ try:
         while throttle_not_rx:
             #print('waiting for throttle')
             message = bus.recv()
-            logged_data_can_msg += str(message)
+            logged_data_can_msg += str(message) + '\n'
             #print(str(message))
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.THROTTLE:
                 throttle_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
