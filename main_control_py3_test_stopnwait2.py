@@ -92,6 +92,7 @@ try:
                 rpm_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                 rpm = round(((message.data[3]*256) + message.data[4])/4)
                 rpm_not_rx = False
+                time.sleep(0.01)
                 #print('rpm recieved')
 
         # Send Vehicle speed  request
@@ -112,6 +113,7 @@ try:
                 vspeed2 = speed
                 time2 = message.timestamp
                 speed_not_rx = False
+                time.sleep(0.01)
                 #print('speed recieved')
 
         # Send Throttle position request
@@ -129,6 +131,7 @@ try:
                 throttle_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
                 throttle = round((message.data[3]*100)/255)
                 throttle_not_rx = False
+                time.sleep(0.01)
                 #print('throttle recieved')
 
         # End transmission
