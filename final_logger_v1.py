@@ -166,6 +166,7 @@ try:
                 logged_data_gps = gps_timeStamp + ',' + str(curr_lat) + ',' + str(curr_lon)
                 if file_open:
                     print(logged_data_gps,file = outfile_gps)
+                    print('logging to gps file')
                 prev_lat = curr_lat
                 prev_lon = curr_lon
                 print(logged_data_gps)
@@ -175,7 +176,7 @@ try:
             print(logged_data_can,file = outfile_can)
 
         # geofence logic begins
-        if hf.if_in_depot(float(curr_lat),float(curr_lon),distance_total,RETURN_TO_DEPOT,speed):
+        if hf.if_in_depot(float(curr_lat),float(curr_lon),distance_total,RETURN_TO_DEPOT,vspeed2):
             if DEPOT_BEGIN:
                 #os.system("./final_upload.sh")
                 print('D')
@@ -188,6 +189,7 @@ try:
                     outfile_name.close()
                     # write to a new file
                     outfile_can = open(file_name_can,'w+')
+                    time.sleep(0.1)
                     outfile_gps = open(file_name_gps,'w+')
                     print('Logging to first file')
                     file_open = True
@@ -195,6 +197,7 @@ try:
             if RETURN_TO_DEPOT:
                 if file_open:
                     outfile_can.close()
+                    time.sleep(0.1)
                     outfile_gps.close()
                 file_open = False
                 #os.system("./final_upload.sh")
@@ -212,23 +215,25 @@ try:
             print('R')
             RETURN_TO_DEPOT = True
             DEPOT_BEGIN = False
-            if hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,speed,FIRST_TIME_START,CIRCULATOR):
+            if hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,vspeed2,FIRST_TIME_START,CIRCULATOR):
                 if not NEW_DATA_START_LOC:
                     if file_open:
                         outfile_can.close()
+                        time.sleep(0.1)
                         outfile_gps.close()
                         print('Closed previous file')
                     # recaliberate count n distance
                     count = 0;
                     distance = 0
                     file_name_can = 'Documents/logs/log_LAPS_CAN' + str(datetime.now()) + '.csv'
-                    file_name_GPS = 'Documents/logs/log_LAPS_GPS' + str(datetime.now()) + '.csv'
+                    file_name_gps = 'Documents/logs/log_LAPS_GPS' + str(datetime.now()) + '.csv'
                     # save file name
                     outfile_name = open('current_file.txt','w+')
                     print(file_name_can,file = outfile_name)
                     outfile_name.close()
                     # write to a new file
                     outfile_can = open(file_name_can,'w+')
+                    time.sleep(0.1)
                     outfile_gps = open(file_name_gps,'w+')
                     print('Logging to file')
                     # set flags
@@ -239,23 +244,25 @@ try:
             else:
                 NEW_DATA_START_LOC = False
             if not CIRCULATOR:
-                if hf.geo_fence_stop(float(curr_lat),float(curr_lon),distance,speed):
+                if hf.geo_fence_stop(float(curr_lat),float(curr_lon),distance,vspeed2):
                     if not NEW_DATA_STOP_LOC:
                         if file_open:
                             outfile_can.close()
+                            time.sleep(0.1)
                             outfile_gps.close()
                             print('Closed previous file')
                         # recaliberate count n distance
                         count = 0;
                         distance = 0
                         file_name_can = 'Documents/logs/log_LAPS_CAN' + str(datetime.now()) + '.csv'
-                        file_name_GPS = 'Documents/logs/log_LAPS_GPS' + str(datetime.now()) + '.csv'
+                        file_name_gps = 'Documents/logs/log_LAPS_GPS' + str(datetime.now()) + '.csv'
                         # save file name
                         outfile_name = open('current_file.txt','w+')
                         print(file_name_can,file = outfile_name)
                         outfile_name.close()
                         # write to a new file
                         outfile_can = open(file_name_can,'w+')
+                        time.sleep(0.1)
                         outfile_gps = open(file_name_gps,'w+')
                         print('Logging to file')
                         # set flags
