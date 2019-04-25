@@ -181,8 +181,8 @@ try:
                 #os.system("./final_upload.sh")
                 print('D')
                 if not file_open:
-                    file_name_can = 'Documents/logs/log_DOJ_CAN' + str(datetime.now()) + '.csv'
-                    file_name_gps = 'Documents/logs/log_DOJ_GPS' + str(datetime.now()) + '.csv'
+                    file_name_can = 'Documents/logs/log_DOJ_CAN_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
+                    file_name_gps = 'Documents/logs/log_DOJ_GPS_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
                     # save file name
                     outfile_name = open('current_file.txt','w+')
                     print(file_name_can,file = outfile_name)
@@ -225,8 +225,8 @@ try:
                     # recaliberate count n distance
                     count = 0;
                     distance = 0
-                    file_name_can = 'Documents/logs/log_LAPS_CAN' + str(datetime.now()) + '.csv'
-                    file_name_gps = 'Documents/logs/log_LAPS_GPS' + str(datetime.now()) + '.csv'
+                    file_name_can = 'Documents/logs/log_LAPS_CAN_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
+                    file_name_gps = 'Documents/logs/log_LAPS_GPS_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
                     # save file name
                     outfile_name = open('current_file.txt','w+')
                     print(file_name_can,file = outfile_name)
@@ -254,8 +254,8 @@ try:
                         # recaliberate count n distance
                         count = 0;
                         distance = 0
-                        file_name_can = 'Documents/logs/log_LAPS_CAN' + str(datetime.now()) + '.csv'
-                        file_name_gps = 'Documents/logs/log_LAPS_GPS' + str(datetime.now()) + '.csv'
+                        file_name_can = 'Documents/logs/log_LAPS_CAN_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
+                        file_name_gps = 'Documents/logs/log_LAPS_GPS_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
                         # save file name
                         outfile_name = open('current_file.txt','w+')
                         print(file_name_can,file = outfile_name)
