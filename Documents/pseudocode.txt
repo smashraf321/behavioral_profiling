@@ -1,0 +1,43 @@
+
+setup CAN socket
+
+setup GPS socket
+
+define can_receiver_process:
+    while True:
+        message = bus.recv()
+        if valid message:
+            send to transmit process
+
+define GPS_receiver_process:
+    while True:
+        read GPS data and save to file logs
+
+start the CAN and GPS receiver processes
+
+start Main CAN transmission process:
+
+    while True:
+
+        while not received 3 replies:
+
+                Send Throttle position request
+                wait for reply till timeout
+            if
+                not received reply, start the retransmission for all 3 PIDs
+            else
+                Send Engine RPM request
+                wait for reply till timeout
+            if
+                not received reply, start the retransmission for all 3 PIDs
+            else
+                Send Engine Speed request
+                wait for reply till timeout
+            if
+                not received reply, start the retransmission for all 3 PIDs
+            else
+                get GPS data (if available) and check for geofencing logic
+
+            geofence logic checks for saving into different files based on laps
+
+            save GPS and CAN data into separate files (can be saved in one too)
