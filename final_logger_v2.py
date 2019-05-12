@@ -312,7 +312,7 @@ try:
                 STARTED_FROM_ROUTE = False
 
         count += 1
-        #print(logged_data_can)
+        print(logged_data_can)
 
 except KeyboardInterrupt:
     #Catch keyboard interrupt
