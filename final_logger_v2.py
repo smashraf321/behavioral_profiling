@@ -59,6 +59,11 @@ rx_gps = Thread(target = gps_rx_task)
 rx_gps.start()
 
 timeStamp = ''
+total_time = 0.0
+total_time_day = 0.0
+total_time2 = 0.0
+total_time1 = 0.0
+time_interval = 0.0
 rpm = 0
 speed = 0
 throttle = 0
@@ -158,17 +163,21 @@ try:
                 continue
             message = q_CAN.get()
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.VEHICLE_SPEED:
-                timeStamp = datetime.now().strftime('%H:%M:%S.%f')
+                timestamp = datetime.now()
+                timeStamp = timestamp.strftime('%H:%M:%S.%f')
                 vspeed2 = message.data[3]
                 time2 = message.timestamp
+                total_time2 = float(timestamp.strftime('%H')) * 3600 + float(timestamp.strftime('%M')) * 60 + float(timestamp.strftime('%S.%f'))
                 msg_count += 1
 
 
         # read GPS data if available
         LOG_GPS = False
-        logged_data_gps = '0,0,0'
+        logged_data_gps = '0,0'
         if q_GPS.empty() == False:
-            timeStamp = datetime.now().strftime('%H:%M:%S.%f')
+            timestamp = datetime.now()
+            timeStamp = timestamp.strftime('%H:%M:%S.%f')
+            total_time2 = float(timestamp.strftime('%H')) * 3600 + float(timestamp.strftime('%M')) * 60 + float(timestamp.strftime('%S.%f'))
             new_data = q_GPS.get()
             data_stream.unpack(new_data)
             curr_lat = data_stream.TPV['lat']
@@ -190,6 +199,7 @@ try:
         if first_time12:
             time1 = time2
             vspeed1 = vspeed2
+            total_time1 = total_time2
             first_time12 = False
         # convert speed from km/h to m/s
         vspeed1 = vspeed1 * 5 / 18
@@ -198,8 +208,12 @@ try:
         distance_total += (vspeed2 + vspeed1)*(time2 - time1)/2
         vspeed1 = vspeed2
         time1 = time2
+        time_interval = total_time2 - total_time1
+        total_time += time_interval
+        total_time_day += time_interval
+        total_time1 = total_time2
 
-        logged_data_can += ',{0:f},{1:f}'.format(distance_total,distance)
+        logged_data_can += ',{0:f},{1:f},{2:f},{3:f},{4:f}'.format(total_time_day,total_time,time_interval,distance_total,distance)
         if file_open:
             print(logged_data_can,file = outfile_can)
 
@@ -244,8 +258,9 @@ try:
                         outfile_can.close()
                         print('Closed previous file')
                     # recaliberate count n distance
-                    count = 0;
+                    count = 0
                     distance = 0
+                    total_time = 0
                     file_name_can = 'Documents/logs/log_LAPS_CAN_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
                     # save file name
                     outfile_name = open('current_file.txt','w+')
@@ -268,8 +283,9 @@ try:
                             outfile_can.close()
                             print('Closed previous file')
                         # recaliberate count n distance
-                        count = 0;
+                        count = 0
                         distance = 0
+                        total_time = 0
                         file_name_can = 'Documents/logs/log_LAPS_CAN_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
                         # save file name
                         outfile_name = open('current_file.txt','w+')
