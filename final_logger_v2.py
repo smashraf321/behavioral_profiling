@@ -59,6 +59,7 @@ rx_gps = Thread(target = gps_rx_task)
 rx_gps.start()
 
 timeStamp = ''
+timestamp = ''
 total_time = 0.0
 total_time_day = 0.0
 total_time2 = 0.0
