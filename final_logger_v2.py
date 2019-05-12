@@ -172,6 +172,7 @@ try:
                 msg_count += 1
 
         # read GPS data if available
+        msg_count = 0
         LOG_GPS = False
         logged_data_gps = '0,0'
         if q_GPS.empty() == False:
