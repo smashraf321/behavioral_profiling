@@ -59,7 +59,7 @@ rx_gps = Thread(target = gps_rx_task)
 rx_gps.start()
 
 timeStamp = ''
-timestamp = ''
+time_stamp = ''
 total_time = 0.0
 total_time_day = 0.0
 total_time2 = 0.0
@@ -164,21 +164,20 @@ try:
                 continue
             message = q_CAN.get()
             if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.VEHICLE_SPEED:
-                timestamp = datetime.now()
-                timeStamp = timestamp.strftime('%H:%M:%S.%f')
+                time_stamp = datetime.now()
+                timeStamp = time_stamp.strftime('%H:%M:%S.%f')
                 vspeed2 = message.data[3]
                 time2 = message.timestamp
-                total_time2 = float(timestamp.strftime('%H')) * 3600 + float(timestamp.strftime('%M')) * 60 + float(timestamp.strftime('%S.%f'))
+                total_time2 = float(time_stamp.strftime('%H')) * 3600 + float(time_stamp.strftime('%M')) * 60 + float(time_stamp.strftime('%S.%f'))
                 msg_count += 1
-
 
         # read GPS data if available
         LOG_GPS = False
         logged_data_gps = '0,0'
         if q_GPS.empty() == False:
-            timestamp = datetime.now()
-            timeStamp = timestamp.strftime('%H:%M:%S.%f')
-            total_time2 = float(timestamp.strftime('%H')) * 3600 + float(timestamp.strftime('%M')) * 60 + float(timestamp.strftime('%S.%f'))
+            time_stamp = datetime.now()
+            timeStamp = time_stamp.strftime('%H:%M:%S.%f')
+            total_time2 = float(time_stamp.strftime('%H')) * 3600 + float(time_stamp.strftime('%M')) * 60 + float(time_stamp.strftime('%S.%f'))
             new_data = q_GPS.get()
             data_stream.unpack(new_data)
             curr_lat = data_stream.TPV['lat']
