@@ -222,7 +222,7 @@ try:
         if hf.if_in_depot(float(curr_lat),float(curr_lon),distance_total,RETURN_TO_DEPOT,vspeed2):
             if DEPOT_BEGIN:
                 #os.system("./final_upload.sh")
-                print('D')
+                #print('D')
                 if not file_open:
                     file_name_can = 'Documents/logs/log_DOJ_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
                     # save file name
@@ -250,7 +250,7 @@ try:
                 os.system("rm -f current_file.txt")
                 STARTED_FROM_DEPOT = True
         else:
-            print('R')
+            #print('R')
             RETURN_TO_DEPOT = True
             DEPOT_BEGIN = False
             if hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,vspeed2,FIRST_TIME_START,CIRCULATOR):
