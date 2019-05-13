@@ -193,7 +193,7 @@ try:
                 prev_lon = curr_lon
 
         logged_data_can = str(count) + ',' + timeStamp + ','
-        logged_data_can += '{0:f},'.format(rpm) + '{0:f},'.format(vspeed2) + '{0:f},'.format(throttle)
+        logged_data_can += '{0:d},'.format(int(rpm)) + '{0:d},'.format(int(vspeed2)) + '{0:d},'.format(int(throttle))
         logged_data_can += logged_data_gps
 
         # calculate distance
