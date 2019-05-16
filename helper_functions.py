@@ -60,7 +60,7 @@ DIST_STOP_MIN = 15.4
 DIST_STOP_MAX = 15.5
 
 # csv file properties
-NUM_COLS = 12
+NUM_COLS = 13
 
 def geo_fence_depot(lat,lon,dist,ret_depot,spd):
     geofence = lat < DEPOT_LAT_NORTH and lat > DEPOT_LAT_SOUTH and lon < DEPOT_LONG_EAST and lon > DEPOT_LONG_WEST

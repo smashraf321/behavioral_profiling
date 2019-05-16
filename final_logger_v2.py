@@ -68,8 +68,9 @@ time_interval = 0.0
 rpm = 0
 speed = 0
 throttle = 0
-distance = 0
-distance_total = 0
+distance = 0.0
+distance_total = 0.0
+distance_interval = 0.0
 time2 = 0
 time1 = 0
 vspeed2 = 0
@@ -167,6 +168,7 @@ try:
                 time_stamp = datetime.now()
                 timeStamp = time_stamp.strftime('%H:%M:%S.%f')
                 vspeed2 = message.data[3]
+                speed = vspeed2
                 time2 = message.timestamp
                 total_time2 = float(time_stamp.strftime('%H')) * 3600 + float(time_stamp.strftime('%M')) * 60 + float(time_stamp.strftime('%S.%f'))
                 msg_count += 1
@@ -192,10 +194,6 @@ try:
                 prev_lat = curr_lat
                 prev_lon = curr_lon
 
-        logged_data_can = str(count) + ',' + timeStamp + ','
-        logged_data_can += '{0:d},'.format(int(rpm)) + '{0:d},'.format(int(vspeed2)) + '{0:d},'.format(int(throttle))
-        logged_data_can += logged_data_gps
-
         # calculate distance
         if first_time12:
             time1 = time2
@@ -205,8 +203,9 @@ try:
         # convert speed from km/h to m/s
         vspeed1 = vspeed1 * 5 / 18
         vspeed2 = vspeed2 * 5 / 18
-        distance += (vspeed2 + vspeed1)*(time2 - time1)/2
-        distance_total += (vspeed2 + vspeed1)*(time2 - time1)/2
+        distance_interval = (vspeed2 + vspeed1)*(time2 - time1)/2
+        distance += distance_interval
+        distance_total += distance_interval
         vspeed1 = vspeed2
         time1 = time2
         time_interval = total_time2 - total_time1
@@ -214,7 +213,12 @@ try:
         total_time_day += time_interval
         total_time1 = total_time2
 
-        logged_data_can += ',{0:f},{1:f},{2:f},{3:f},{4:f}'.format(total_time_day,total_time,time_interval,distance_total,distance)
+        # log data into a file
+        logged_data_can = str(count) + ',' + timeStamp + ','
+        logged_data_can += '{0:f},{1:f},{2:f},'.format(total_time_day,total_time,time_interval)
+        logged_data_can += '{0:d},'.format(int(throttle)) + '{0:d},'.format(int(rpm)) + '{0:d},'.format(int(speed))
+        logged_data_can += logged_data_gps
+        logged_data_can += ',{0:f},{1:f},{2:f}'.format(distance_total,distance_interval,distance)
         if file_open:
             print(logged_data_can,file = outfile_can)
 
