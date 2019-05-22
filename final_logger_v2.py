@@ -207,10 +207,11 @@ try:
         distance += distance_interval
         distance_total += distance_interval
         vspeed1 = vspeed2
-        time1 = time2
-        time_interval = total_time2 - total_time1
+        #time_interval = total_time2 - total_time1
+        time_interval = time2 - time1
         total_time += time_interval
         total_time_day += time_interval
+        time1 = time2
         total_time1 = total_time2
 
         # log data into a file
@@ -266,7 +267,7 @@ try:
                     count = 0
                     distance = 0
                     total_time = 0
-                    file_name_can = 'Documents/logs/log_LAPS_CAN_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
+                    file_name_can = 'Documents/logs/log_LAPS_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
                     # save file name
                     outfile_name = open('current_file.txt','w+')
                     print(file_name_can,file = outfile_name)
@@ -291,7 +292,7 @@ try:
                         count = 0
                         distance = 0
                         total_time = 0
-                        file_name_can = 'Documents/logs/log_LAPS_CAN_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
+                        file_name_can = 'Documents/logs/log_LAPS_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
                         # save file name
                         outfile_name = open('current_file.txt','w+')
                         print(file_name_can,file = outfile_name)

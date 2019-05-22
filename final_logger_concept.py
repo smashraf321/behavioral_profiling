@@ -126,12 +126,12 @@ try:
             pass
         message = q_CAN.get()
         if message.arbitration_id == hf.PID_REPLY and message.data[2] == hf.VEHICLE_SPEED:
-            speed_timeStamp = datetime.now().strftime('%H:%M:%S.%f')
+            speed_timeStamp = time.time()
             speed = message.data[3]
             vspeed2 = speed
             time2 = message.timestamp
 
-        logged_data = '{0:f}, '.format(time2)
+        logged_data = '{0:f}, {0:f}, '.format(time2,speed_timeStamp)
         logged_data += '{0:d}, '.format(rpm) + '{0:d}, '.format(speed) + '{0:d}, '.format(throttle)
 
         # calculate distance
@@ -168,7 +168,7 @@ try:
                 prev_lat = curr_lat
                 prev_lon = curr_lon
 
-        logged_data += str(curr_lat_temp) + ', ' + str(curr_lon_temp) + ', ' + str(data_stream.TPV['time'])
+        logged_data += str(curr_lat_temp) + ', ' + str(curr_lon_temp)
 
         logged_data += ', {0:f}, {1:f}'.format(distance_total,distance)
 
