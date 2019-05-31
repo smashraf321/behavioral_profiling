@@ -211,13 +211,13 @@ try:
             acceleration = 0.0
         else:
             acceleration = (vspeed2 - vspeed1)/(time2 - time1)
-        vspeed1 = vspeed2
         #time_interval = total_time2 - total_time1
         time_interval = time2 - time1
         total_time += time_interval
         total_time_day += time_interval
         time1 = time2
         total_time1 = total_time2
+        vspeed1 = vspeed2
 
         # log data into a file
         logged_data_can = str(count) + ',' + timeStamp + ','
@@ -323,7 +323,7 @@ try:
                 STARTED_FROM_ROUTE = False
 
         count += 1
-        #print(logged_data_can)
+        print(logged_data_can)
 
 except KeyboardInterrupt:
     #Catch keyboard interrupt
