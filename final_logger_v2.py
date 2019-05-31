@@ -75,6 +75,7 @@ time2 = 0
 time1 = 0
 vspeed2 = 0
 vspeed1 = 0
+acceleration = 0.0
 curr_lat = 0
 prev_lat = 0
 curr_lon = 0
@@ -206,6 +207,7 @@ try:
         distance_interval = (vspeed2 + vspeed1)*(time2 - time1)/2
         distance += distance_interval
         distance_total += distance_interval
+        acceleration = (vspeed2 - vspeed1)/(time2 - time1)
         vspeed1 = vspeed2
         #time_interval = total_time2 - total_time1
         time_interval = time2 - time1
@@ -217,7 +219,7 @@ try:
         # log data into a file
         logged_data_can = str(count) + ',' + timeStamp + ','
         logged_data_can += '{0:f},{1:f},{2:f},'.format(total_time_day,total_time,time_interval)
-        logged_data_can += '{0:d},'.format(int(throttle)) + '{0:d},'.format(int(rpm)) + '{0:d},'.format(int(speed))
+        logged_data_can += '{0:d},'.format(int(throttle)) + '{0:d},'.format(int(rpm)) + '{0:d},'.format(int(speed)) + '{0:f},'.format(acceleration)
         logged_data_can += logged_data_gps
         logged_data_can += ',{0:f},{1:f},{2:f}'.format(distance_total,distance_interval,distance)
         if file_open:
