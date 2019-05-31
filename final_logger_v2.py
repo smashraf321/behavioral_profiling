@@ -207,7 +207,10 @@ try:
         distance_interval = (vspeed2 + vspeed1)*(time2 - time1)/2
         distance += distance_interval
         distance_total += distance_interval
-        acceleration = (vspeed2 - vspeed1)/(time2 - time1)
+        if time2 == time1:
+            acceleration = 0.0
+        else:
+            acceleration = (vspeed2 - vspeed1)/(time2 - time1)
         vspeed1 = vspeed2
         #time_interval = total_time2 - total_time1
         time_interval = time2 - time1
