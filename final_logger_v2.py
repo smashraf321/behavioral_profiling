@@ -198,22 +198,21 @@ try:
         # calculate distance
         if first_time12:
             time1 = time2
-            vspeed1 = vspeed2
+            vspeed1 = vspeed2 * 5 / 18
             total_time1 = total_time2
             first_time12 = False
         # convert speed from km/h to m/s
-        vspeed1 = vspeed1 * 5 / 18
         vspeed2 = vspeed2 * 5 / 18
         distance_interval = (vspeed2 + vspeed1)*(time2 - time1)/2
         distance += distance_interval
         distance_total += distance_interval
         if time2 == time1:
             acceleration = 0.0
-            print('acceleration: ' + str(acceleration))
+            #print('acceleration: ' + str(acceleration))
         else:
             acceleration = (vspeed2 - vspeed1)/(time2 - time1)
-            print('vspeed1: ' + str(vspeed1) + ', vspeed2: ' + str(vspeed2) + ', time1: ' + str(time1) + ', time2: ' + str(time2) + ', acceleration: ' + str(acceleration))
-            print('v2 - v1: ' + str(vspeed2 - vspeed1) + ', t2 - t1: ' + str(time2 - time1))
+            #print('vspeed1: ' + str(vspeed1) + ', vspeed2: ' + str(vspeed2) + ', acceleration: ' + str(acceleration))
+            #print('v2 - v1: ' + str(vspeed2 - vspeed1) + ', t2 - t1: ' + str(time2 - time1))
         #time_interval = total_time2 - total_time1
         time_interval = time2 - time1
         total_time += time_interval
