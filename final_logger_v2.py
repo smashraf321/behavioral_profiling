@@ -76,7 +76,9 @@ time2_accn = 0
 time1 = 0
 time1_accn = 0
 vspeed2 = 0
+vspeed2_accn = 0
 vspeed1 = 0
+vspeed1_accn = 0
 acceleration = 0.0
 curr_lat = 0
 prev_lat = 0
@@ -171,6 +173,7 @@ try:
                 time_stamp = datetime.now()
                 timeStamp = time_stamp.strftime('%H:%M:%S.%f')
                 vspeed2 = message.data[3]
+                vspeed2_accn = vspeed2
                 speed = vspeed2
                 time2 = message.timestamp
                 time2_accn = time2
@@ -203,6 +206,7 @@ try:
             time1 = time2
             time1_accn = time2_accn
             vspeed1 = vspeed2 * 5 / 18
+            vspeed1_accn = vspeed2_accn * 5 / 18
             total_time1 = total_time2
             first_time12 = False
         # convert speed from km/h to m/s
@@ -210,9 +214,10 @@ try:
         distance_interval = (vspeed2 + vspeed1)*(time2 - time1)/2
         distance += distance_interval
         distance_total += distance_interval
-        if time2_accn - time1_accn >= 0.4:
-            acceleration = (vspeed2 - vspeed1)/(time2_accn - time1_accn)
+        if time2_accn - time1_accn >= 0.5:
+            acceleration = (vspeed2_accn - vspeed1_accn)/(time2_accn - time1_accn)
             time1_accn = time2_accn
+            vspeed1_accn = vspeed2_accn
         else:
             acceleration = 0.0
         #time_interval = total_time2 - total_time1
