@@ -72,7 +72,9 @@ distance = 0.0
 distance_total = 0.0
 distance_interval = 0.0
 time2 = 0
+time2_accn = 0
 time1 = 0
+time1_accn = 0
 vspeed2 = 0
 vspeed1 = 0
 acceleration = 0.0
@@ -171,6 +173,7 @@ try:
                 vspeed2 = message.data[3]
                 speed = vspeed2
                 time2 = message.timestamp
+                time2_accn = time2
                 total_time2 = float(time_stamp.strftime('%H')) * 3600 + float(time_stamp.strftime('%M')) * 60 + float(time_stamp.strftime('%S.%f'))
                 msg_count += 1
 
@@ -198,6 +201,7 @@ try:
         # calculate distance
         if first_time12:
             time1 = time2
+            time1_accn = time2_accn
             vspeed1 = vspeed2 * 5 / 18
             total_time1 = total_time2
             first_time12 = False
@@ -206,10 +210,11 @@ try:
         distance_interval = (vspeed2 + vspeed1)*(time2 - time1)/2
         distance += distance_interval
         distance_total += distance_interval
-        if time2 == time1:
-            acceleration = 0.0
+        if time2_accn - time1_accn >= 0.4:
+            acceleration = (vspeed2 - vspeed1)/(time2_accn - time1_accn)
+            time1_accn = time2_accn
         else:
-            acceleration = (vspeed2 - vspeed1)/(time2 - time1)
+            acceleration = 0.0
         #time_interval = total_time2 - total_time1
         time_interval = time2 - time1
         total_time += time_interval
@@ -262,8 +267,8 @@ try:
             #print('R')
             RETURN_TO_DEPOT = True
             DEPOT_BEGIN = False
-            if hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,vspeed2,FIRST_TIME_START,CIRCULATOR):
-                if not NEW_DATA_START_LOC:
+            if hf.geo_fence_start(float(curr_lat),float(curr_lon),distance,FIRST_TIME_START,CIRCULATOR):
+                if not NEW_DATA_START_LOC and vspeed2 == 0:
                     if file_open:
                         outfile_can.close()
                         print('Closed previous file')
@@ -287,8 +292,8 @@ try:
             else:
                 NEW_DATA_START_LOC = False
             if not CIRCULATOR:
-                if hf.geo_fence_stop(float(curr_lat),float(curr_lon),distance,vspeed2):
-                    if not NEW_DATA_STOP_LOC:
+                if hf.geo_fence_stop(float(curr_lat),float(curr_lon),distance):
+                    if not NEW_DATA_STOP_LOC and vspeed2 == 0:
                         if file_open:
                             outfile_can.close()
                             print('Closed previous file')

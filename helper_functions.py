@@ -71,7 +71,7 @@ def geo_fence_depot(lat,lon,dist,ret_depot,spd):
     else:
         return geofence or dist_check
 
-def geo_fence_start(lat,lon,dist,spd,start_first_time,circulator):
+def geo_fence_start(lat,lon,dist,start_first_time,circulator):
     geofence =  lat < START_LAT_NORTH and lat > START_LAT_SOUTH and lon < START_LONG_EAST and lon > START_LONG_WEST
     if start_first_time:
         dist_check = dist > DIST_START_MIN1 and dist < DIST_START_MAX1
@@ -80,12 +80,12 @@ def geo_fence_start(lat,lon,dist,spd,start_first_time,circulator):
             dist_check = dist > DIST_START_MIN2CIRC and dist < DIST_START_MAX2CIRC
         else:
             dist_check = dist > DIST_START_MIN2REGL and dist < DIST_START_MAX2REGL
-    return (geofence or dist_check) and spd == 0
+    return (geofence or dist_check)
 
-def geo_fence_stop(lat,lon,dist,spd):
+def geo_fence_stop(lat,lon,dist):
     geofence = lat < STOP_LAT_NORTH and lat > STOP_LAT_SOUTH and lon < STOP_LONG_EAST and lon > STOP_LONG_WEST
     dist_check = dist > DIST_STOP_MIN and dist < DIST_STOP_MAX
-    return (geofence or dist_check) and spd == 0
+    return (geofence or dist_check)
 
 def wifi_present():
     result = subprocess.check_output(
