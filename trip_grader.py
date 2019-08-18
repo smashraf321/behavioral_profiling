@@ -11,13 +11,14 @@ import events_grader as eg
 import csv
 
 LAP_NUM = 2
-file_n = []
-file_n.append('log_LAPS_2019_07_14_15_35_54.csv')
-file_n.append('log_LAPS_2019_07_14_15_53_38.csv')
-file_n.append('log_LAPS_2019_07_14_16_10_42.csv')
-file_n.append('log_LAPS_2019_07_14_16_27_53.csv')
-file_n.append('log_LAPS_2019_07_14_16_45_15.csv')
-file_n.append('log_LAPS_2019_07_14_17_21_23.csv')
+file_n = [
+    'log_LAPS_2019_07_14_15_35_54.csv',
+    'log_LAPS_2019_07_14_15_53_38.csv',
+    'log_LAPS_2019_07_14_16_10_42.csv',
+    'log_LAPS_2019_07_14_16_27_53.csv',
+    'log_LAPS_2019_07_14_16_45_15.csv',
+    'log_LAPS_2019_07_14_17_21_23.csv'
+]
 file_name = 'Documents/logs/' + file_n[LAP_NUM - 1]
 
 START_DIST = 0
