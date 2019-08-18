@@ -52,7 +52,8 @@ try:
     with open(file_name,'r') as csv_file:
         csv_reader = csv.DictReader(csv_file, fieldnames = gh.field_names, delimiter = ',')
         for rows in csv_reader:
-            if float(rows['distance_in_lap']) >= gh.ip_distances[ip_dist_counter][START_DIST] and float(rows['distance_in_lap']) <= gh.ip_distances[ip_dist_counter][END_DIST]:
+            if gh.ip_distances[ip_dist_counter][START_DIST] <= float(rows['distance_in_lap']) <= \
+                    gh.ip_distances[ip_dist_counter][END_DIST]:
                 speeds.append(int(rows['speed']))
                 accelerations.append(float(rows['acceleration']))
                 distance_intervals.append(float(rows['distance_interval']))
