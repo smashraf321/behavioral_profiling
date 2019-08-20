@@ -27,6 +27,8 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
 def special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter):
     segment_score = 0.0
 
+    print("This is dubakoor grader")
+
     if segment_score < 0:
         segment_score = 0.0
     return segment_score
