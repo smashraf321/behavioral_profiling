@@ -5,25 +5,47 @@ Created on Mon Jul 15 08:37:06 2019
 
 @author: ashraf
 """
+# for zones check segment distances
 
 import pandas as pd
 import grading_helpers as gh
 
 START_DIST = 0
 END_DIST = 1
-SPEED_LIM = 2
 
-ALPHA = 1
-BETA = 2
-#C_K = 3
-W_ACDC = 3
-W_SL = 4
-W_CS = 5
-W_H = 6
-STD_THRESH = 7
-W_STD = 8
-CSGL_THRESH = 9
-W_CSGL = 10
+def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance):
+    segment_score = 0.0
+    num_values = len(speeds)
+
+    for i in range(num_values):
+        
+
+    if segment_score < 0:
+        segment_score = 0.0
+    return segment_score
+
+def special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter):
+    segment_score = 0.0
+
+    if segment_score < 0:
+        segment_score = 0.0
+    return segment_score
+
+"""
+    The code below here is obsolete
+"""
+
+# ALPHA = 1
+# BETA = 2
+# #C_K = 3
+# W_ACDC = 3
+# W_SL = 4
+# W_CS = 5
+# W_H = 6
+# STD_THRESH = 7
+# W_STD = 8
+# CSGL_THRESH = 9
+# W_CSGL = 10
 
 def accn_thresh_f(speed,ip_dist_counter):
     return (gh.ip_type[ip_dist_counter][ALPHA] * pow(speed, gh.ip_type[ip_dist_counter][BETA]))
@@ -143,19 +165,19 @@ def signal_grading(speeds, accns, dist_intervals, tot_dists, tot_event_dist, ip_
     delta_speed_limit = 0
     speed_limit_weight = gh.ip_type[ip_dist_counter][W_SL]
     speed_limit_penalty = 0
-    
+
     delta_hesitation = 0
     NEGATIVE_ONGOING = False
     POSITIVE_ONGOING = False
     hesitation_weight = gh.ip_type[ip_dist_counter][W_H]
     hesitation_penalty = 0
-    
+
     min_speed = 100
     delta_std_deviation = 0
     std_deviation_thresh = gh.ip_type[ip_dist_counter][STD_THRESH]
     std_deviation_weight = gh.ip_type[ip_dist_counter][W_STD]
     std_deviation_penalty = 0
-    
+
     max_accn = 0
     accn_speed = 0
     accn_thresh = 0
@@ -163,7 +185,7 @@ def signal_grading(speeds, accns, dist_intervals, tot_dists, tot_event_dist, ip_
     catching_signal_threshold = gh.ip_type[ip_dist_counter][CSGL_THRESH]
     catching_signal_weight = gh.ip_type[ip_dist_counter][W_CSGL]
     catching_signal_penalty = 0
-    
+
     for i in range(num_values):
         #accn/dccn penalty check n calculation
         if speeds[i] == 0:
@@ -209,18 +231,18 @@ def signal_grading(speeds, accns, dist_intervals, tot_dists, tot_event_dist, ip_
 
     #speed limit penalty calculation
     speed_limit_penalty = speed_limit_penalty * speed_limit_weight / tot_event_dist
-    
+
     #hesitation penalty calculation
     if delta_hesitation > 1 and delta_hesitation < 4:
         hesitation_penalty = (delta_hesitation - 1) * hesitation_weight
-    
+
     #standard deviation eligibilty check
     if min_speed > 30:
         spds_n_dist = pd.DataFrame(speeds)
         if float(spds_n_dist.std()) > std_deviation_thresh:
             delta_std_deviation = float(spds_n_dist.std()) - std_deviation_thresh
         std_deviation_penalty = delta_std_deviation * std_deviation_weight
-    
+
     #catching signal eligibility check
     if min_speed > 30 and accn_speed > 30:
         accn_thresh = accn_thresh_f(accn_speed,ip_dist_counter)
@@ -240,9 +262,9 @@ def signal_grading(speeds, accns, dist_intervals, tot_dists, tot_event_dist, ip_
     print('Catching Signal penalty = ' + str(catching_signal_penalty))
     print('Signal score = ' + str(ip_score) + ' out of 100')
     print('')
-    
+
     ip_stop_pos_counter += 1
-    
+
     return_values = []
     return_values.append(ip_score)
     return_values.append(speed_lim_counter)
