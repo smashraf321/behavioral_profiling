@@ -10,7 +10,7 @@ import grading_helpers as gh
 import events_grader as eg
 import csv
 
-LAP_NUM = 2
+LAP_NUM = 6
 
 file_name = 'Documents/logs/lap_' + str(LAP_NUM) + '.csv'
 
@@ -31,11 +31,13 @@ REGULAR = False
 SPECIAL = False
 regular_weight = 0.0
 regular_importance_weight = 100
+regular_distance_weight = 0
 regular_distance = 0.0
 regular_score = 0.0
 regular_scores = 0.0
 special_weight = 0.0
 special_importance_weight = 100
+special_distance_weight = 0
 special_distance = 0.0
 special_score = 0.0
 special_scores = 0.0
@@ -47,7 +49,7 @@ try:
             if float(rows['distance_in_lap']) >= gh.segment_limits[segment_counter][END_DIST]:
                 if gh.segment_type[segment_counter] == 'straight':
                     REGULAR = True
-                    regular_score = eg.regular_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance)
+                    regular_score = eg.regular_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter)
                     regular_distance += total_segment_distance
                     regular_scores += regular_score * total_segment_distance
                 else:
@@ -63,18 +65,18 @@ try:
                 segment_distances = []
                 total_segment_distance = 0.0
                 segment_counter += 1
-            if gh.segment_limits[segment_counter][START_DIST] <= float(rows['distance_in_lap']) < gh.segment_limits[segment_counter][END_DIST]:
-                if rows['acceleration'] != 'n/a':
-                    speeds.append(int(rows['speed']))
-                    accelerations.append(float(rows['acceleration']))
-                    jerks.append(float(rows['jerk']))
-                    distance_intervals.append(float(rows['grading_distance']))
-                    segment_distances.append(float(rows['distance_in_lap']))
-                    total_segment_distance += float(rows['grading_distance'])
+            #if gh.segment_limits[segment_counter][START_DIST] <= float(rows['distance_in_lap']) < gh.segment_limits[segment_counter][END_DIST]:
+            if rows['acceleration'] != 'n/a':
+                speeds.append(int(rows['speed']))
+                accelerations.append(float(rows['acceleration']))
+                jerks.append(float(rows['jerk']))
+                distance_intervals.append(float(rows['grading_distance']))
+                segment_distances.append(float(rows['distance_in_lap']))
+                total_segment_distance += float(rows['grading_distance'])
         if speeds:
             if gh.segment_type[segment_counter] == 'straight':
                 REGULAR = True
-                regular_score = eg.regular_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance)
+                regular_score = eg.regular_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter)
                 regular_distance += total_segment_distance
                 regular_scores += regular_score * total_segment_distance
             else:
@@ -95,9 +97,16 @@ try:
             regular_importance_weight = 33
             special_importance_weight = 67
 
-        regular_scores = regular_scores / regular_distance * 100
-        regular_weight = (regular_importance_weight * 0.5) + ((regular_distance / total_trip_distance * 100) * 0.5)
-        special_weight = (special_importance_weight * 0.5) + ((special_distance / total_trip_distance * 100) * 0.5)
+        regular_scores = regular_scores / regular_distance
+        special_scores = special_scores / special_distance
+        regular_distance_weight = ((regular_distance / total_trip_distance) * 100)
+        special_distance_weight = ((special_distance / total_trip_distance) * 100)
+        regular_weight = (regular_importance_weight * 0.5) + ((regular_distance_weight) * 0.5)
+        special_weight = (special_importance_weight * 0.5) + ((special_distance_weight) * 0.5)
+        print('regular importance weight = ' + str(regular_importance_weight) + ', special_importance_weight = ' + str(special_importance_weight))
+        print('regular distance weight = ' + str(regular_distance_weight) + ', special distance weight = ' + str(special_distance_weight))
+        print('regular weight = ' + str(regular_weight) + ', special weight = ' + str(special_weight))
+        print('regular score = ' + str(regular_scores) + ', special score = ' + str(special_scores))
 
         final_trip_score = regular_scores * regular_weight / 100 + special_scores * special_weight / 100
 
