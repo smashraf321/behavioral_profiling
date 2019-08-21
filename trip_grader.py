@@ -10,7 +10,7 @@ import grading_helpers as gh
 import events_grader as eg
 import csv
 
-LAP_NUM = 6
+LAP_NUM = 1
 
 file_name = 'Documents/logs/lap_' + str(LAP_NUM) + '.csv'
 
@@ -103,6 +103,7 @@ try:
         special_distance_weight = ((special_distance / total_trip_distance) * 100)
         regular_weight = (regular_importance_weight * 0.5) + ((regular_distance_weight) * 0.5)
         special_weight = (special_importance_weight * 0.5) + ((special_distance_weight) * 0.5)
+        print('regular distance = ' + str(regular_distance) + ', special distance = ' + str(special_distance) + ', total distance = ' + str(total_trip_distance))
         print('regular importance weight = ' + str(regular_importance_weight) + ', special_importance_weight = ' + str(special_importance_weight))
         print('regular distance weight = ' + str(regular_distance_weight) + ', special distance weight = ' + str(special_distance_weight))
         print('regular weight = ' + str(regular_weight) + ', special weight = ' + str(special_weight))

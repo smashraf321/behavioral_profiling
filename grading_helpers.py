@@ -10,8 +10,6 @@ field_names = ['index', 'time_stamp', 'total_trips_time', 'time_during_lap', 'ti
                'speed', 'acceleration', 'jerk', 'latitude', 'longitude', 'total_trips_distance', 'distance_interval',
                'grading_distance', 'distance_in_lap']
 
-number_of_ips = 12
-
 segment_type = {
     0:  'start',
     1:  'straight',
