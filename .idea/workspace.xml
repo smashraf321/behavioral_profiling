@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1adc52c1-8685-472d-be4e-fbc1d087def2" name="Default Changelist" comment="naming changes and formatting">
-      <change afterPath="$PROJECT_DIR$/.idea/behavioral_profiling.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events_grader.py" beforeDir="false" afterPath="$PROJECT_DIR$/events_grader.py" afterDir="false" />
-    </list>
+    <list default="true" id="1adc52c1-8685-472d-be4e-fbc1d087def2" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/events_grader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+            <state relative-caret-position="198">
+              <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
               <folding>
                 <element signature="e#145#164#0" expanded="true" />
               </folding>
@@ -156,12 +149,18 @@
       <option name="project" value="LOCAL" />
       <updated>1566107036237</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="dubakoor test">
+      <created>1566267833088</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1566267833088</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1552" height="840" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24934037" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -185,7 +184,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="changed file_n initializing method" />
     <MESSAGE value="naming changes and formatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="naming changes and formatting" />
+    <MESSAGE value="dubakoor test" />
+    <option name="LAST_COMMIT_MESSAGE" value="dubakoor test" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/helper_functions.py">
@@ -209,8 +209,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/events_grader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+        <state relative-caret-position="198">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
           <folding>
             <element signature="e#145#164#0" expanded="true" />
           </folding>
