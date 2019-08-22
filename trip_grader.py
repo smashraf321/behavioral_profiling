@@ -9,10 +9,14 @@ Created on Mon Jul 15 08:35:57 2019
 import grading_helpers as gh
 import events_grader as eg
 import csv
+import sys
 
-LAP_NUM = 1
+LAP_NUM = 4
 
-file_name = 'Documents/logs/lap_' + str(LAP_NUM) + '.csv'
+file_extension = '.csv'
+#f_name = 'Documents/logs/lap_' + str(LAP_NUM)
+f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\logs\\lap_' + str(LAP_NUM)
+file_name = f_name + file_extension
 
 START_DIST = 0
 END_DIST = 1
@@ -49,12 +53,12 @@ try:
             if float(rows['distance_in_lap']) >= gh.segment_limits[segment_counter][END_DIST]:
                 if gh.segment_type[segment_counter] == 'straight':
                     REGULAR = True
-                    regular_score = eg.regular_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter)
+                    regular_score = eg.regular_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM)
                     regular_distance += total_segment_distance
                     regular_scores += regular_score * total_segment_distance
                 else:
                     SPECIAL = True
-                    special_score = eg.special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter)
+                    special_score = eg.special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM)
                     special_distance += total_segment_distance
                     special_scores += special_score * total_segment_distance
                 total_trip_distance += total_segment_distance
@@ -76,12 +80,12 @@ try:
         if speeds:
             if gh.segment_type[segment_counter] == 'straight':
                 REGULAR = True
-                regular_score = eg.regular_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter)
+                regular_score = eg.regular_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM)
                 regular_distance += total_segment_distance
                 regular_scores += regular_score * total_segment_distance
             else:
                 SPECIAL = True
-                special_score = eg.special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter)
+                special_score = eg.special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM)
                 special_distance += total_segment_distance
                 special_scores += special_score * total_segment_distance
             total_trip_distance += total_segment_distance
@@ -113,5 +117,7 @@ try:
 
         print('Final trip score is ' + str(final_trip_score) + ' out of 100')
 
-except Exception:
+except Exception as e:
     print('Something went wrong :(')
+
+    print(sys.exc_value)
