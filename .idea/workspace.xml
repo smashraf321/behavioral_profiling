@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1adc52c1-8685-472d-be4e-fbc1d087def2" name="Default Changelist" comment="plot generation for all segments&#10;comments for segment names&#10;added extra segment at the end">
+    <list default="true" id="1adc52c1-8685-472d-be4e-fbc1d087def2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/events_grader.py" beforeDir="false" afterPath="$PROJECT_DIR$/events_grader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grading_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/grading_helpers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trip_grader.py" beforeDir="false" afterPath="$PROJECT_DIR$/trip_grader.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/trip_grader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1475">
-              <caret line="49" column="3" lean-forward="true" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="3" />
+            <state relative-caret-position="-1976">
+              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
               <folding>
                 <element signature="e#109#137#0" expanded="true" />
               </folding>
@@ -27,19 +26,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grading_helpers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1908">
+            <state relative-caret-position="396">
               <caret line="283" selection-start-line="283" selection-end-line="283" />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/helper_functions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1965" />
           </provider>
         </entry>
       </file>
@@ -55,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/events_grader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-989">
-              <caret line="246" column="32" selection-start-line="246" selection-start-column="32" selection-end-line="246" selection-end-column="32" />
+            <state relative-caret-position="-2586">
+              <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
               <folding>
                 <element signature="e#109#137#0" expanded="true" />
               </folding>
@@ -85,9 +77,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/grading_helpers.py" />
         <option value="$PROJECT_DIR$/trip_grader.py" />
         <option value="$PROJECT_DIR$/events_grader.py" />
-        <option value="$PROJECT_DIR$/grading_helpers.py" />
       </list>
     </option>
   </component>
@@ -118,6 +110,11 @@
             <path>
               <item name="behavioral_profiling" type="b2602c69:ProjectViewProjectNode" />
               <item name="behavioral_profiling" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="behavioral_profiling" type="b2602c69:ProjectViewProjectNode" />
+              <item name="behavioral_profiling" type="462c0819:PsiDirectoryNode" />
+              <item name="Documents" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -211,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566441873551</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="more comments">
+      <created>1566533184992</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1566533184996</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -225,19 +229,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1552" height="840" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24934037" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4513399" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21720733" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.23836389" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32863188" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4993395" weight="0.32956153" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2877292" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.37376586" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5006605" side_tool="true" weight="0.32956153" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32863188" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -251,19 +256,20 @@
     <MESSAGE value="dubakoor test" />
     <MESSAGE value="simply commit" />
     <MESSAGE value="plot generation for all segments&#10;comments for segment names&#10;added extra segment at the end" />
-    <option name="LAST_COMMIT_MESSAGE" value="plot generation for all segments&#10;comments for segment names&#10;added extra segment at the end" />
+    <MESSAGE value="more comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="more comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/events_grader.py</url>
-          <line>310</line>
+          <line>318</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/events_grader.py</url>
-          <line>189</line>
+          <line>193</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -287,35 +293,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/events_grader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-989">
-          <caret line="246" column="32" selection-start-line="246" selection-start-column="32" selection-end-line="246" selection-end-column="32" />
-          <folding>
-            <element signature="e#109#137#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/helper_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1965" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trip_grader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1475">
-          <caret line="49" column="3" lean-forward="true" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="3" />
-          <folding>
-            <element signature="e#109#137#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-1944" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grading_helpers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1908">
+        <state relative-caret-position="396">
           <caret line="283" selection-start-line="283" selection-end-line="283" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events_grader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2586">
+          <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+          <folding>
+            <element signature="e#109#137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trip_grader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1976">
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+          <folding>
+            <element signature="e#109#137#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
