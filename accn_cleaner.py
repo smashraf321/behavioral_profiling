@@ -12,12 +12,12 @@ file_n.append('log_LAPS_2019_07_14_17_21_23.csv')
 file_name = 'Documents/logs/' + file_n[LAP_NUM - 1]
 
 w_file_n = []
-w_file_n.append('lap_1.csv')
-w_file_n.append('lap_2.csv')
-w_file_n.append('lap_3.csv')
-w_file_n.append('lap_4.csv')
-w_file_n.append('lap_5.csv')
-w_file_n.append('lap_6.csv')
+w_file_n.append('lap_1_1.csv')
+w_file_n.append('lap_2_1.csv')
+w_file_n.append('lap_3_1.csv')
+w_file_n.append('lap_4_1.csv')
+w_file_n.append('lap_5_1.csv')
+w_file_n.append('lap_6_1.csv')
 w_file_name = 'Documents/logs/' + w_file_n[LAP_NUM - 1]
 
 field_names = []
