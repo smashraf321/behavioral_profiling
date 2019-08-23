@@ -5,11 +5,12 @@ Created on Mon Jul 15 10:14:51 2019
 
 @author: ashraf
 """
-
+# used to access data from csv file
 field_names = ['index', 'time_stamp', 'total_trips_time', 'time_during_lap', 'time_interval', 'throttle', 'rpm',
                'speed', 'acceleration', 'jerk', 'latitude', 'longitude', 'total_trips_distance', 'distance_interval',
                'grading_distance', 'distance_in_lap']
 
+# to provide a number to each segment with a value indicating straight segment or any particular special segment
 segment_type = {
     0: 'start',
     1: 'straight',
@@ -49,6 +50,7 @@ segment_type = {
     35: 'end'
 }
 
+# sets the distance limits in meters for a segment of the road
 segment_limits = [
     (0.0, 20.0),  # 0 start
     (20.0, 70.0),  # 1 straight to airport rd. stop
@@ -88,6 +90,8 @@ segment_limits = [
     (12650.0, 12750.0)  # 35 ending stop sign
 ]
 
+# straight segments are sub divided in to different zones according to speed limits
+# special segments are always sub divided in to 3 or 4 zones
 zone_limits = [
     [(0.0, 20.0)],
     [(20.0, 70.0)],
@@ -127,22 +131,39 @@ zone_limits = [
     [(12650.0, 12750.0)]
 ]
 
-# threshold tuple (speed limit, accA,accB, decA, decB , jerk)
+"""
+list of threshold coefficients
+Straight segments as part of special zone are called regular
+So, Regular special segments and Turns each follow slightly different regression equation for accelerations
+and decelerations.
+For straight segments, i.e. ones not special have a separate regression equation being followed during highways
+and normal road segments
+"""
+
+# jerk threshold is constant across the entire route
 JERK_THRESHOLD = 2.5
+
+# coefficients for regular portion of special segments
 REG_SPECIAL_ACCN_ALPHA = 14.477
 REG_SPECIAL_ACCN_BETA = -0.034
 REG_SPECIAL_DCCN_ALPHA = 13.028
 REG_SPECIAL_DCCN_BETA = -0.01
+
+# coefficients for Turns of special segments
 TURN_ACCN_ALPHA = 7.7871
 TURN_ACCN_BETA = -0.051
 TURN_DCCN_ALPHA = 8.28
 TURN_DCCN_BETA = -0.037
+
+# coefficients for straight road segments in city
 CITY_ACCN_A = 0.0012
 CITY_ACCN_B = -0.248
 CITY_ACCN_C = 13.117
 CITY_DCCN_A = 0.0011
 CITY_DCCN_B = -0.2187
 CITY_DCCN_C = 13.461
+
+# coefficients for highway segments
 HIGHWAY_ACCN_A = 0.002
 HIGHWAY_ACCN_B = -0.4807
 HIGHWAY_ACCN_C = 29.854
@@ -150,6 +171,11 @@ HIGHWAY_DCCN_A = 0.0011
 HIGHWAY_DCCN_B = -0.2187
 HIGHWAY_DCCN_C = 12.461
 
+# threshold tuple contains this format: (speed limit, accA,accB, decA, decB , jerk) for each zone
+# each tuple contains different thresholds required to grade a particular zone in a segment.
+# if there is only tuple, indicates that there is only zone
+# each row of zone_thresholds indicates the corresponding segment number
+# eg. zone_thresholds[0][0] gives the thresholds required for first zone of first segment
 zone_thresholds = [
     [(32.18, TURN_ACCN_ALPHA, TURN_ACCN_BETA, TURN_DCCN_ALPHA, TURN_DCCN_BETA, JERK_THRESHOLD)],
     [(40.23, CITY_ACCN_A, CITY_ACCN_B, CITY_ACCN_C, CITY_DCCN_A, CITY_DCCN_B, CITY_DCCN_C, JERK_THRESHOLD)],
