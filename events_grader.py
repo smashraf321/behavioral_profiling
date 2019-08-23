@@ -29,14 +29,21 @@ EXP_ACCN_B = 2
 EXP_DCCN_A = 3
 EXP_DCCN_B = 4
 
+# raw value of speed is obtained in km/h from csv. To convert them into m/s
 CONV_FACTOR = 5/18
 
+
+# straight segments follow a 3 degree polynomial regression. X is speed and A,B,C are coefficients.
 def get_poly_threshold(A, B, C, X):
     return (A*X*X + B*X + C)
 
+
+# special segments tend to follow an exponential regression
 def get_exp_threshold(A, B, X):
     return (A * pow(math.e, X * B))
 
+
+# for plotting graphs for each point in a segment. Also saves it by appending lap num and segment num
 def plot_graphs(speeds, speed_limits, accns, accn_limits, dccn_limits, jerks, jerk_limits_positive, jerk_limits_negative
                 ,segment_dist, segment_counter, LAP_NUM):
     # f_name = 'Documents/graphs/lap_' + str(LAP_NUM)
@@ -51,6 +58,7 @@ def plot_graphs(speeds, speed_limits, accns, accn_limits, dccn_limits, jerks, je
     plt.plot(segment_dist,speeds, label='Actual speed', c='g', linestyle='-', marker='.', lw=1.0)
     plt.xlabel('Distance(m)')
     plt.ylabel('Speed(m/s)')
+    # helps keep the legend box above the plot
     plt.legend(bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left",
                mode="expand", borderaxespad=0, ncol=2)
     #plt.show()
@@ -63,6 +71,7 @@ def plot_graphs(speeds, speed_limits, accns, accn_limits, dccn_limits, jerks, je
     plt.plot(segment_dist, accns, label='Actual Accn', c='g', linestyle='-', marker='.', lw=1.0)
     plt.xlabel('Distance(m)')
     plt.ylabel('Acceleration(m/s^2)')
+    # helps keep the legend box above the plot
     plt.legend(bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left",
                mode="expand", borderaxespad=0, ncol=3)
     # plt.show()
@@ -75,6 +84,7 @@ def plot_graphs(speeds, speed_limits, accns, accn_limits, dccn_limits, jerks, je
     plt.plot(segment_dist, jerks, label='Actual Jerks', c='g', linestyle='-', marker='.', lw=1.0)
     plt.xlabel('Distance(m)')
     plt.ylabel('Jerk(m/s^3)')
+    # helps keep the legend box above the plot
     plt.legend(bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left",
                mode="expand", borderaxespad=0, ncol=3)
     # plt.show()
@@ -82,15 +92,16 @@ def plot_graphs(speeds, speed_limits, accns, accn_limits, dccn_limits, jerks, je
     plt.close()
 
 
-
 def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM):
     segment_score = 0.0
+    # no of points observed in this segment
     num_values = len(speeds)
     zone_counter = 0
     speed_score = 0.0
     accn_score = 0.0
     jerk_score = 0.0
     point_score = 0.0
+
     # For Plotting purposes
     speed_limits = []
     accn_limits = []
@@ -102,15 +113,20 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         speed_weight = 100
         accn_weight = 0
         jerk_weight = 0
+
+        # increments the zone counter within a segment if above zone limit
         if segment_distances[i] >= gh.zone_limits[segment_counter][zone_counter][END_DIST]:
             zone_counter += 1
+
         # Speed score calculations
         speed_limit = gh.zone_thresholds[segment_counter][zone_counter][SPEED_LIMIT]
         speed_limits.append(speed_limit*CONV_FACTOR)
+
         if speeds[i] > speed_limit:
             speed_score = (1 - ((speeds[i] - speed_limit)/speed_limit)) * 100
         else:
             speed_score = 100
+
         # Accns score calculation
         accn_a = gh.zone_thresholds[segment_counter][zone_counter][POLY_ACCN_A]
         accn_b = gh.zone_thresholds[segment_counter][zone_counter][POLY_ACCN_B]
@@ -122,6 +138,8 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         accn_limits.append(accn_limit*CONV_FACTOR)
         dccn_limit = get_poly_threshold(dccn_a, dccn_b, dccn_c, speeds[i])
         dccn_limits.append(dccn_limit*-1*CONV_FACTOR)
+
+        # if acceleration value is > 0, its a positive acceleration aka just acceleration
         if accelerations[i] > 0:
             accn_weight = 50
             speed_weight = 50
@@ -129,18 +147,23 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
                 accn_score = (1 - ((accelerations[i] - accn_limit)/accn_limit)) * 100
             else:
                 accn_score = 100
+
+        # if acceleration value is less than 0, its a deceleration
         if accelerations[i] < 0:
+            # if no jerk, weights are given 50 each to accn score and speed limit score for a point
             accn_weight = 50
             speed_weight = 50
             if abs(accelerations[i]) > dccn_limit:
                 accn_score = (1 - ((abs(accelerations[i]) - dccn_limit)/dccn_limit)) * 100
             else:
                 accn_score = 100
+
         # Jerk score calculation
         jerk_limit = gh.zone_thresholds[segment_counter][zone_counter][JERK_LIMIT_REG]
         jerk_limits_positive.append(jerk_limit*CONV_FACTOR)
         jerk_limits_negative.append(-1*jerk_limit*CONV_FACTOR)
         if jerks[i] != 0:
+            #if jerk present, weights are distributed 33% each
             jerk_weight = 33
             accn_weight = 34
             speed_weight = 33
@@ -148,20 +171,25 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
                 jerk_score = (1 - ((abs(jerks[i]) - jerk_limit)/jerk_limit)) * 100
             else:
                 jerk_score = 100
-        # Final point calculation
+
+        # Final point calculation. print calls for debugging are commented if not needed.
         point_score = (speed_score * (speed_weight / 100)) + (accn_score * (accn_weight / 100)) + (jerk_score * (jerk_weight / 100))
         # print('speed = ' + str(speeds[i]) + ', accn = ' + str(accelerations[i]) + ', jerk = ' + str(jerks[i]))
         # print('speed weight = ' + str(speed_weight) + ', accn weight = ' + str(accn_weight) + ', jerk weight = ' + str(jerk_weight))
         # print('speed score = ' + str(speed_score) + ', accn score = ' + str(accn_score) + ', jerk score = ' + str(jerk_score))
         # print('point score = ' + str(point_score))
         # print(' ')
+
         segment_score += point_score * distance_intervals[i]
     # Segment score calculation
     segment_score = segment_score / total_segment_distance
     print('regular segment score = ' + str(segment_score))
     print(' ')
+
+    # plot the graph for this segment
     plot_graphs(speeds,speed_limits,accelerations,accn_limits,dccn_limits,jerks,jerk_limits_positive,
                 jerk_limits_negative, segment_distances, segment_counter, LAP_NUM)
+
     if segment_score < 0:
         segment_score = 0.0
     return segment_score
