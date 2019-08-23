@@ -10,11 +10,14 @@ import grading_helpers as gh
 import math
 import matplotlib.pyplot as plt
 
+DEBUG = True
+
 START_DIST = 0
 END_DIST = 1
 
 STOP_SIGN = 1
 
+# index for each threshold present in zone_thresholds list
 SPEED_LIMIT = 0
 JERK_LIMIT_REG = 7
 JERK_LIMIT_SP = 5
@@ -174,11 +177,12 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
 
         # Final point calculation. print calls for debugging are commented if not needed.
         point_score = (speed_score * (speed_weight / 100)) + (accn_score * (accn_weight / 100)) + (jerk_score * (jerk_weight / 100))
-        # print('speed = ' + str(speeds[i]) + ', accn = ' + str(accelerations[i]) + ', jerk = ' + str(jerks[i]))
-        # print('speed weight = ' + str(speed_weight) + ', accn weight = ' + str(accn_weight) + ', jerk weight = ' + str(jerk_weight))
-        # print('speed score = ' + str(speed_score) + ', accn score = ' + str(accn_score) + ', jerk score = ' + str(jerk_score))
-        # print('point score = ' + str(point_score))
-        # print(' ')
+        if DEBUG:
+            print('speed = ' + str(speeds[i]) + ', accn = ' + str(accelerations[i]) + ', jerk = ' + str(jerks[i]))
+            print('speed weight = ' + str(speed_weight) + ', accn weight = ' + str(accn_weight) + ', jerk weight = ' + str(jerk_weight))
+            print('speed score = ' + str(speed_score) + ', accn score = ' + str(accn_score) + ', jerk score = ' + str(jerk_score))
+            print('point score = ' + str(point_score))
+            print(' ')
 
         segment_score += point_score * distance_intervals[i]
     # Segment score calculation
@@ -187,12 +191,13 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
     print(' ')
 
     # plot the graph for this segment
-    plot_graphs(speeds,speed_limits,accelerations,accn_limits,dccn_limits,jerks,jerk_limits_positive,
-                jerk_limits_negative, segment_distances, segment_counter, LAP_NUM)
+    #plot_graphs(speeds,speed_limits,accelerations,accn_limits,dccn_limits,jerks,jerk_limits_positive,
+     #           jerk_limits_negative, segment_distances, segment_counter, LAP_NUM)
 
     if segment_score < 0:
         segment_score = 0.0
     return segment_score
+
 
 def special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM):
     segment_score = 0.0
@@ -286,11 +291,14 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
                 pass
         # Final point calculation
         point_score = (speed_score * (speed_weight / 100)) + (accn_score * (accn_weight / 100)) + (jerk_score * (jerk_weight / 100))
-        # print('speed = ' + str(speeds[i]) + ', accn = ' + str(accelerations[i]) + ', jerk = ' + str(jerks[i]))
-        # print('speed weight = ' + str(speed_weight) + ', accn weight = ' + str(accn_weight) + ', jerk weight = ' + str(jerk_weight))
-        # print('speed score = ' + str(speed_score) + ', accn score = ' + str(accn_score) + ', jerk score = ' + str(jerk_score))
-        # print('point score = ' + str(point_score))
-        # print(' ')
+
+        if DEBUG:
+            print('speed = ' + str(speeds[i]) + ', accn = ' + str(accelerations[i]) + ', jerk = ' + str(jerks[i]))
+            print('speed weight = ' + str(speed_weight) + ', accn weight = ' + str(accn_weight) + ', jerk weight = ' + str(jerk_weight))
+            print('speed score = ' + str(speed_score) + ', accn score = ' + str(accn_score) + ', jerk score = ' + str(jerk_score))
+            print('point score = ' + str(point_score))
+            print(' ')
+
         segment_score += point_score * distance_intervals[i]
     # Segment score calculation
     segment_score = segment_score / total_segment_distance
@@ -308,8 +316,8 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         segment_score = (segment_score * (segment_weight / 100)) + (complete_stop_score * (complete_stop_weight / 100)) + (hesitation_score * (hesitation_weight / 100))
     print('special segment score = ' + str(segment_score))
     print(' ')
-    plot_graphs(speeds,speed_limits,accelerations,accn_limits,dccn_limits,jerks,jerk_limits_positive,
-                jerk_limits_negative, segment_distances, segment_counter, LAP_NUM)
+    #plot_graphs(speeds,speed_limits,accelerations,accn_limits,dccn_limits,jerks,jerk_limits_positive,
+     #           jerk_limits_negative, segment_distances, segment_counter, LAP_NUM)
     if segment_score < 0:
         segment_score = 0.0
     return segment_score
