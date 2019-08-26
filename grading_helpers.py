@@ -13,7 +13,7 @@ field_names = ['index', 'time_stamp', 'total_trips_time', 'time_during_lap', 'ti
 # to provide a number to each segment with a value indicating straight segment or any particular special segment
 segment_type = {
     0: 'start',
-    1: 'straight',
+    1: 'straight'
     2: 'stop',
     3: 'straight',
     4: 'signal',
@@ -70,13 +70,13 @@ segment_limits = [
     (5100.0, 5150.0),  # 15 straight
     (5150.0, 5400.0),  # 16 signal A7
     (5400.0, 7000.0),  # 17 straight A7 2
-    (7000.0, 7250.0),  # 18 signal A7 2
+    (7000.0, 7250.0),  # 18 signal A7 2 # near old chicago
     (7250.0, 9100.0),  # 19 straight A7 3 - A7 4
     (9100.0, 9350.0),  # 20 signal left Jacktrice /S7
     (9350.0, 9700.0),  # 21 straight A8 1
     (9700.0, 9950.0),  # 22 signal A8 1
     (9950.0, 10200.0),  # 23 straight A8 1
-    (10200.0, 10430.0),  # 24 signal A8 1
+    (10200.0, 10430.0),  # 24 signal A8 1. the leaving zone of this signal becomes the approaching zone for next signal
     (10430.0, 10600.0),  # 25 signal A8 1
     (10600.0, 10950.0),  # 26 straight A8 2
     (10950.0, 11075.0),  # 27 roundabout
