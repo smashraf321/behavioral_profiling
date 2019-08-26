@@ -12,28 +12,34 @@ import csv
 import sys
 
 # lap number for choosing corresponding file
-LAP_NUM = 4
+LAP_NUM = 1
 
 file_extension = '.csv'
 #f_name = 'Documents/logs/lap_' + str(LAP_NUM)
 f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\logs\\lap_' + str(LAP_NUM)
 file_name = f_name + file_extension
 
+# alter name for 0th and 1st index of a tuple, segment_limits in particular
 START_DIST = 0
 END_DIST = 1
 
+#to track current segment count. Incremented everytime segment limit is reached
 segment_counter = 0
 
+# lists to store if valid acceleration data
 speeds = []
 accelerations = []
 jerks = []
 distance_intervals = []
 segment_distances = []
+
 total_segment_distance = 0.0
 total_trip_distance = 0.0
 
+# to know if Regular segment was part of the grading or not. Used to set weights when combining scores later.
 REGULAR = False
 SPECIAL = False
+
 regular_weight = 0.0
 regular_importance_weight = 100
 regular_distance_weight = 0
@@ -53,6 +59,7 @@ segment counter starts from zero and is incremented after every segment is over 
 try:
     with open(file_name,'r') as csv_file:
         csv_reader = csv.DictReader(csv_file, fieldnames = gh.field_names, delimiter = ',')
+        print("Lap : " + str(LAP_NUM))
         for rows in csv_reader:
             # if dist travelled as per csv file is more than the segment counter end limit
             # denotes end of segment. So grade it based on segment type
@@ -136,7 +143,6 @@ try:
 
         # producing final trip score
         final_trip_score = regular_scores * regular_weight / 100 + special_scores * special_weight / 100
-
         print('Final trip score is ' + str(final_trip_score) + ' out of 100')
 
 except Exception as e:
