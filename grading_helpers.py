@@ -13,7 +13,7 @@ field_names = ['index', 'time_stamp', 'total_trips_time', 'time_during_lap', 'ti
 # to provide a number to each segment with a value indicating straight segment or any particular special segment
 segment_type = {
     0: 'start',
-    1: 'straight'
+    1: 'straight',
     2: 'stop',
     3: 'straight',
     4: 'signal',
