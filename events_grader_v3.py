@@ -34,7 +34,8 @@ EXP_DCCN_A = 3
 EXP_DCCN_B = 4
 
 # raw value of speed is obtained in km/h from csv. To convert them into m/s
-CONV_FACTOR = 5/18
+#CONV_FACTOR = 5/18
+CONV_FACTOR = 1
 
 
 # straight segments follow a 2 degree polynomial regression. X is speed and A,B,C are coefficients.
@@ -118,8 +119,12 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         accn_weight = 0
         jerk_weight = 0
 
+        speed_score = 0
+        accn_score = 0
+        jerk_score = 0
+
         # increments the zone counter within a segment if above zone limit
-        if segment_distances[i] >= gh.zone_limits[segment_counter][zone_counter][END_DIST]:
+        while segment_distances[i] >= gh.zone_limits[segment_counter][zone_counter][END_DIST]:
             zone_counter += 1
 
         # Speed score calculations
@@ -178,8 +183,9 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
 
         # Final point calculation. print calls for debugging are commented if not needed.
         point_score = (speed_score * (speed_weight / 100)) + (accn_score * (accn_weight / 100)) + (jerk_score * (jerk_weight / 100))
-        if DEBUG:
+        if DEBUG:# and (speed_score < 0 or accn_score < 0 or jerk_score < 0 or speed_score > 100 or jerk_score > 100 or accn_score > 100):
             print('speed = ' + str(speeds[i]) + ', accn = ' + str(accelerations[i]) + ', jerk = ' + str(jerks[i]))
+            print('spped limit = ' + str(speed_limit) + ', accn limit = ' + str(accn_limit) + ', dccn limit = ' + str(dccn_limit) + ', jerk limit = ' + str(jerk_limit) )
             print('speed weight = ' + str(speed_weight) + ', accn weight = ' + str(accn_weight) + ', jerk weight = ' + str(jerk_weight))
             print('speed score = ' + str(speed_score) + ', accn score = ' + str(accn_score) + ', jerk score = ' + str(jerk_score))
             print('point score = ' + str(point_score))
@@ -233,7 +239,12 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         speed_weight = 100
         accn_weight = 0
         jerk_weight = 0
-        if segment_distances[i] >= gh.zone_limits[segment_counter][zone_counter][END_DIST]:
+
+        speed_score = 0
+        accn_score = 0
+        jerk_score = 0
+
+        while segment_distances[i] >= gh.zone_limits[segment_counter][zone_counter][END_DIST]:
             zone_counter += 1
         # Speed score calculations
         speed_limit = gh.zone_thresholds[segment_counter][zone_counter][SPEED_LIMIT]
@@ -294,8 +305,9 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         # Final point calculation
         point_score = (speed_score * (speed_weight / 100)) + (accn_score * (accn_weight / 100)) + (jerk_score * (jerk_weight / 100))
 
-        if DEBUG:
+        if DEBUG:# and (speed_score < 0 or accn_score < 0 or jerk_score < 0 or speed_score > 100 or jerk_score > 100 or accn_score > 100):
             print('speed = ' + str(speeds[i]) + ', accn = ' + str(accelerations[i]) + ', jerk = ' + str(jerks[i]))
+            print('spped limit = ' + str(speed_limit) + ', accn limit = ' + str(accn_limit) + ', dccn limit = ' + str(dccn_limit) + ', jerk limit = ' + str(jerk_limit) )
             print('speed weight = ' + str(speed_weight) + ', accn weight = ' + str(accn_weight) + ', jerk weight = ' + str(jerk_weight))
             print('speed score = ' + str(speed_score) + ', accn score = ' + str(accn_score) + ', jerk score = ' + str(jerk_score))
             print('point score = ' + str(point_score))
@@ -322,7 +334,7 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
     if PLOT:
         plot_graphs(speeds,speed_limits,accelerations,accn_limits,dccn_limits,jerks,jerk_limits_positive,
                     jerk_limits_negative, segment_distances, segment_counter, LAP_NUM)
-    
+
     if segment_score < 0:
         segment_score = 0.0
     return segment_score

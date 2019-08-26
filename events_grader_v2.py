@@ -119,7 +119,7 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         jerk_weight = 0
 
         # increments the zone counter within a segment if above zone limit
-        if segment_distances[i] >= gh.zone_limits[segment_counter][zone_counter][END_DIST]:
+        while segment_distances[i] >= gh.zone_limits[segment_counter][zone_counter][END_DIST]:
             zone_counter += 1
 
         # Speed score calculations
@@ -233,7 +233,7 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         speed_weight = 100
         accn_weight = 0
         jerk_weight = 0
-        if segment_distances[i] >= gh.zone_limits[segment_counter][zone_counter][END_DIST]:
+        while segment_distances[i] >= gh.zone_limits[segment_counter][zone_counter][END_DIST]:
             zone_counter += 1
         # Speed score calculations
         speed_limit = gh.zone_thresholds[segment_counter][zone_counter][SPEED_LIMIT]
@@ -322,7 +322,7 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
     if PLOT:
         plot_graphs(speeds,speed_limits,accelerations,accn_limits,dccn_limits,jerks,jerk_limits_positive,
                     jerk_limits_negative, segment_distances, segment_counter, LAP_NUM)
-    
+
     if segment_score < 0:
         segment_score = 0.0
     return segment_score
