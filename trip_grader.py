@@ -7,12 +7,12 @@ Created on Mon Jul 15 08:35:57 2019
 """
 
 import grading_helpers as gh
-import events_grader as eg
+import events_grader_v3 as eg
 import csv
 import sys
 
 # lap number for choosing corresponding file
-LAP_NUM = 1
+LAP_NUM = 6
 
 file_extension = '.csv'
 #f_name = 'Documents/logs/lap_' + str(LAP_NUM)
