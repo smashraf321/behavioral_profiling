@@ -15,6 +15,9 @@ DEBUG = False
 # flag to generate and save plots at the end of grading a segment
 PLOT = True
 
+# f_name = 'Documents/graphs/lap_'
+f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\graphs\\lap_'
+
 # alias names for indexes 0 and 1. Just for meaningful name to call when used in segment or zone_limits
 START_DIST = 0
 END_DIST = 1
@@ -41,16 +44,25 @@ EXP_DCCN_B = 4
 # 5/18 for Km/h to m/s conversion
 CONV_FACTOR = 1
 
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
 
 # straight segments follow a 2 degree polynomial regression. X is speed and A,B,C are coefficients.
 def get_poly_threshold(A, B, C, X):
     return (A*X*X + B*X + C)
 
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
 
 # special segments tend to follow an exponential regression
 def get_exp_threshold(A, B, X):
     return (A * pow(math.e, X * B))
 
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
 
 # for plotting graphs for each point in a segment. Also saves it by appending lap num and segment num
 def plot_graphs(speeds, speed_limits, accns, accn_limits, dccn_limits, jerks, jerk_limits_positive, jerk_limits_negative
@@ -71,8 +83,7 @@ def plot_graphs(speeds, speed_limits, accns, accn_limits, dccn_limits, jerks, je
     # if segment_counter != 2 and segment_counter != 4:
     #      return
 
-    # f_name = 'Documents/graphs/lap_' + str(LAP_NUM)
-    f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\graphs\\lap_' + str(LAP_NUM)
+    f_name = f_name + str(LAP_NUM)
 
     # for converting raw data to m/s^2. if CONV_FACTOR is 1, no conversion from km/h
     speeds = [s * CONV_FACTOR for s in speeds]
@@ -207,6 +218,9 @@ def plot_graphs(speeds, speed_limits, accns, accn_limits, dccn_limits, jerks, je
     plt.savefig(f_name + '_' + str(segment_counter) + '_jerk' + '.png')
     plt.close()
 
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
 
 def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM):
     segment_score = 0.0
@@ -225,6 +239,9 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
     jerk_limits_positive = []
     jerk_limits_negative = []
 
+    point_file = open(f_name + str(LAP_NUM) + '_' + str(segment_counter) + '_points.csv','w+')
+    point_scores_n_weights = ''
+
     for i in range(num_values):
         speed_weight = 100
         accn_weight = 0
@@ -233,6 +250,7 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         speed_score = 0
         accn_score = 0
         jerk_score = 0
+        point_score = 0
 
         # increments the zone counter within a segment if above zone limit
         while segment_distances[i] >= gh.zone_limits[segment_counter][zone_counter][END_DIST]:
@@ -316,10 +334,17 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
             print(' ')
 
         segment_score += point_score * distance_intervals[i]
+
+        point_scores_n_weights = str(i) + ','
+        point_scores_n_weights += str(speed_score) + ',' + str(accn_score) + ',' + str(jerk_score) + ',' + str(point_score) + ',' + str(distance_intervals[i])
+        print(point_scores_n_weights, file = point_file)
+
     # Segment score calculation
     segment_score = segment_score / total_segment_distance
     print('regular segment score = ' + str(segment_score))
     print(' ')
+
+    point_file.close()
 
     # plot the graph for this segment
     if PLOT:
@@ -330,6 +355,9 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         segment_score = 0.0
     return segment_score
 
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
 
 def special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM):
     segment_score = 0.0
@@ -358,6 +386,10 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
     dccn_limits = []
     jerk_limits_positive = []
     jerk_limits_negative = []
+
+    point_file = open(f_name + str(LAP_NUM) + '_' + str(segment_counter) + '_points.csv','w+')
+    point_scores_n_weights = ''
+
 
     for i in range(num_values):
         speed_weight = 100
@@ -451,6 +483,11 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
             print(' ')
 
         segment_score += point_score * distance_intervals[i]
+
+        point_scores_n_weights = str(i) + ','
+        point_scores_n_weights += str(speed_score) + ',' + str(accn_score) + ',' + str(jerk_score) + ',' + str(point_score) + ',' + str(distance_intervals[i])
+        print(point_scores_n_weights, file = point_file)
+
     # Segment score calculation
     segment_score = segment_score / total_segment_distance
     if gh.segment_type[segment_counter] == 'stop':
@@ -467,6 +504,8 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         segment_score = (segment_score * (segment_weight / 100)) + (complete_stop_score * (complete_stop_weight / 100)) + (hesitation_score * (hesitation_weight / 100))
     print('special segment score = ' + str(segment_score))
     print(' ')
+
+    point_file.close()
 
     if PLOT:
         plot_graphs(speeds,speed_limits,accelerations,accn_limits,dccn_limits,jerks,jerk_limits_positive,

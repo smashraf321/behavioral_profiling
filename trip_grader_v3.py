@@ -52,6 +52,9 @@ best_segment_score = 0
 worst_segments = []
 worst_segment_score = 100
 
+segment_file = open(f_name + str(LAP_NUM) + '_' + str(segment_counter) + '_segments.csv','w+')
+segment_scores_n_weights = ''
+
 """
 segment counter starts from zero and is incremented after every segment is over and graded
 """
@@ -71,6 +74,9 @@ try:
                         weighted_segment_score = segment_score * segment_weight
                         total_weight += segment_weight
                         segment_scores += weighted_segment_score
+                        segment_scores_n_weights = str(segment_counter) + ','
+                        segment_scores_n_weights += str(segment_score) + ',' + str(regular_weight) + ',' + str(total_segment_distance) + ',' + str(segment_weight)
+                        print(segment_scores_n_weights, file = segment_file)
                     else:
                         SPECIAL = True
                         segment_score = eg.special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM)
@@ -79,6 +85,10 @@ try:
                         weighted_segment_score = segment_score * segment_weight
                         total_weight += segment_weight
                         segment_scores += weighted_segment_score
+                        segment_scores_n_weights = str(segment_counter) + ','
+                        segment_scores_n_weights += str(segment_score) + ',' + str(special_weight) + ',' + str(total_segment_distance) + ',' + str(segment_weight)
+                        print(segment_scores_n_weights, file = segment_file)
+
                 # reset required variables
                 total_trip_distance += total_segment_distance
                 speeds = []
@@ -128,6 +138,9 @@ try:
                 weighted_segment_score = segment_score * segment_weight
                 total_weight += segment_weight
                 segment_scores += weighted_segment_score
+                segment_scores_n_weights = str(segment_counter) + ','
+                segment_scores_n_weights += str(segment_score) + ',' + str(regular_weight) + ',' + str(total_segment_distance) + ',' + str(segment_weight)
+                print(segment_scores_n_weights, file = segment_file)
             else:
                 SPECIAL = True
                 segment_score = eg.special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM)
@@ -136,6 +149,9 @@ try:
                 weighted_segment_score = segment_score * segment_weight
                 total_weight += segment_weight
                 segment_scores += weighted_segment_score
+                segment_scores_n_weights = str(segment_counter) + ','
+                segment_scores_n_weights += str(segment_score) + ',' + str(special_weight) + ',' + str(total_segment_distance) + ',' + str(segment_weight)
+                print(segment_scores_n_weights, file = segment_file)
 
             total_trip_distance += total_segment_distance
             #reset required variables
@@ -156,6 +172,8 @@ try:
                 worst_segment_score = segment_score
             if segment_score == worst_segment_score:
                 worst_segments.append(segment_counter)
+
+        segment_file.close()
 
         print('regular distance = ' + str(regular_distance) + ', special distance = ' + str(special_distance) + ', total distance = ' + str(total_trip_distance))
         print('total_weight = ' + str(total_weight) + ', segment_scores = ' + str(segment_scores))
