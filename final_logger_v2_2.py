@@ -71,6 +71,9 @@ throttle = 0
 distance = 0.0
 distance_total = 0.0
 distance_interval = 0.0
+distance_half_sec = 0.0
+dist1 = 0.0
+dist2 = 0.0
 time2 = 0
 time2_accn = 0
 time1 = 0
@@ -80,6 +83,8 @@ vspeed2_accn = 0
 vspeed1 = 0
 vspeed1_accn = 0
 acceleration = 0.0
+prev_acceleration = 0.0
+jerk = 0.0
 curr_lat = 0
 prev_lat = 0
 curr_lon = 0
@@ -216,10 +221,20 @@ try:
         distance_total += distance_interval
         if time2_accn - time1_accn >= 0.5:
             acceleration = (vspeed2_accn - vspeed1_accn)/(time2_accn - time1_accn)
+            curr_dist = distance
+            distance_half_sec = curr_dist - prev_dist
+            if prev_acceleration * acceleration <= 0:
+                jerk = 0.0
+            else:
+                jerk = accn - prev_acceleration
             time1_accn = time2_accn
             vspeed1_accn = vspeed2_accn
+            prev_dist = curr_dist
+            prev_acceleration = acceleration
         else:
-            acceleration = 0.0
+            acceleration = 'n/a'
+            distance_half_sec = 'n/a'
+            jerk = 'n/a'
         #time_interval = total_time2 - total_time1
         time_interval = time2 - time1
         total_time += time_interval
@@ -231,9 +246,15 @@ try:
         # log data into a file
         logged_data_can = str(count) + ',' + timeStamp + ','
         logged_data_can += '{0:f},{1:f},{2:f},'.format(total_time_day,total_time,time_interval)
-        logged_data_can += '{0:d},'.format(int(throttle)) + '{0:d},'.format(int(rpm)) + '{0:d},'.format(int(speed)) + '{0:f},'.format(acceleration)
+        if acceleration != 'n/a':
+            logged_data_can += '{0:d},'.format(int(throttle)) + '{0:d},'.format(int(rpm)) + '{0:d},'.format(int(speed)) + '{0:f},'.format(jerk)
+        else:
+            logged_data_can += '{0:d},'.format(int(throttle)) + '{0:d},'.format(int(rpm)) + '{0:d},'.format(int(speed)) + acceleration + ',' + jerk + ','
         logged_data_can += logged_data_gps
-        logged_data_can += ',{0:f},{1:f},{2:f}'.format(distance_total,distance_interval,distance)
+        if distance_half_sec != 'n/a':
+            logged_data_can += ',{0:f},{1:f},{2:f},{3:f}'.format(distance_total,distance_interval,distance_half_sec,distance)
+        else:
+            logged_data_can += ',{0:f},{1:f},'.format(distance_total,distance_interval) + distance_half_sec + ',{0:f}'.format(distance)
         if file_open:
             print(logged_data_can,file = outfile_can)
 
@@ -277,10 +298,20 @@ try:
                     if file_open:
                         outfile_can.close()
                         print('Closed previous file')
-                    # recaliberate count n distance
+                    # recaliberate count n distance n other variables
                     count = 0
                     distance = 0
                     total_time = 0
+                    time1_accn = 0
+                    time2_accn = 0
+                    distance_half_sec = 0
+                    prev_dist = 0
+                    curr_dist = 0
+                    acceleration = 0
+                    prev_acceleration = 0
+                    time1 = 0
+                    time2 = 0
+                    jerk = 0
                     file_name_can = 'Documents/logs/log_LAPS_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
                     # save file name
                     outfile_name = open('current_file.txt','w+')
@@ -306,6 +337,16 @@ try:
                         count = 0
                         distance = 0
                         total_time = 0
+                        time1_accn = 0
+                        time2_accn = 0
+                        distance_half_sec = 0
+                        prev_dist = 0
+                        curr_dist = 0
+                        acceleration = 0
+                        prev_acceleration = 0
+                        time1 = 0
+                        time2 = 0
+                        jerk = 0
                         file_name_can = 'Documents/logs/log_LAPS_' + datetime.now().strftime('%Y_%m_%d_%H_%M_%S') + '.csv'
                         # save file name
                         outfile_name = open('current_file.txt','w+')
