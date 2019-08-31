@@ -12,7 +12,7 @@ import csv
 import sys
 
 # lap number for choosing corresponding file
-LAP_NUM = 1
+LAP_NUM = 6
 
 file_extension = '.csv'
 #f_name = 'Documents/logs/lap_' + str(LAP_NUM)
