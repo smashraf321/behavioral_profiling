@@ -7,7 +7,7 @@ Created on Mon Jul 15 08:35:57 2019
 """
 
 import grading_helpers as gh
-import events_grader as eg
+import events_grader_v3 as eg
 import csv
 import sys
 

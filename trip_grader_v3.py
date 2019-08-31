@@ -14,9 +14,12 @@ import sys
 # lap number for choosing corresponding file
 LAP_NUM = 6
 
+SAVE_SEGMENT_SCORES = False
+
 file_extension = '.csv'
-f_name = 'Documents/logs/lap_' + str(LAP_NUM)
-#f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\logs\\lap_' + str(LAP_NUM)
+#f_name = 'Documents/logs/lap_' + str(LAP_NUM)
+f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\logs\\lap_' + str(LAP_NUM)
+f_segment_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\graphs\\lap_' + str(LAP_NUM)
 file_name = f_name + file_extension
 
 START_DIST = 0
@@ -52,12 +55,19 @@ best_segment_score = 0
 worst_segments = []
 worst_segment_score = 100
 
+if SAVE_SEGMENT_SCORES:
+    segment_file = open(f_segment_name + '_' + '_segments.csv','w+')
+    print('segment#,segment score,importance weight,distance weight, segment weight',file = segment_file)
+
+segment_scores_n_weights = ''
+
 """
 segment counter starts from zero and is incremented after every segment is over and graded
 """
 try:
     with open(file_name,'r') as csv_file:
         csv_reader = csv.DictReader(csv_file, fieldnames = gh.field_names, delimiter = ',')
+        print('Lap num: '+ str(LAP_NUM))
         for rows in csv_reader:
             # if dist travelled as per csv file is more than the segment counter end limit
             # denotes end of segment. So grade it based on segment type
@@ -71,6 +81,12 @@ try:
                         weighted_segment_score = segment_score * segment_weight
                         total_weight += segment_weight
                         segment_scores += weighted_segment_score
+
+                        if SAVE_SEGMENT_SCORES:
+                            segment_scores_n_weights = str(segment_counter) + ','
+                            segment_scores_n_weights += str(segment_score) + ',' + str(regular_weight) + ',' + str(total_segment_distance) + ',' + str(segment_weight)
+                            print(segment_scores_n_weights, file = segment_file)
+
                     else:
                         SPECIAL = True
                         segment_score = eg.special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM)
@@ -79,6 +95,12 @@ try:
                         weighted_segment_score = segment_score * segment_weight
                         total_weight += segment_weight
                         segment_scores += weighted_segment_score
+
+                        if SAVE_SEGMENT_SCORES:
+                            segment_scores_n_weights = str(segment_counter) + ','
+                            segment_scores_n_weights += str(segment_score) + ',' + str(special_weight) + ',' + str(total_segment_distance) + ',' + str(segment_weight)
+                            print(segment_scores_n_weights, file = segment_file)
+
                 # reset required variables
                 total_trip_distance += total_segment_distance
                 speeds = []
@@ -87,6 +109,9 @@ try:
                 distance_intervals = []
                 segment_distances = []
                 total_segment_distance = 0.0
+
+                # for calculating the best and worst segment scores in this lap
+                # results are printed at the end of the file parsing
                 if segment_score > best_segment_score:
                     best_segments = [segment_counter]
                     best_segment_score = segment_score
@@ -128,6 +153,12 @@ try:
                 weighted_segment_score = segment_score * segment_weight
                 total_weight += segment_weight
                 segment_scores += weighted_segment_score
+
+                if SAVE_SEGMENT_SCORES:
+                    segment_scores_n_weights = str(segment_counter) + ','
+                    segment_scores_n_weights += str(segment_score) + ',' + str(regular_weight) + ',' + str(total_segment_distance) + ',' + str(segment_weight)
+                    print(segment_scores_n_weights, file = segment_file)
+
             else:
                 SPECIAL = True
                 segment_score = eg.special_grading(speeds, accelerations, jerks, distance_intervals, segment_distances, total_segment_distance, segment_counter, LAP_NUM)
@@ -137,7 +168,13 @@ try:
                 total_weight += segment_weight
                 segment_scores += weighted_segment_score
 
+                if SAVE_SEGMENT_SCORES:
+                    segment_scores_n_weights = str(segment_counter) + ','
+                    segment_scores_n_weights += str(segment_score) + ',' + str(special_weight) + ',' + str(total_segment_distance) + ',' + str(segment_weight)
+                    print(segment_scores_n_weights, file = segment_file)
+
             total_trip_distance += total_segment_distance
+
             #reset required variables
             speeds = []
             accelerations = []
@@ -146,6 +183,8 @@ try:
             segment_distances = []
             return_values = []
             total_segment_distance = 0.0
+
+            #calculating worst and best segment scores
             if segment_score > best_segment_score:
                 best_segments = [segment_counter]
                 best_segment_score = segment_score
@@ -157,10 +196,15 @@ try:
             if segment_score == worst_segment_score:
                 worst_segments.append(segment_counter)
 
+        if SAVE_SEGMENT_SCORES:
+            segment_file.close()
+
+        print('Lap ' + str(LAP_NUM) + ' Report:')
         print('regular distance = ' + str(regular_distance) + ', special distance = ' + str(special_distance) + ', total distance = ' + str(total_trip_distance))
         print('total_weight = ' + str(total_weight) + ', segment_scores = ' + str(segment_scores))
         print('best segments = ' + str(best_segments) + ', best segment score = ' + str(best_segment_score))
         print('worst segments = ' + str(worst_segments) + ', worst segment score = ' + str(worst_segment_score))
+
         # producing final trip score
         final_trip_score = segment_scores / total_weight
 

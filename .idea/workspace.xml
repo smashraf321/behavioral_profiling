@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1adc52c1-8685-472d-be4e-fbc1d087def2" name="Default Changelist" comment="debug variable for prints&#10;more comments">
+    <list default="true" id="1adc52c1-8685-472d-be4e-fbc1d087def2" name="Default Changelist" comment="deleted console output files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events_grader.py" beforeDir="false" afterPath="$PROJECT_DIR$/events_grader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grading_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/grading_helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trip_grader.py" beforeDir="false" afterPath="$PROJECT_DIR$/trip_grader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documents/console outputs/lap1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documents/console outputs/lap2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documents/console outputs/lap6.pdf" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,10 +16,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/events_grader.py">
+        <entry file="file://$PROJECT_DIR$/grading_helpers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1782">
-              <caret line="198" column="19" selection-start-line="198" selection-start-column="19" selection-end-line="198" selection-end-column="19" />
+            <state relative-caret-position="1454">
+              <caret line="168" column="51" selection-start-line="168" selection-start-column="51" selection-end-line="168" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/events_grader_v3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3078">
+              <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
               <folding>
                 <element signature="e#109#137#0" expanded="true" />
               </folding>
@@ -28,22 +37,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trip_grader.py">
+        <entry file="file://$PROJECT_DIR$/trip_grader_v3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="738">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state>
+              <caret line="36" column="16" lean-forward="true" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
               <folding>
                 <element signature="e#109#137#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/grading_helpers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1026">
-              <caret line="102" column="23" lean-forward="true" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -61,13 +61,19 @@
       <find>segment no:4</find>
       <find>2019</find>
       <find>segment score</find>
-      <find>accn_</find>
       <find>distance:</find>
       <find>plot</find>
       <find>point dis</find>
       <find>point distance</find>
+      <find>accn_</find>
       <find>segment no:</find>
+      <find>ACC</find>
+      <find>SPEED</find>
     </findStrings>
+    <replaceStrings>
+      <replace>ACC</replace>
+      <replace>JERK</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -83,8 +89,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/events_grader.py" />
-        <option value="$PROJECT_DIR$/trip_grader.py" />
         <option value="$PROJECT_DIR$/grading_helpers.py" />
+        <option value="$PROJECT_DIR$/trip_grader.py" />
+        <option value="$PROJECT_DIR$/events_grader_v3.py" />
+        <option value="$PROJECT_DIR$/trip_grader_v3.py" />
       </list>
     </option>
   </component>
@@ -109,7 +117,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -126,6 +133,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -144,7 +152,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.trip_grader_v3">
     <configuration name="trip_grader" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="behavioral_profiling" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -166,6 +174,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="trip_grader_v3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="behavioral_profiling" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trip_grader_v3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.trip_grader_v3" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -227,7 +261,28 @@
       <option name="project" value="LOCAL" />
       <updated>1566573383427</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="debug variable for prints&#10;more comments">
+      <created>1566844833230</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1566844833233</updated>
+    </task>
+    <task id="LOCAL-00009" summary="events_grader v1 added back">
+      <created>1566848433862</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1566848433862</updated>
+    </task>
+    <task id="LOCAL-00010" summary="modified zone limits and plot corrections">
+      <created>1567032234855</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1567032234857</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -241,22 +296,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08058124" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2608983" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32956153" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.06789251" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32956153" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3649222" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.23762377" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32863188" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4993395" weight="0.32956153" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.37376586" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.40311173" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5006605" side_tool="true" weight="0.32956153" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32863188" />
+      <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -270,21 +325,13 @@
     <MESSAGE value="plot generation for all segments&#10;comments for segment names&#10;added extra segment at the end" />
     <MESSAGE value="more comments" />
     <MESSAGE value="debug variable for prints&#10;more comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="debug variable for prints&#10;more comments" />
+    <MESSAGE value="events_grader v1 added back" />
+    <MESSAGE value="modified zone limits and plot corrections" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified zone limits and plot corrections" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/events_grader.py</url>
-          <line>368</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/events_grader.py</url>
-          <line>218</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/trip_grader.py</url>
           <line>8</line>
@@ -294,6 +341,16 @@
           <url>file://$PROJECT_DIR$/trip_grader.py</url>
           <line>62</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/events_grader_v3.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/events_grader_v3.py</url>
+          <line>306</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -313,18 +370,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/events_grader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1782">
-          <caret line="198" column="19" selection-start-line="198" selection-start-column="19" selection-end-line="198" selection-end-column="19" />
+        <state relative-caret-position="72">
+          <caret line="49" column="57" selection-start-line="49" selection-start-column="57" selection-end-line="49" selection-end-column="57" />
           <folding>
             <element signature="e#109#137#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Python36/Lib/site-packages/matplotlib/pyplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-88">
+          <caret line="919" column="16" lean-forward="true" selection-start-line="919" selection-start-column="16" selection-end-line="919" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/trip_grader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="-342">
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
           <folding>
             <element signature="e#109#137#0" expanded="true" />
           </folding>
@@ -333,8 +397,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/grading_helpers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="102" column="23" lean-forward="true" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="23" />
+        <state relative-caret-position="1454">
+          <caret line="168" column="51" selection-start-line="168" selection-start-column="51" selection-end-line="168" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trip_grader_v3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="36" column="16" lean-forward="true" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
+          <folding>
+            <element signature="e#109#137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events_grader_v3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3078">
+          <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+          <folding>
+            <element signature="e#109#137#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
