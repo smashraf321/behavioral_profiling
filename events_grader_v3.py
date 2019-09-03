@@ -21,6 +21,9 @@ SAVE_POINT_SCORES = False
 # f_name = 'Documents/graphs/lap_'
 f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\graphs\\lap_'
 
+# f_name = 'Documents/graphs/lap_'
+f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\graphs\\lap_'
+
 # alias names for indexes 0 and 1. Just for meaningful name to call when used in segment or zone_limits
 START_DIST = 0
 END_DIST = 1
@@ -47,6 +50,9 @@ EXP_DCCN_B = 4
 # 5/18 for Km/h to m/s conversion
 CONV_FACTOR = 1
 
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
 
 ###################################################################################################################################
 ###################################################################################################################################
@@ -65,6 +71,9 @@ def get_poly_threshold(A, B, C, X):
 def get_exp_threshold(A, B, X):
     return (A * pow(math.e, X * B))
 
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
 
 ###################################################################################################################################
 ###################################################################################################################################
@@ -229,6 +238,9 @@ def plot_graphs(speeds, speed_limits, accns, accn_limits, dccn_limits, jerks, je
     plt.savefig(f_name + str(LAP_NUM) + '_' + str(segment_counter) + '_jerk' + '.png')
     plt.close()
 
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
 
 ###################################################################################################################################
 ###################################################################################################################################
@@ -370,6 +382,7 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
                 point_score) + ',' + str(distance_intervals[i])
             print(point_scores_n_weights, file=point_file)
 
+
     # Segment score calculation
     segment_score = segment_score / total_segment_distance
     print('Segment #: ' + str(segment_counter) + ' Regular segment score = ' + str(segment_score))
@@ -377,6 +390,7 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
 
     if SAVE_POINT_SCORES:
         point_file.close()
+
 
     # plot the graph for this segment
     if PLOT:
@@ -387,6 +401,9 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         segment_score = 0.0
     return segment_score
 
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
 
 ###################################################################################################################################
 ###################################################################################################################################
@@ -426,7 +443,7 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         print('point#,speed score,accn score,jerk score,point score,distance weight', file=point_file)
 
     point_scores_n_weights = ''
-
+    
     for i in range(num_values):
         speed_weight = 100
         accn_weight = 0
@@ -529,6 +546,7 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
             point_scores_n_weights += str(speed_score) + ',' + str(accn_score) + ',' + str(jerk_score) + ',' + str(
                 point_score) + ',' + str(distance_intervals[i])
             print(point_scores_n_weights, file=point_file)
+
 
     # Segment score calculation
     segment_score = segment_score / total_segment_distance
