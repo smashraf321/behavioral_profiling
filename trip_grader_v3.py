@@ -174,9 +174,6 @@ try:
                 weighted_segment_score = segment_score * segment_weight
                 total_weight += segment_weight
                 segment_scores += weighted_segment_score
-                segment_scores_n_weights = str(segment_counter) + ','
-                segment_scores_n_weights += str(segment_score) + ',' + str(special_weight) + ',' + str(total_segment_distance) + ',' + str(segment_weight)
-                print(segment_scores_n_weights, file = segment_file)
 
                 if SAVE_SEGMENT_SCORES:
                     segment_scores_n_weights = str(segment_counter) + ','
