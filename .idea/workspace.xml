@@ -3,117 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1adc52c1-8685-472d-be4e-fbc1d087def2" name="Default Changelist" comment="events_grader v1 added back">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_0_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_0_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_0_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_0_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_0_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_0_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_10_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_10_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_10_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_10_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_10_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_10_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_11_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_11_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_11_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_11_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_11_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_11_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_12_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_12_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_12_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_12_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_12_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_12_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_13_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_13_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_13_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_13_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_13_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_13_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_14_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_14_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_14_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_14_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_14_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_14_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_15_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_15_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_15_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_15_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_15_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_15_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_16_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_16_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_16_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_16_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_16_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_16_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_17_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_17_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_17_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_17_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_17_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_17_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_18_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_18_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_18_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_18_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_18_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_18_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_19_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_19_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_19_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_19_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_19_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_19_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_1_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_1_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_1_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_1_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_1_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_1_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_20_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_20_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_20_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_20_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_20_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_20_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_21_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_21_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_21_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_21_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_21_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_21_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_22_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_22_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_22_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_22_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_22_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_22_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_23_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_23_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_23_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_23_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_23_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_23_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_24_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_24_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_24_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_24_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_24_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_24_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_25_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_25_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_25_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_25_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_25_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_25_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_26_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_26_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_26_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_26_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_26_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_26_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_27_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_27_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_27_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_27_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_27_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_27_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_28_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_28_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_28_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_28_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_28_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_28_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_29_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_29_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_29_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_29_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_29_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_29_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_2_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_2_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_2_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_2_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_2_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_2_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_30_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_30_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_30_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_30_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_30_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_30_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_31_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_31_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_31_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_31_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_31_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_31_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_32_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_32_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_32_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_32_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_32_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_32_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_33_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_33_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_33_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_33_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_33_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_33_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_34_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_34_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_34_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_34_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_34_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_34_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_35_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_35_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_35_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_35_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_35_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_35_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_3_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_3_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_3_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_3_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_3_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_3_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_4_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_4_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_4_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_4_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_4_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_4_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_5_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_5_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_5_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_5_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_5_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_5_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_6_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_6_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_6_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_6_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_6_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_6_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_7_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_7_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_7_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_7_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_7_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_7_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_8_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_8_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_8_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_8_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_8_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_8_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_9_accn.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_9_accn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_9_jerk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_9_jerk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_9_speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/graphs/lap6/lap_6_9_speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events_grader_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/events_grader_v3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grading_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/grading_helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trip_grader.py" beforeDir="false" afterPath="$PROJECT_DIR$/trip_grader.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -122,12 +11,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grading_helpers.py">
+        <entry file="file://$PROJECT_DIR$/trip_grader_v3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-12">
-              <caret line="131" column="20" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="20" />
+            <state relative-caret-position="-8">
+              <caret line="75" column="18" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+              <folding>
+                <element signature="e#109#137#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,35 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/events_grader_v3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-270">
-              <caret line="82" column="93" selection-start-line="82" selection-start-column="93" selection-end-line="82" selection-end-column="93" />
-              <folding>
-                <element signature="e#109#137#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trip_grader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="68" column="58" selection-start-line="68" selection-start-column="58" selection-end-line="68" selection-end-column="58" />
-              <folding>
-                <element signature="e#109#137#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trip_grader_v3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1242">
-              <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
-              <folding>
-                <element signature="e#109#137#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="252">
+              <caret line="379" column="34" lean-forward="true" selection-start-line="379" selection-start-column="34" selection-end-line="379" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -228,15 +93,14 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
-    <option name="width" value="1939" />
-    <option name="height" value="1049" />
+    <option name="width" value="1940" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -253,11 +117,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/trip_grader.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -271,7 +136,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.trip_grader_v3">
     <configuration name="trip_grader" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="behavioral_profiling" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -293,6 +158,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="trip_grader_v3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="behavioral_profiling" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trip_grader_v3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.trip_grader_v3" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -384,19 +275,19 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26155877" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2608983" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32956153" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33380482" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4993395" visible="true" weight="0.33380482" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.23762377" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32863188" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4993395" weight="0.32956153" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.37340876" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5006605" side_tool="true" weight="0.32956153" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5006605" side_tool="true" visible="true" weight="0.33380482" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32863188" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -427,16 +318,6 @@
           <line>62</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/events_grader_v3.py</url>
-          <line>74</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/events_grader_v3.py</url>
-          <line>324</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -457,16 +338,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="49" column="57" selection-start-line="49" selection-start-column="57" selection-end-line="49" selection-end-column="57" />
-          <folding>
-            <element signature="e#109#137#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trip_grader_v3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
           <folding>
             <element signature="e#109#137#0" expanded="true" />
           </folding>
@@ -497,13 +368,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/events_grader_v3.py">
+    <entry file="file://$PROJECT_DIR$/trip_grader_v3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270">
-          <caret line="82" column="93" selection-start-line="82" selection-start-column="93" selection-end-line="82" selection-end-column="93" />
+        <state relative-caret-position="-8">
+          <caret line="75" column="18" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
           <folding>
             <element signature="e#109#137#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events_grader_v3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="379" column="34" lean-forward="true" selection-start-line="379" selection-start-column="34" selection-end-line="379" selection-end-column="34" />
         </state>
       </provider>
     </entry>
