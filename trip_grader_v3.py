@@ -14,12 +14,18 @@ import sys
 # lap number for choosing corresponding file
 LAP_NUM = 6
 
+# flag variable to set if needed to generate and save the segment scores for this lap
 SAVE_SEGMENT_SCORES = False
 
 file_extension = '.csv'
 #f_name = 'Documents/logs/lap_' + str(LAP_NUM)
+
+# file path for the CSV log file
 f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\logs\\lap_' + str(LAP_NUM)
-f_segment_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\graphs\\lap_' + str(LAP_NUM)
+
+#path for storing the segment scores in a lap
+f_lap_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\graphs\\lap_' + str(LAP_NUM)
+
 file_name = f_name + file_extension
 
 START_DIST = 0
@@ -56,7 +62,8 @@ worst_segments = []
 worst_segment_score = 100
 
 if SAVE_SEGMENT_SCORES:
-    segment_file = open(f_segment_name + '_' + '_segments.csv','w+')
+    #file to save segment scores for the lap
+    segment_file = open(f_lap_name + '_' + '_segments.csv','w+')
     print('segment#,segment score,importance weight,distance weight, segment weight',file = segment_file)
 
 segment_scores_n_weights = ''

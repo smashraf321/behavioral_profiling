@@ -15,8 +15,8 @@ import matplotlib.pyplot as plt
 DEBUG = False
 # flag to generate and save plots at the end of grading a segment
 PLOT = False
-
-SAVE_POINT_SCORES = False
+# flag to set if needed to save individual point scores for each segment in a separate csv file for this lap
+SAVE_POINT_SCORES = True
 
 # f_name = 'Documents/graphs/lap_'
 f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\graphs\\lap_'

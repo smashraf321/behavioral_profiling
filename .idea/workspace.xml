@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1adc52c1-8685-472d-be4e-fbc1d087def2" name="Default Changelist" comment="events_grader v1 added back">
+    <list default="true" id="1adc52c1-8685-472d-be4e-fbc1d087def2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documents/GraderSoftware_documentation.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/GraderSoftware_documentation.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documents/logs/lap_1__segments_withBarGraphs.xls" beforeDir="false" afterPath="$PROJECT_DIR$/Documents/logs/lap_1__segments_withBarGraphs.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events_grader_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/events_grader_v3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trip_grader_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/trip_grader_v3.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/trip_grader_v3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="75" column="18" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+            <state relative-caret-position="-36">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="e#109#137#0" expanded="true" />
               </folding>
@@ -27,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/events_grader_v3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="379" column="34" lean-forward="true" selection-start-line="379" selection-start-column="34" selection-end-line="379" selection-end-column="34" />
+            <state relative-caret-position="414">
+              <caret line="157" column="45" lean-forward="true" selection-start-line="157" selection-start-column="45" selection-end-line="157" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -54,10 +58,12 @@
       <find>segment no:</find>
       <find>ACC</find>
       <find>SPEED</find>
+      <find>f_segment_name</find>
     </findStrings>
     <replaceStrings>
       <replace>ACC</replace>
       <replace>JERK</replace>
+      <replace>f_lap_name</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -76,6 +82,7 @@
         <option value="$PROJECT_DIR$/events_grader.py" />
         <option value="$PROJECT_DIR$/trip_grader.py" />
         <option value="$PROJECT_DIR$/grading_helpers.py" />
+        <option value="$PROJECT_DIR$/trip_grader_v3.py" />
         <option value="$PROJECT_DIR$/events_grader_v3.py" />
       </list>
     </option>
@@ -259,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566848433862</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="events_grader v3 added back">
+      <created>1567382682600</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1567382682600</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -280,14 +294,14 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32956153" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4993395" visible="true" weight="0.33380482" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49867898" weight="0.33380482" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.23762377" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32863188" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4993395" weight="0.32956153" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.37340876" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5006605" side_tool="true" visible="true" weight="0.33380482" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49867898" visible="true" weight="0.38330975" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.501321" side_tool="true" visible="true" weight="0.38330975" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32863188" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -303,7 +317,8 @@
     <MESSAGE value="more comments" />
     <MESSAGE value="debug variable for prints&#10;more comments" />
     <MESSAGE value="events_grader v1 added back" />
-    <option name="LAST_COMMIT_MESSAGE" value="events_grader v1 added back" />
+    <MESSAGE value="events_grader v3 added back" />
+    <option name="LAST_COMMIT_MESSAGE" value="events_grader v3 added back" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -370,8 +385,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/trip_grader_v3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="75" column="18" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+        <state relative-caret-position="-36">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="e#109#137#0" expanded="true" />
           </folding>
@@ -380,8 +395,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/events_grader_v3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="379" column="34" lean-forward="true" selection-start-line="379" selection-start-column="34" selection-end-line="379" selection-end-column="34" />
+        <state relative-caret-position="414">
+          <caret line="157" column="45" lean-forward="true" selection-start-line="157" selection-start-column="45" selection-end-line="157" selection-end-column="45" />
         </state>
       </provider>
     </entry>
