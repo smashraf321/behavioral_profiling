@@ -263,6 +263,10 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
     jerk_score = 0.0
     point_score = 0.0
 
+    speed_weight = 33
+    accn_weight = 34
+    jerk_weight = 33
+
     # For Plotting purposes
     speed_limits = []
     accn_limits = []
@@ -279,9 +283,6 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
     point_scores_n_weights = ''
 
     for i in range(num_values):
-        speed_weight = 100
-        accn_weight = 0
-        jerk_weight = 0
 
         speed_score = 0
         accn_score = 0
@@ -315,8 +316,6 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
 
         # if acceleration value is > 0, its a positive acceleration aka just acceleration
         if accelerations[i] > 0:
-            accn_weight = 50
-            speed_weight = 50
             if accelerations[i] > accn_limit:
                 accn_score = (1 - ((accelerations[i] - accn_limit) / accn_limit)) * 100
                 if DEBUG:
@@ -330,9 +329,6 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
 
         # if acceleration value is less than 0, its a deceleration
         if accelerations[i] < 0:
-            # if no jerk, weights are given 50 each to accn score and speed limit score for a point
-            accn_weight = 50
-            speed_weight = 50
             if abs(accelerations[i]) > dccn_limit:
                 accn_score = (1 - ((abs(accelerations[i]) - dccn_limit) / dccn_limit)) * 100
                 if DEBUG:
@@ -349,10 +345,6 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         jerk_limits_positive.append(jerk_limit * CONV_FACTOR)
         jerk_limits_negative.append(-1 * jerk_limit * CONV_FACTOR)
         if jerks[i] != 0:
-            # if jerk present, weights are distributed 33% each
-            jerk_weight = 33
-            accn_weight = 34
-            speed_weight = 33
             if abs(jerks[i]) > jerk_limit:
                 jerk_score = (1 - ((abs(jerks[i]) - jerk_limit) / jerk_limit)) * 100
             else:
@@ -425,6 +417,10 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
     jerk_score = 0.0
     point_score = 0.0
 
+    speed_weight = 33
+    accn_weight = 34
+    jerk_weight = 33
+
     min_speed = 1000
     STOP_SPEED = 3
     num_hesitation = 0
@@ -443,11 +439,8 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         print('point#,speed score,accn score,jerk score,point score,distance weight', file=point_file)
 
     point_scores_n_weights = ''
-    
+
     for i in range(num_values):
-        speed_weight = 100
-        accn_weight = 0
-        jerk_weight = 0
 
         speed_score = 0
         accn_score = 0
@@ -472,8 +465,6 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         dccn_limit = get_exp_threshold(dccn_a, dccn_b, speeds[i])
         dccn_limits.append(dccn_limit * -1 * CONV_FACTOR)
         if accelerations[i] > 0:
-            accn_weight = 50
-            speed_weight = 50
             if accelerations[i] > accn_limit:
                 accn_score = (1 - ((accelerations[i] - accn_limit) / accn_limit)) * 100
                 if DEBUG:
@@ -485,8 +476,6 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
             else:
                 accn_score = 100
         if accelerations[i] < 0:
-            accn_weight = 50
-            speed_weight = 50
             if abs(accelerations[i]) > dccn_limit:
                 accn_score = (1 - ((abs(accelerations[i]) - dccn_limit) / dccn_limit)) * 100
                 if DEBUG:
@@ -502,9 +491,6 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         jerk_limits_positive.append(jerk_limit * CONV_FACTOR)
         jerk_limits_negative.append(-1 * jerk_limit * CONV_FACTOR)
         if jerks[i] != 0:
-            jerk_weight = 33
-            accn_weight = 34
-            speed_weight = 33
             if abs(jerks[i]) > jerk_limit:
                 jerk_score = (1 - ((abs(jerks[i]) - jerk_limit) / jerk_limit)) * 100
             else:

@@ -59,10 +59,7 @@ with open(file_name,'r') as csv_file:
                     time = float(rows['tim_lap'])
                     curr_dist = float(rows['dist_lap'])
                     distance_half_sec = curr_dist - prev_dist
-                    if prev_accn * accn <= 0:
-                        jerk = 0.0
-                    else:
-                        jerk = accn - prev_accn
+                    jerk = accn - prev_accn
                     csv_writer.writerow([rows['idx'],rows['t_stmp'],rows['tot_time'],rows['tim_lap'],rows['tim_intvl'],rows['thrtl'],rows['rpm'],rows['spd'],accn,jerk,rows['lat'],rows['lon'],rows['tot_dist'],rows['dist_intrvl'],distance_half_sec,rows['dist_lap']])
                     prev_dist = curr_dist
                     prev_accn = accn
@@ -79,10 +76,7 @@ with open(file_name,'r') as csv_file:
                     time = float(rows['tim_lap'])
                     curr_dist = float(rows['dist_lap'])
                     distance_half_sec = curr_dist - prev_dist
-                    if prev_accn * accn <= 0:
-                        jerk = 0.0
-                    else:
-                        jerk = accn - prev_accn
+                    jerk = accn - prev_accn
                     csv_writer.writerow([rows['idx'],rows['t_stmp'],rows['tot_time'],rows['tim_lap'],rows['tim_intvl'],rows['thrtl'],rows['rpm'],rows['spd'],accn,jerk,rows['lat'],rows['lon'],rows['tot_dist'],rows['dist_intrvl'],distance_half_sec,rows['dist_lap']])
                     prev_dist = curr_dist
                     prev_accn = accn
