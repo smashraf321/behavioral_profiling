@@ -180,8 +180,8 @@ For straight segments, i.e. ones not special have a separate regression equation
 and normal road segments and follows a 2 degree polynomial regression
 """
 
-# jerk threshold is constant across the entire route
-JERK_THRESHOLD = 2.5
+# jerk threshold is constant across the entire route. Previously 2.5
+JERK_THRESHOLD = 3.5
 
 # coefficients for regular portion of special segments
 REG_SPECIAL_ACCN_ALPHA = 14.477
