@@ -244,13 +244,20 @@ try:
         vspeed1 = vspeed2
 
         # log data into a file
+        # Logging Count, Timestamp, total_time_day (in seconds), total_time(in the lap in seconds), time_interval (time diff between two entries)
         logged_data_can = str(count) + ',' + timeStamp + ','
         logged_data_can += '{0:f},{1:f},{2:f},'.format(total_time_day,total_time,time_interval)
+
+        # logging  throttle, rpm, speed, jerk, gps lat, gps, lon,
         if acceleration != 'n/a':
             logged_data_can += '{0:d},'.format(int(throttle)) + '{0:d},'.format(int(rpm)) + '{0:d},'.format(int(speed)) + '{0:f},'.format(jerk)
         else:
             logged_data_can += '{0:d},'.format(int(throttle)) + '{0:d},'.format(int(rpm)) + '{0:d},'.format(int(speed)) + acceleration + ',' + jerk + ','
+
+        #logging gps
         logged_data_can += logged_data_gps
+
+        # distance_total, distance_interval, distance_half_sec, total distance in this lap
         if distance_half_sec != 'n/a':
             logged_data_can += ',{0:f},{1:f},{2:f},{3:f}'.format(distance_total,distance_interval,distance_half_sec,distance)
         else:

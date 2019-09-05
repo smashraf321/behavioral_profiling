@@ -16,10 +16,7 @@ DEBUG = False
 # flag to generate and save plots at the end of grading a segment
 PLOT = False
 # flag to set if needed to save individual point scores for each segment in a separate csv file for this lap
-SAVE_POINT_SCORES = True
-
-# f_name = 'Documents/graphs/lap_'
-f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\graphs\\lap_'
+SAVE_POINT_SCORES = False
 
 # f_name = 'Documents/graphs/lap_'
 f_name = 'C:\\Users\\DELL\\PycharmProjects\\behavioral_profiling\\Documents\\graphs\\lap_'
@@ -95,8 +92,8 @@ def plot_graphs(speeds, speed_limits, accns, accn_limits, dccn_limits, jerks, je
     FIGURE_WIDTH = 8
     FIGURE_HEIGHT = 8
 
-    # if segment_counter != 2 and segment_counter != 4:
-    #      return
+    # if segment_counter != 0: # and segment_counter != 4:
+    #       return
 
     #f_name = f_name + str(LAP_NUM)
 
@@ -314,6 +311,9 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         dccn_limit = get_poly_threshold(dccn_a, dccn_b, dccn_c, speeds[i])
         dccn_limits.append(dccn_limit * -1 * CONV_FACTOR)
 
+        if accelerations[i] == 0:
+            accn_score = 100
+
         # if acceleration value is > 0, its a positive acceleration aka just acceleration
         if accelerations[i] > 0:
             if accelerations[i] > accn_limit:
@@ -344,11 +344,14 @@ def regular_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         jerk_limit = gh.zone_thresholds[segment_counter][zone_counter][JERK_LIMIT_REG]
         jerk_limits_positive.append(jerk_limit * CONV_FACTOR)
         jerk_limits_negative.append(-1 * jerk_limit * CONV_FACTOR)
+
         if jerks[i] != 0:
             if abs(jerks[i]) > jerk_limit:
                 jerk_score = (1 - ((abs(jerks[i]) - jerk_limit) / jerk_limit)) * 100
             else:
                 jerk_score = 100
+        else:
+            jerk_score = 100
 
         # Final point calculation. print calls for debugging are commented if not needed.
         point_score = (speed_score * (speed_weight / 100)) + (accn_score * (accn_weight / 100)) + (
@@ -448,13 +451,16 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
 
         while segment_distances[i] >= gh.zone_limits[segment_counter][zone_counter][END_DIST]:
             zone_counter += 1
+
         # Speed score calculations
         speed_limit = gh.zone_thresholds[segment_counter][zone_counter][SPEED_LIMIT]
         speed_limits.append(speed_limit * CONV_FACTOR)
+
         if speeds[i] > speed_limit:
             speed_score = (1 - ((speeds[i] - speed_limit) / speed_limit)) * 100
         else:
             speed_score = 100
+
         # Accns score calculation
         accn_a = gh.zone_thresholds[segment_counter][zone_counter][EXP_ACCN_A]
         accn_b = gh.zone_thresholds[segment_counter][zone_counter][EXP_ACCN_B]
@@ -464,6 +470,10 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
         accn_limits.append(accn_limit * CONV_FACTOR)
         dccn_limit = get_exp_threshold(dccn_a, dccn_b, speeds[i])
         dccn_limits.append(dccn_limit * -1 * CONV_FACTOR)
+
+        if accelerations[i] == 0:
+            accn_score = 100
+
         if accelerations[i] > 0:
             if accelerations[i] > accn_limit:
                 accn_score = (1 - ((accelerations[i] - accn_limit) / accn_limit)) * 100
@@ -475,6 +485,7 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
                     print(' ')
             else:
                 accn_score = 100
+
         if accelerations[i] < 0:
             if abs(accelerations[i]) > dccn_limit:
                 accn_score = (1 - ((abs(accelerations[i]) - dccn_limit) / dccn_limit)) * 100
@@ -486,15 +497,20 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
                     print(' ')
             else:
                 accn_score = 100
+
         # Jerk score calculation
         jerk_limit = gh.zone_thresholds[segment_counter][zone_counter][JERK_LIMIT_SP]
         jerk_limits_positive.append(jerk_limit * CONV_FACTOR)
         jerk_limits_negative.append(-1 * jerk_limit * CONV_FACTOR)
+
         if jerks[i] != 0:
             if abs(jerks[i]) > jerk_limit:
                 jerk_score = (1 - ((abs(jerks[i]) - jerk_limit) / jerk_limit)) * 100
             else:
                 jerk_score = 100
+        else:
+            jerk_score = 100
+
         # Catch lowest speed in stop sign zone and hesitation check
         if zone_counter == STOP_SIGN and gh.segment_type[segment_counter] == 'stop':
             # stop sign speed check
@@ -509,6 +525,7 @@ def special_grading(speeds, accelerations, jerks, distance_intervals, segment_di
                 POSITIVE_ONGOING = True
             else:
                 pass
+
         # Final point calculation
         point_score = (speed_score * (speed_weight / 100)) + (accn_score * (accn_weight / 100)) + (
                     jerk_score * (jerk_weight / 100))
